@@ -12,7 +12,7 @@ BOT_TOKEN = environ.get('BOT_TOKEN')
 
 
 @client.command()
-async def clear(ctx, amount: int):
+async def clear_chat(ctx, amount: int):
     deleted = await ctx.channel.purge(limit=amount)
     await ctx.send(f"Deleted {len(deleted)} messages")
 
