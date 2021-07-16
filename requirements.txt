@@ -5,6 +5,7 @@ cffi==1.14.6
 chardet==4.0.0
 discord==1.7.3
 discord.py==1.7.3
+ffmpeg==1.4
 idna==3.2
 multidict==5.1.0
 pycparser==2.20
