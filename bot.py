@@ -13,7 +13,8 @@ async def ping(ctx):
 
 
 @bot.command()
-async def clear(ctx):
-    await ctx.channel.purge()
+async def clear(ctx, amount: int):
+    deleted = await ctx.channel.purge(limit=amount)
+    await ctx.send(f"Deleted {len(deleted)} messages")
 
 bot.run(BOT_TOKEN)
