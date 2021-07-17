@@ -17,8 +17,18 @@ async def clear(ctx, amount: int):
     await ctx.send(f"Deleted {len(deleted)} messages")
 
 
+# @client.command()
+# async def join(ctx):
+#     channel = ctx.message.author.voice.channel
+#     voice = get(client.voice_clients, guild=ctx.guild)
+#     if voice and voice.is_connected():
+#         await voice.move_to(channel)
+#     else:
+#         voice = await channel.connect()
+
+
 @client.command()
-async def join(ctx):
+async def play(ctx, url):
     channel = ctx.message.author.voice.channel
     voice = get(client.voice_clients, guild=ctx.guild)
     if voice and voice.is_connected():
@@ -26,9 +36,6 @@ async def join(ctx):
     else:
         voice = await channel.connect()
 
-
-@client.command()
-async def play(ctx, url):
     YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
     FFMPEG_OPTIONS = {
         'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
