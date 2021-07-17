@@ -12,7 +12,7 @@ BOT_TOKEN = environ.get('BOT_TOKEN')
 
 
 @client.command()
-async def clear_chat(ctx, amount: int):
+async def clear(ctx, amount: int):
     deleted = await ctx.channel.purge(limit=amount)
     await ctx.send(f"Deleted {len(deleted)} messages")
 
@@ -72,11 +72,5 @@ async def stop(ctx):
     if voice.is_playing():
         voice.stop()
         await ctx.send('Stopping...')
-
-
-@client.command()
-async def clear(ctx, amount=5):
-    await ctx.channel.purge(limit=amount)
-    await ctx.send("Messages have been cleared")
 
 client.run(BOT_TOKEN)
