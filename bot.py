@@ -19,12 +19,14 @@ async def clear(ctx, amount: int):
 
 @client.command()
 async def talent(ctx, talent_name: str):
-    json = load('talents.json')
-    if talent_name not in json:
+    with open('talents.json') as jf:
+        json_data = load(jf)
+    if talent_name not in json_data:
         await ctx.send('Couldn\'t find the talent name.')
     else:
         await ctx.send('Talent name found!')
 
+    
     # channel = ctx.message.author.voice.channel
     # voice = get(client.voice_clients, guild=ctx.guild)
     # if voice and voice.is_connected():
