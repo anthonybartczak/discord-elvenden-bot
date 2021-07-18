@@ -1,3 +1,9 @@
+PLAYLIST_KEYS = {
+    "town": TOWN_AMBIENCE,
+
+}
+
+
 TOWN_AMBIENCE = [
     'https://www.youtube.com/watch?v=Da9S9yjZZP4',
     'https://www.youtube.com/watch?v=9Nspwg_3BEk',
