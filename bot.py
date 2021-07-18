@@ -18,21 +18,17 @@ async def clear(ctx, amount: int):
     await ctx.send(f"Deleted {len(deleted)} messages")
 
 @client.command()
-async def talent(ctx, talent_name: str):
+async def talent(ctx, talent: str):
     with open('talents.json') as jf:
         json_data = load(jf)
-    if talent_name not in json_data:
-        await ctx.send('Couldn\'t find the talent name.')
-    else:
+    if talent in json_data:
         await ctx.send('Talent name found!')
-
-    
-    # channel = ctx.message.author.voice.channel
-    # voice = get(client.voice_clients, guild=ctx.guild)
-    # if voice and voice.is_connected():
-    #     await voice.move_to(channel)
-    # else:
-    #     voice = await channel.connect()
+        embed=discord.Embed(title=talent['name'], description=talent['description'], color=0x007bff)
+        embed.add_field(name="Maksimum", value=talent['max'], inline=True)
+        embed.add_field(name="Testy", value=talent['tests'], inline=True)
+        await ctx.send(embed=embed)
+    else:
+        await ctx.send('Couldn\'t find the talent name.')
 
 
 @client.command()
