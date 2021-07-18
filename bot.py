@@ -4,6 +4,7 @@ from os import environ
 from discord.utils import get
 from discord import FFmpegPCMAudio
 from youtube_dl import YoutubeDL
+from json import load
 
 
 client = commands.Bot(command_prefix='>')
@@ -15,6 +16,21 @@ BOT_TOKEN = environ.get('BOT_TOKEN')
 async def clear(ctx, amount: int):
     deleted = await ctx.channel.purge(limit=amount)
     await ctx.send(f"Deleted {len(deleted)} messages")
+
+@client.command()
+async def talent(ctx, talent_name: str):
+    json = load('talents.json')
+    if talent_name not in json:
+        await ctx.send('Couldn\'t find the talent name.')
+    else:
+        await ctx.send('Talent name found!')
+
+    # channel = ctx.message.author.voice.channel
+    # voice = get(client.voice_clients, guild=ctx.guild)
+    # if voice and voice.is_connected():
+    #     await voice.move_to(channel)
+    # else:
+    #     voice = await channel.connect()
 
 
 @client.command()
