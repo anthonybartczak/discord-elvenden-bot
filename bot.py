@@ -18,12 +18,13 @@ async def clear(ctx, amount: int):
     await ctx.send(f"Deleted {len(deleted)} messages")
 
 @client.command()
-async def talent(ctx, talent: str):
+async def talent(ctx, talent_name: str):
     with open('talents.json') as jf:
         json_data = load(jf)
-    if talent in json_data:
+    if talent_name in json_data:
+        talent = json_data[talent_name]
         await ctx.send('Talent name found!')
-        embed=discord.Embed(title=talent['name'], description=talent['description'], color='0x007bff')
+        embed=discord.Embed(title=talent['name'], description=talent['description'], color=0x007bff)
         embed.add_field(name="Maksimum", value=talent['max'], inline=True)
         embed.add_field(name="Testy", value=talent['tests'], inline=True)
         await ctx.send(embed=embed)
