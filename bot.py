@@ -23,7 +23,7 @@ async def talent(ctx, talent: str):
         json_data = load(jf)
     if talent in json_data:
         await ctx.send('Talent name found!')
-        embed=discord.Embed(title=talent['name'], description=talent['description'], color=0x007bff)
+        embed=discord.Embed(title=talent['name'], description=talent['description'], color='0x007bff')
         embed.add_field(name="Maksimum", value=talent['max'], inline=True)
         embed.add_field(name="Testy", value=talent['tests'], inline=True)
         await ctx.send(embed=embed)
