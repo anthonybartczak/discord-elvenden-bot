@@ -5,7 +5,7 @@
         "tests": "Rzemiosło (Aptekarstwo)",
         "description": "Jesteś świetnym aptekarzem i lepiej od innych wyrabiasz pigułki, maści, smarowidła, olejki, kremy i im podobne. Możesz odwrócić kolejność kości nieudanego Testu Rzemiosła (Aptekarstwa), jeśli nowy wynik pozwoli ci odnieść sukces."
     },
-    "bardzo szybki" : {
+    "bardzo_szybki" : {
         "name": "Bardzo Szybki",
         "max": "1",
         "tests": "N/A",
