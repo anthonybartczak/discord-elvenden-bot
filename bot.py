@@ -97,8 +97,14 @@ async def playlist(ctx, choice: str):
             'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
         voice.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
         voice.is_playing()
-        await ctx.send('Bot is playing')
-
+        #await ctx.send('Playing the ' + choice + ' playlist')
+        title = 'Playing the ' + choice + ' playlist'
+        vid_name = info.get('title', None)
+        vid_url = info.get('url', None)
+        vid_info = 'Current track name: \n' + vid_name + '\n\n' + 'URL: ' + vid_url
+        embed=discord.Embed(title=title, description=vid_info, color=0xb44141)
+        await ctx.send(embed=embed)
+        
     else:
         await ctx.send("Bot is already playing")
         return
