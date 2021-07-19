@@ -2,7 +2,6 @@ TOWN_AMBIENCE = [
     'https://www.youtube.com/watch?v=Da9S9yjZZP4',
     'https://www.youtube.com/watch?v=9Nspwg_3BEk',
     'https://www.youtube.com/watch?v=xFjpTF4-PgI',
-
 ]
 
 DAY_AMBIENCE = [
@@ -29,7 +28,6 @@ DARK_AMBIENCE = [
     'https://www.youtube.com/watch?v=wF-OFm34G4U',
     'https://www.youtube.com/watch?v=GZvV0sDPvtY',
     'https://www.youtube.com/watch?v=2gFIL9fzacM',
-    
 ]
 
 FIGHT_AMBIENCE = [

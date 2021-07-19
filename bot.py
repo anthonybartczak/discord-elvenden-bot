@@ -6,7 +6,7 @@ from discord.utils import get
 from discord import FFmpegPCMAudio
 from youtube_dl import YoutubeDL
 from json import load
-from random import choice
+import random
 
 
 client = commands.Bot(command_prefix='>')
@@ -86,7 +86,7 @@ async def playlist(ctx, choice: str):
     elif choice == 'random':
         chosen_list = playlists.RANDOM_MUSIC
 
-    url = choice(chosen_list)
+    url = random.choice(chosen_list)
 
     if not voice.is_playing():
         YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
