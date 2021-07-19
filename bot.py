@@ -14,6 +14,11 @@ client = commands.Bot(command_prefix='>')
 BOT_TOKEN = environ.get('BOT_TOKEN')
 
 @client.command()
+async def help(ctx):
+    embed=discord.Embed(title='A short list of currently available commands', description='>source\n>clear\n>play\n>playlist\nresume\n>pause\n>stop\n>', color=0xb44141)
+    await ctx.send(embed=embed)
+
+@client.command()
 async def source(ctx):
     source_code = 'https://github.com/anthonybartczak/elvenden-bot'
     embed=discord.Embed(title='Source code', description='You can check the source code here:\n' + source_code, color=0xb44141)
