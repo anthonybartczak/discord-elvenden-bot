@@ -10,6 +10,7 @@ import random
 
 
 client = commands.Bot(command_prefix='>')
+client.remove_command('help')
 
 BOT_TOKEN = environ.get('BOT_TOKEN')
 
