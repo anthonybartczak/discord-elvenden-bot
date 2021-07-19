@@ -16,7 +16,14 @@ BOT_TOKEN = environ.get('BOT_TOKEN')
 
 @client.command()
 async def help(ctx):
-    embed=discord.Embed(title='A short list of currently available commands', description='>source\n>clear\n>play\n>playlist\nresume\n>pause\n>stop\n>', color=0xb44141)
+    embed=discord.Embed(title='Help', description='A short list of currently available commands:', color=0xb44141)
+    embed.add_field(name=">source", value='Display the source code.', inline=True)
+    embed.add_field(name=">clear [value]", value='Clear [value] text messages.', inline=True)
+    embed.add_field(name=">play [url]", value='Play music from a YouTube video.', inline=True)
+    embed.add_field(name=">playlist [list]", value='Roll a random track from [list].', inline=True)
+    embed.add_field(name=">resume", value='Resume the music.', inline=True)
+    embed.add_field(name=">pause", value='Pause the music.', inline=True)
+    embed.add_field(name=">stop", value='Stop the music.', inline=True)
     await ctx.send(embed=embed)
 
 @client.command()
