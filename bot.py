@@ -101,7 +101,7 @@ async def playlist(ctx, choice: str):
         title = 'Playing the ' + choice + ' playlist'
         vid_name = info.get('title', None)
         vid_id = info.get('id', None)
-        vid_info = '**Current track name:** \n' + vid_name + '\n\n' + 'URL: https://www.youtube.com/watch?v=' + vid_id
+        vid_info = '**Current track name:** \n' + vid_name + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + vid_id
         embed=discord.Embed(title=title, description=vid_info, color=0xb44141)
         await ctx.send(embed=embed)
         
