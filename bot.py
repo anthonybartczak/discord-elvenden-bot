@@ -31,6 +31,13 @@ async def source(ctx):
     source_code = 'https://github.com/anthonybartczak/elvenden-bot'
     embed=discord.Embed(title='Source code', description='You can check the source code here:\n' + source_code, color=0xb44141)
     await ctx.send(embed=embed)
+    
+@client.command()
+async def reaction(ctx):
+    zus = ['https://i.imgur.com/Pg2YybH.png','https://i.imgur.com/KbGRB1I.png']
+    zus_choice = random.choice(zus) 
+    embed=discord.Embed(title='Zus reaction table', description=zus, color=0xb44141)
+    await ctx.send(embed=embed)
 
 @client.command()
 async def clear(ctx, amount: int):
