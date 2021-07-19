@@ -13,6 +13,11 @@ client = commands.Bot(command_prefix='>')
 
 BOT_TOKEN = environ.get('BOT_TOKEN')
 
+@client.command()
+async def source(ctx):
+    source_code = 'https://github.com/anthonybartczak/elvenden-bot'
+    embed=discord.Embed(title='Source code', description='You can check the source code here:\n' + source_code, color=0xb44141)
+    await ctx.send(embed=embed)
 
 @client.command()
 async def clear(ctx, amount: int):
@@ -97,7 +102,6 @@ async def playlist(ctx, choice: str):
             'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
         voice.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
         voice.is_playing()
-        #await ctx.send('Playing the ' + choice + ' playlist')
         title = 'Playing the ' + choice + ' playlist'
         vid_name = info.get('title', None)
         vid_id = info.get('id', None)
