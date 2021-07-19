@@ -1,3 +1,4 @@
+import playlists
 import discord
 from discord.ext import commands
 from os import environ
@@ -5,6 +6,7 @@ from discord.utils import get
 from discord import FFmpegPCMAudio
 from youtube_dl import YoutubeDL
 from json import load
+from random import choice
 
 
 client = commands.Bot(command_prefix='>')
@@ -59,7 +61,7 @@ async def play(ctx, url: str):
         return
 
 @client.command()
-async def playlist(ctx, url: str):
+async def playlist(ctx, choice: str):
     channel = ctx.message.author.voice.channel
     voice = get(client.voice_clients, guild=ctx.guild)
     if voice and voice.is_connected():
@@ -68,6 +70,23 @@ async def playlist(ctx, url: str):
         voice = await channel.connect()
 
     voice = get(client.voice_clients, guild=ctx.guild)
+
+    if choice == 'town':
+        chosen_list = playlists.TOWN_AMBIENCE
+    elif choice == 'day':
+        chosen_list = playlists.DAY_AMBIENCE
+    elif choice == 'dark':
+        chosen_list = playlists.DARK_AMBIENCE
+    elif choice == 'fight':
+        chosen_list = playlists.FIGHT_AMBIENCE
+    elif choice == 'night':
+        chosen_list = playlists.NIGHT_AMBIENCE
+    elif choice == 'emotional':
+        chosen_list = playlists.EMOTIONAL_AMBIENCE
+    elif choice == 'random':
+        chosen_list = playlists.RANDOM_MUSIC
+
+    url = choice(chosen_list)
 
     if not voice.is_playing():
         YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
