@@ -39,7 +39,7 @@ async def reaction(ctx):
         'https://i.imgur.com/RBTMA0J.jpg':'not amused!'
     }
     zus_choice = random.choice(list(zus.items()))
-    embed=discord.Embed(title='Zus reaction table', description='Zus is' + zus_choice[1], color=0xb44141)
+    embed=discord.Embed(title='Zus reaction table', description='Zus is ' + zus_choice[1], color=0xb44141)
     embed.set_image(url=zus_choice[0])
     await ctx.send(embed=embed)
 
