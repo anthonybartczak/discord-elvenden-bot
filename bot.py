@@ -34,10 +34,13 @@ async def source(ctx):
     
 @client.command()
 async def reaction(ctx):
-    zus = ['https://i.imgur.com/Pg2YybH.png','https://i.imgur.com/KbGRB1I.png']
-    zus_choice = random.choice(zus) 
-    embed=discord.Embed(title='Zus reaction table', description='Zus is shocked!', color=0xb44141)
-    embed.set_image(url=zus_choice)
+    zus = {
+        'https://i.imgur.com/lxBQV76.png':'shocked!',
+        'https://i.imgur.com/RBTMA0J.jpg':'not amused!'
+    }
+    zus_choice = random.choice(list(zus.items()))
+    embed=discord.Embed(title='Zus reaction table', description='Zus is' + zus_choice[1], color=0xb44141)
+    embed.set_image(url=zus_choice[0])
     await ctx.send(embed=embed)
 
 @client.command()
