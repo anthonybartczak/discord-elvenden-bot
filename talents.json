@@ -237,7 +237,709 @@
         "name": "Inspirujący",
         "max": "Bonus z Ogłady",
         "tests": "Dowodzenie podczas wojny",
-        "description": "Twoje słowa i zachęty mogą przechylić szalę zwycięstwa w bitwie.  Poniższa tabela pokazuje, ile osób ulegnie wpływowi Dowodzenia (patrz strona 120) podczas wojny.\nhttps://i.imgur.com/MoE3fh9.png \nPrzykład: Klasztor przeoryszy Birgitte van der Hoogenband został  zaatakowany przez zielonoskórych i sprawy wyglądają niewesoło. Birgitte postanowiła więc podnieść morale żołnierzy płomienną  przemową. Test Dowodzenia może dać im +10 do Testów Psychologii. Rzut był udany i przyniósł 3 PS. Jej Bonus z Ogłady wynosi 6,  dlatego może podnieść morale 9 żołnierzy, ale 3 razy wykupiła Talent  Inspirujący, dlatego jej słowa trafiają do 180 wojaków (9x20). Ci ze zdwojoną siłą odpowiadają na jej okrzyk: „TRZYMAĆ SZYK!”."
+        "description": "Twoje słowa i zachęty mogą przechylić szalę zwycięstwa w bitwie.  Poniższa tabela pokazuje, ile osób ulegnie wpływowi Dowodzenia (patrz strona 120) podczas wojny.\n\nhttps://i.imgur.com/MoE3fh9.png\n\nPrzykład: Klasztor przeoryszy Birgitte van der Hoogenband został  zaatakowany przez zielonoskórych i sprawy wyglądają niewesoło. Birgitte postanowiła więc podnieść morale żołnierzy płomienną  przemową. Test Dowodzenia może dać im +10 do Testów Psychologii. Rzut był udany i przyniósł 3 PS. Jej Bonus z Ogłady wynosi 6,  dlatego może podnieść morale 9 żołnierzy, ale 3 razy wykupiła Talent  Inspirujący, dlatego jej słowa trafiają do 180 wojaków (9x20). Ci ze zdwojoną siłą odpowiadają na jej okrzyk: „TRZYMAĆ SZYK!”."
+    },
+    "intrygant" : {
+        "name": "Intrygant",
+        "max": "Bonus z Inteligencji",
+        "tests": "Inteligencji dotyczące tego Talentu",
+        "description": "Jesteś mistrzem intryg i za każdym rogiem węszysz spiski. Raz na  sesję możesz zadać MG pytanie o sytuację polityczną i zagmatwaną sieć powiązań, a on wykona w tajemnicy Test Inteligencji  i przekaże ci pewną ilość informacji, zależną od liczby PS uzyskanych dzięki rzutowi."
+    },
+    "inwokacja" : {
+        "name": "Inwokacja (Boska Tradycja)",
+        "max": "1",
+        "tests": "N/A",
+        "description": "Zostałeś pobłogosławiony przez swego boskiego patrona, dzięki  czemu zyskujesz zdolność czynienia jednego z jego Cudów. Możesz wykupywać kolejne cuda za 100 PD pomnożone przez liczbę obecnie znanych cudów. Pełne zasady tego, jak się ich uczysz,  znajdują się w Rozdziale 7: Religie i wierzenia. W normalnych  okolicznościach nie możesz wykupić tego Talentu więcej niż je den raz. Co więcej, nie możesz też kupić Talentów Magia Prosta  i Magia Tajemna, jeśli posiadasz Talent Inwokacja. Po wydaniu  100 PD możesz się pozbyć tego Talentu, ale natychmiast utracisz  dostęp do wszystkich zapewnianych przez niego cudów. Narażasz się też na gniew swego boga, a MG obmyśli, jak będzie się  on przejawiał."
+    },
+    "krasomówstwo" : {
+        "name": "Krasomówstwo",
+        "max": "Bonus z Ogłady",
+        "tests": "N/A",
+        "description": "Wiesz, jak porwać tłum. Kiedy wykonujesz Test Charyzmy pod czas przemawiania do tłumu, otrzymujesz premię w wysokości  tylu PS, ile razy wkupiłeś ten Talent."
+    },
+    "krzepki" : {
+        "name": "Krzepki",
+        "max": "Bonus z Wytrzymałości",
+        "tests": "N/A",
+        "description": "Jesteś twardy jak skała i rany nie robią na tobie wrażenia. Zmniejszasz otrzymywane obrażenia o 1 za każde wykupienie tego Ta lentu. Zasada ta działa nawet wtedy, gdy nie mógłbyś pomniejszyć otrzymanych ran. Nie możesz w ten sposób zredukować  obrażeń poniżej 1 punktu."
+    },
+    "łapówkarz" : {
+        "name": "Łapówkarz",
+        "max": "Bonus z Ogłady",
+        "tests": "Łapówkarstwo",
+        "description": "Wiesz, jak dawać w łapę. MG powinien obniżyć podstawę wyliczenia łapówki o 10% za każde wykupienie tego Talentu. Minimalna wartość łapówki nie może spaść poniżej 10% wyjściowej  stawki."
+    },
+    "mag_bitewny" : {
+        "name": "Mag Bitewny",
+        "max": "1",
+        "tests": "N/A",
+        "description": "Zostałeś wyszkolony w rzucaniu czarów podczas bitwy. W swojej Turze możesz rzucić jeden czar o Poziomie Zaklęcia 5 lub  niższym w Akcji Darmowej (Test wykonujesz normalnie). Nie  używasz zatem pełnej Akcji i możesz ją wykorzystać w dowolny  sposób. Jednak w tej Turze nie możesz rzucić już kolejnego czaru."
+    },
+    "magia_chaosu" : {
+        "name": "Magia Chaosu (Tradycja)",
+        "max": "Liczba dostępnych czarów w wybranej tradycji ma gii Chaosu.",
+        "tests": "N/A",
+        "description": "Przez przypadek (lub wręcz przeciwnie) część twojej duszy przypadła jednemu z Mrocznych Bogów i jesteś w stanie korzystać z wszetecznej magii Chaosu. Twój złowrogi patron zapewnia ci dostęp do  jednego czaru z wybranej tradycji (najczęściej Nurgla, Slaanesha lub  Tzeentcha), a wraz z nim otrzymujesz Punkt Zepsucia, gdy bluźniercza formuła wypala się w twoim umyśle, byś nigdy jej nie zapomniał. Za każdym razem, gdy wykupujesz ten Talent, musisz zapłacić  za niego 100 PD, a więc jest inaczej niż w przypadku innych  tradycji. W zamian za to otrzymujesz czar z wybranej tradycji i 1  Punkt Zepsucia. Więcej informacji na temat czarów znajduje się  w Rozdziale 8: Magia. W normalnych warunkach możesz znać  tylko jedną tradycję magii Chaosu."
+    },
+    "magia_prosta" : {
+        "name": "Magia Prosta",
+        "max": "1",
+        "tests": "N/A",
+        "description": "Zawsze miałeś smykałkę do rzucania czarów i opanowałeś metody ich podstawowej kontroli. Kiedy wykupujesz ten Talent,  uczysz się i zapamiętujesz tyle czarów, ile wynosi modyfikator  z twojej Siły Woli. Kolejnych czarów możesz się nauczyć, korzy stając z poniższej tabeli kosztów: \n\nhttps://i.imgur.com/gNIhljT.pngn\n\nJeśli twój Bonus z Siły Woli wynosi 3, to pierwsze trzy czary będą  cię kosztowały 50 PD, kolejne trzy 100 PD i tak dalej…"
+    },
+    "magia_tajemna" : {
+        "name": "Magia Tajemna (Tradycja)",
+        "max": "1",
+        "tests": "N/A",
+        "description": "Studiowałeś jedną z ośmiu tradycji magii: Cienia, Metalu, Nie bios, Ognia, Śmierci, Światła, Zwierząt lub Życia albo praktyku jesz którąś z mniej znanych: Guślarstwa czy Nekromancji. Możesz zapamiętywać czary ze swojej wybranej tradycji, płacąc za  nie podany niżej koszt w Punktach Doświadczenia: \n\nhttps://i.imgur.com/UU4L6gz.png\n\nJeśli twój Bonus z Inteligencji równy jest 4, to pierwsze cztery  czary będą cię kosztowały 100 PD, kolejne 4 już 200 PD i tak da lej. Obszerniejsze zasady dotyczące nauki nowych zaklęć znajdują  się w Rozdziale 8: Magia. W normalnych warunkach nie możesz  nabyć więcej niż jednego Talentu Magia Tajemna (Tradycja). Co  więcej, jeśli posiadasz Talent Magia Tajemna (Tradycja), nie możesz wykupić Talentów Błogosławieństwo i Inwokacja. Za 100 PD  możesz wyzbyć się tego Talentu, natychmiast tracąc dostęp do  wszystkich zapewnianych przez niego czarów."
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
     },
     "" : {
         "name": "",
