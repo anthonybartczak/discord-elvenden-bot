@@ -131,113 +131,113 @@
         "tests": "Broń Biała (Bijatyka)",
         "description": "Nauczyłeś się brudnych sztuczek, stosowanych podczas walki bez  broni. Zadajesz +1 punkt obrażeń za każde wykupienie tego Talentu, gdy trafisz przeciwnika, używając Umiejętności Broń Biała  (Bijatyka). Uwaga: wykorzystanie tego Talentu w pojedynku bokserskim jest  uważane za oszustwo"
     },
-    "" : {
-        "name": "",
-        "max": "",
-        "tests": "",
-        "description": ""
+    "czarownica" : {
+        "name": "Czarownica!",
+        "max": "Bonus z Siły Woli",
+        "tests": "N/A",
+        "description": "Sama z siebie nauczyłaś się, jak rzucać czary, często robiąc to metodą prób i błędów. Dodaj Język (Magiczny) do listy Umiejętności każdej bieżącej Profesji. Jeśli się już na niej znajduje, każde  Rozwinięcie tej Umiejętności kosztuje cię 5 PD mniej. Co więcej, za Punkt Bohatera możesz objawić znajomość nowego czaru  z tradycji Magii Tajemnej i go zapamiętać. Możesz tak uczynić  tyle razy, ile razy wykupiłaś ten Talent."
     },
-    "" : {
-        "name": "",
-        "max": "",
-        "tests": "",
-        "description": ""
+    "człowiek_guma" : {
+        "name": "Człowiek Guma",
+        "max": "Bonus ze Zwinności",
+        "tests": "Kuglarstwo lub Testy Zwinności w sytuacji, gdy przydaje się gibkość",
+        "description": "Jesteś w stanie wyginać swoje ciało i manipulować nim na sposoby, które zdają się przeczyć naturze. Dzięki temu możesz prze ciskać się przez niewielkie otwory lub zmuszać członki do nie prawdopodobnych rzeczy. Granice tego wyznacza MG i udany  Test Zwinności."
     },
-    "" : {
-        "name": "",
-        "max": "",
-        "tests": "",
-        "description": ""
+    "czujny" : {
+        "name": "Czujny",
+        "max": "1",
+        "tests": "N/A",
+        "description": "Swoją początkową Inicjatywę zwiększasz na stałe o +5, co nie  liczy się do sumy Rozwinięć twojej postaci."
     },
-    "" : {
-        "name": "",
-        "max": "",
-        "tests": "",
-        "description": ""
+    "czysta_dusza" : {
+        "name": "Czysta Dusza",
+        "max": "Bonus z Siły Woli",
+        "tests": "N/A",
+        "description": "Twoja dusza jest nieskalana i odporna na zakusy Chaosu. Zanim  będziesz musiał wykonać Test poddania się Zepsuciu, możesz  przyjąć dodatkowe jego Punkty w liczbie równej liczbie wykupień tego Talentu."
     },
-    "" : {
-        "name": "",
-        "max": "",
-        "tests": "",
-        "description": ""
+    "czytanie_z_ruchu_warg" : {
+        "name": "Czytanie z Ruchu Warg",
+        "max": "Bonus z Inicjatywy",
+        "tests": "Testy Percepcji związane z wykorzystaniem tego Talentu.",
+        "description": "Patrząc na usta innych, potrafisz dowiedzieć się, co mówią. Jeśli możesz bez przeszkód obserwować dolną część twarzy istoty, wolno ci wykonać Test Percepcji, by zrozumieć, co mówi."
     },
-    "" : {
-        "name": "",
-        "max": "",
-        "tests": "",
-        "description": ""
+    "czytanie_pisanie" : {
+        "name": "Czytanie/Pisanie",
+        "max": "1",
+        "tests": "N/A",
+        "description": "Jesteś jednym z nielicznych piśmiennych Staroświatowców. Po trafisz czytać i pisać (o ile to możliwe) w każdym języku, którym  umiesz się posługiwać."
     },
-    "" : {
-        "name": "",
-        "max": "",
-        "tests": "",
-        "description": ""
+    "defraudant" : {
+        "name": "Defraudant",
+        "max": "Bonus z Inteligencji",
+        "tests": "Inteligencja (Defraudacja)",
+        "description": "Potrafisz podprowadzać pieniądze swoich pryncypałów tak, by  tego nie odkryli. Kiedy pozyskujesz dochód podczas zarabiania  (w trakcie gry lub oddając się Zajęciu Dochód), możesz wykonać  Przeciwstawny Test Inteligencji przeciwko swojemu pracodawcy  (jeśli masz takowego). Jeżeli wygrasz, niepostrzeżenie podprowadzasz 2k10 + PS miedzianych pensów, 1k10 srebrnych szylingów  lub 1 + PS złotych koron (w zależności od wielkości obrotów, co  jest w gestii MG). Jeśli twój pracodawca wygra o +6 PS, zgarniasz  pieniądze, ale zostajesz nakryty. Konsekwencje zależą od MG.  Inne wyniki oznaczają, że nie udało ci się zrobić defraudacji i nie  ukradłeś żadnych pieniędzy."
     },
-    "" : {
-        "name": "",
-        "max": "",
-        "tests": "",
-        "description": ""
+    "dobrze_przygotowany" : {
+        "name": "Dobrze Przygotowany",
+        "max": "Bonus z Inicjatywy",
+        "tests": "N/A",
+        "description": "Dobrze przewidujesz, czego będą potrzebować inni i co przyda  się tobie. Tyle razy na sesję, ile razy wykupiłeś ten Talent, możesz  wyciągnąć z plecaka lub sakwy niezbędny przedmiot, jeśli jego  ciężar w punktach obciążenia wynosi 0, mógł zostać niedawno  kupiony i jego posiadanie nie jest czymś niezwykłym. Może to  być butelka spirytusu, potrzebna do polania rany kompana, lub  gwizdek, którego zabrakło występującemu cyrkowcowi. Kiedy  użyjesz tego Talentu, odlicz pieniądze za przedmiot, pokazując  tym, że wcześniej go kupiłeś."
     },
-    "" : {
-        "name": "",
-        "max": "",
-        "tests": "",
-        "description": ""
+    "doświadczony_wędrowiec" : {
+        "name": "Doświadczony Wędrowiec (Wybrany Teren)",
+        "max": "Bonus ze Zwinności",
+        "tests": "Atletyki podczas podróży w terenie",
+        "description": "Masz doświadczenie w wędrówce przez dzicz i potrafisz dobrze  wybierać drogę. Nie działają na ciebie negatywne modyfikatory  wynikające z wpływu wybranego terenu. Oto lista przykładów:  Lasy, Pustynie, Moczary, Teren Kamienisty, Tundra, Wybrzeża."
     },
-    "" : {
-        "name": "",
-        "max": "",
-        "tests": "",
-        "description": ""
+    "dwie_bronie" : {
+        "name": "Dwie Bronie",
+        "max": "Bonus ze Zwinności",
+        "tests": "Broń Biała lub Zasięgowa, kiedy atakujesz dwoma sztukami oręża",
+        "description": "Kiedy jesteś uzbrojony w dwie bronie, podczas swojej Akcji możesz  zaatakować obydwiema naraz. Najpierw wykonaj Test trafienia dla  broni, którą trzymasz w wiodącej ręce, a jeśli trafisz, określ nor malnie obrażenia. Zostaw kości 1k100 na stole, przydadzą się za  chwilę. Skoro pierwszy atak się udał i zostały zadane obrażenia,  możesz użyć drugiej broni, by uderzyć jeszcze raz. Wykorzystujesz  wynik pierwszego rzutu, ale odwracasz kolejność kostek. I tak rzut  na trafienie 34 stanie się 43. Pamiętaj, by obniżyć go o modyfikator  wynikający z walki słabszą ręką (-20, chyba że posiadasz Talent  Oburęczność). Drugi atak też jest Testem Przeciwstawnym. Twój  przeciwnik wykonuje Test obrony, na nowo określane są obraże nia. Wyjątkiem jest sytuacja, gdy pierwszy atak zakończył się Trafieniem Krytycznym. Jeśli tak się stanie, wykorzystaj wynik rzutu  w Tabeli Trafień Krytycznych do określenia, czy drugi atak trafił,  czy nie. Na przykład, jeśli pierwszy atak trafił przeciwnika kry tycznie w głowę, a wynik rzutu w Tabeli Trafień Krytycznych to  56 (Poważna rana oka), to korzystasz z tego rezultatu jako wyniku  rzutu na trafienie w drugim ataku. Jeśli atakujesz obydwiema broniami, twoje rzuty na obronę obarczone są modyfikatorem -10 do  końca twojej następnej Tury. Nie zyskujesz Przewagi za trafienie  lub zranienie przeciwnika, jeśli korzystasz z tego Talentu, chyba że  trafisz obydwoma atakami."
     },
-    "" : {
-        "name": "",
-        "max": "",
-        "tests": "",
-        "description": ""
+    "etykieta" : {
+        "name": "Etykieta (Grupa Społeczna)",
+        "max": "Bonus z Ogłady",
+        "tests": "Charyzma lub Plotkowanie (Grupa Społeczna)",
+        "description": "Dopóki jesteś odpowiednio ubrany i zachowujesz się należycie, potrafisz wtopić się w tłum wybranej grupy społecznej. Oto  przykłady kilku z nich: Członkowie Gildii lub Cechu, Kultyści,  Przestępcy, Służba, Szlachta, Uczeni, Żołnierze. Jeśli nie posiadasz tego Talentu, ci, którzy go mają, łatwo zauważą, że nie pasujesz do obcego środowiska. Widać to w zachowaniu bohatera. To  oczywiście zależy od odgrywania, ale MG może wprowadzić tu  odpowiedni modyfikator do Testów Ogłady"
     },
-    "" : {
-        "name": "",
-        "max": "",
-        "tests": "",
-        "description": ""
+    "finta" : {
+        "name": "Finta",
+        "max": "Bonus z Walki Wręcz",
+        "tests": "Broń Biała (Szermiercza) podczas Finty",
+        "description": "Pilnie ćwiczyłeś pozorowane ataki w zwarciu, by zmylić przeciwnika. W ramach swojej Akcji możesz wykonać fintę przeciwko  uzbrojonemu przeciwnikowi. O jej powodzeniu rozstrzyga Przeciwstawny Test Broni Białej (Szermierczej) przeciw Broni Białej  wroga. Jeśli go wygrasz i przed końcem następnej rundy zaatakujesz tego samego przeciwnika, możesz dodać PS z finty do swojego Testu ataku."
     },
-    "" : {
-        "name": "",
-        "max": "",
-        "tests": "",
-        "description": ""
+    "gadanina" : {
+        "name": "Gadanina",
+        "max": "Bonus z Ogłady",
+        "tests": "Charyzma, by kogoś zagadać",
+        "description": "W Nordlandzie mówi się, że otwierasz usta, a kiszki przez ciebie  przemawiają, w Ostlandzie zaś, że pleciesz bzdury. Gadanina to  wylewanie strumienia słów lub niepotrzebne i kwieciste rozwodzenie się nad sprawami trywialnymi lub wręcz pozbawionymi  sensu, by wprowadzić rozmówcę w zdumienie i zakłopotanie.  Do Gadaniny wykorzystujesz Umiejętność Charyzma w Teście  Przeciwstawnym z Inteligencją. Sukces oznacza, że twój rozmówca znajduje się w Stanie Oszołomienie. Każdy poziom Ga daniny sprawia, że cel otrzymuje Stan kolejny raz. Taka osoba  bądź istota stoi oniemiała, próbując zrozumieć, o czym mówisz  i czego chcesz. Kiedy zagadany osobnik otrząśnie się z oszołomienia i zrozumie, co się działo, może nie być szczęśliwy z tego,  jak go zmieszałeś. Ostatecznie zawracałeś mu głowę głupota mi. Kiedy przestaniesz nawijać, cel natychmiast otrząśnie się ze  Stanu Oszołomienie spowodowanego Gadaniną. Tego Talentu  możesz używać tylko raz na danej osobie podczas jednej sceny  (a nawet jeszcze rzadziej, jeśli MG tak uzna). Może zdarzyć się  tak, że ten sam człowiek drugi raz na twoje paplanie nie da się już nabrać."
     },
-    "" : {
-        "name": "",
-        "max": "",
-        "tests": "",
-        "description": ""
+    "geniusz_arytmetyczny" : {
+        "name": "Geniusz Arytmetyczny",
+        "max": "Bonus z Inteligencji",
+        "tests": "Wycena, Hazard",
+        "description": "Masz dar do cyferek i z łatwością potrafisz rozwiązywać problemy matematyczne. Na sesji wolno używać ci kalkulatora, by  pokazać geniusz swojej postaci (chyba że go nie potrzebujesz i liczysz w pamięci)."
     },
-    "" : {
-        "name": "",
-        "max": "",
-        "tests": "",
-        "description": ""
+    "gładkie_słówka" : {
+        "name": "Gładkie Słówka",
+        "max": "Bonus z Ogłady",
+        "tests": "Charyzma podczas kłamania",
+        "description": "Jak Ranald Podstępny, potrafisz tak przeplatać prawdę z kłamstwem, że nie można odróżnić jednego od drugiego. Gdy wykorzystujesz Charyzmę do kłamania, twoi rozmówcy nie mogą  wykonywać Przeciwstawnego Testu Intuicji, by sprawdzić, czy  przypadkiem ich nie okłamujesz."
     },
-    "" : {
-        "name": "",
-        "max": "",
-        "tests": "",
-        "description": ""
+    "groźny" : {
+        "name": "Groźny",
+        "max": "Bonus z Siły",
+        "tests": "Zastraszanie",
+        "description": "Twoja postura i wygląd budzą obawę. Kiedy wykonujesz Test  Zastraszania, uzyskujesz dodatkowe PS równe liczbie wykupień tego Talentu."
     },
-    "" : {
-        "name": "",
-        "max": "",
-        "tests": "",
-        "description": ""
+    "hulaka" : {
+        "name": "Hulaka",
+        "max": "Bonus z Wytrzymałości",
+        "tests": "Charyzma i Plotkowanie podczas przyjęć, Mocna Głowa",
+        "description": "Wiesz, jak pić i jak dobrze się bawić. Możesz zamienić kostki nie udanego Testu Mocnej Głowy, jeśli nowy wynik będzie sukcesem."
     },
-    "" : {
-        "name": "",
-        "max": "",
-        "tests": "",
-        "description": ""
+    "inspirujący" : {
+        "name": "Inspirujący",
+        "max": "Bonus z Ogłady",
+        "tests": "Dowodzenie podczas wojny",
+        "description": "Twoje słowa i zachęty mogą przechylić szalę zwycięstwa w bitwie.  Poniższa tabela pokazuje, ile osób ulegnie wpływowi Dowodzenia (patrz strona 120) podczas wojny.\nhttps://i.imgur.com/MoE3fh9.png"
     },
     "" : {
         "name": "",
