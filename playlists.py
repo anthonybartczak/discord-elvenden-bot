@@ -66,7 +66,9 @@ EMOTIONAL_AMBIENCE = [
 ]
 
 RANDOM_MUSIC = [
-    'https://www.youtube.com/watch?v=-0SmXVrLlZ4',
-    'https://www.youtube.com/watch?v=BVomQtrtMTM'
-    
+    #'https://www.youtube.com/watch?v=-0SmXVrLlZ4',
+    #'https://www.youtube.com/watch?v=BVomQtrtMTM'
+    'https://www.youtube.com/watch?v=HRW9W7ZtOEI',
+    'https://www.youtube.com/watch?v=ZRT2pbBS9-w',
+    'https://www.youtube.com/watch?v=QiQZXyjIdzw',
 ]

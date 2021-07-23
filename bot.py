@@ -130,13 +130,14 @@ async def playlist(ctx, choice: str):
         chosen_list = playlists.RANDOM_MUSIC
 
     
-    queue_dict = dict.fromkeys(server.id, random.shuffle(chosen_list))
-    print(queue_dict)
+    #queue_dict = dict.fromkeys(server.id, random.shuffle(chosen_list))
+
     queue_local =  songs[server.id]
     playTrackFromPlaylist(ctx, queue_local)
     
     
 async def playTrackFromPlaylist(ctx, queue_local):
+    
     voice = get(client.voice_clients, guild=ctx.guild)
     url = queue_local.pop(0)
     if not voice.is_playing():

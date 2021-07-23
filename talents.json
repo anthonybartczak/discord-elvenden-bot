@@ -10,5 +10,275 @@
         "max": "1",
         "tests": "N/A",
         "description": "Twoja szybkość zwiększa się o +1."
+    },
+    "arcydzieło" : {
+        "name": "Arcydzieło",
+        "max": "brak",
+        "tests": "N/A",
+        "description": "Jesteś niekwestionowanym mistrzem w swojej dziedzinie, tworzącym dzieła tak złożone, że inni mogą je tylko podziwiać, zachwycając  się twoim geniuszem. Za każdym razem, gdy wykupujesz ten Talent,  tworzysz niezwykłe dzieło, wykorzystując Umiejętność Sztuka lub  Rzemiosło. Nie ma ono sobie równych, będzie po wieki inspirowało,  zadziwiało i budziło zachwyt swoją wyjątkowością. MG określa premie, które ci przysługują z tej racji. Zwykle wpływają one na Testy Ogłady w kontaktach z tymi, którzy podziwiają twoją sztukę. Sprzedaż dzieła powinna dać ci przynajmniej dziesięciokrotną wartość zwykłej ceny, a czasami nawet więcej."
+    },
+    "artylerzysta" : {
+        "name": "Artylerzysta",
+        "max": "Bonus ze Zręczności",
+        "tests": "N/A",
+        "description": "Z łatwością przeładowujesz broń prochową. Dodaj PS równe liczbie wykupień tego Talentu do każdego Wydłużonego Testu  związanego z przeładowaniem broni prochowej."
+    },
+    "atak_wyprzedzający" : {
+        "name": "Atak Wyprzedzający",
+        "max": "Bonus z Inicjatywy",
+        "tests": "N/A",
+        "description": "Twoje błyskawiczne ciosy pozwalają na powalenie przeciwników, zanim oni sami zdążą zaatakować. Kiedy wróg na ciebie Szarżuje,  wykonaj udany Wymagający (+0) Test Inicjatywy, by natychmiast  wykonać Darmowy Atak poza normalną kolejnością Rundy.  Używasz broni, którą trzymasz w wiodącej ręce. Możesz wykonać  tyle Ataków Wyprzedzających w Rundzie, ile razy wykupiłeś ten  Talent, ale tylko raz na każdego szarżującego."
+    },
+    "atrakcyjny" : {
+        "name": "Atrakcyjny",
+        "max": "Bonus z Ogłady",
+        "tests": "Charyzma, by wpłynąć na tych, którym się podobasz",
+        "description": "Może to przenikliwe spojrzenie lub zgrabna sylwetka, a może to, jak w uśmiechu odsłaniasz biel swoich zębów. Wiesz, jak najlepiej pokazać to, czym obdarzyli cię bogowie. Jeżeli uda ci się Test  Charyzmy wobec osób, którym się podobasz, możesz obliczyć PS  normalnie albo uzyskać ich tyle, ile wypadło na kostce jedności. Na  przykład udany Test przy wyrzuceniu 38 oznaczałby wtedy 8 PS."
+    },
+    "bardzo_silny" : {
+        "name": "Bardzo Silny",
+        "max": "1",
+        "tests": "N/A",
+        "description": "Twoja początkowa Siła zostaje na stałe podniesiona o +5, co nie liczy się do sumy twoich Rozwinięć."
+    },
+    "berserkerska_szarża" : {
+        "name": "Berserkerska Szarża",
+        "max": "Bonus z Siły",
+        "tests": "Broń Biała w Rundzie, w której Szarżowałeś",
+        "description": "Nie licząc się z niebezpieczeństwem, rzucasz się na przeciwników, by pędem i siłą zadawać mocniejsze ciosy. Kiedy Szarżujesz,  zadajesz +1 punkt obrażeń we wszystkich atakach Walki Wręcz  za każde wykupienie tego Talentu."
+    },
+    "biczownik" : {
+        "name": "Biczownik",
+        "max": "Bonus z Wytrzymałości",
+        "tests": "Opieranie się Niszczycielskim Potęgom",
+        "description": "Swój ból ofiarowałeś wyznawanemu bogu. Każdego dnia musisz  spędzić pół dzwonu (pół godziny) na modlitwie, otrzymując obrażenia na poziomie liczby wykupień tego Talentu. Jeśli posiadasz Talent  Szał Bojowy, to do położenia się na najbliższy spoczynek możesz  natychmiast wpaść w Szał Bojowy bez wykonywania Testów. Szał Bojowy zostaje dodany do listy Talentów dostępnych dla  twojej bieżącej Profesji. Jeśli zaniedbasz biczowanie przez jeden  dzień lub pozwolisz, by poszarpana skóra została uleczona, nie  będziesz mógł wydawać Punktów Bohatera ani Determinacji,  póki się znów nie wybiczujesz."
+    },
+    "bitewna_furia" : {
+        "name": "Bitewna Furia",
+        "max": "Bonus z Siły Woli",
+        "tests": "Broń Biała pod wpływem Szału Bojowego",
+        "description": "Jesteś w stanie lepiej kontrolować swój Szał Bojowy. Udany Test  Opanowania pozwala ci otrząsnąć się z niego na końcu rundy"
+    },
+    "bitewny_refleks" : {
+        "name": "Bitewny Refleks",
+        "max": "Bonus z Inicjatywy",
+        "tests": "N/A",
+        "description": "Reagujesz szybko jak błyskawica, dlatego za każde wykupienie  tego Talentu otrzymujesz +10 do Inicjatywy, gdy określana jest  kolejność Inicjatywy."
+    },
+    "błękitna_krew" : {
+        "name": "Błękitna Krew",
+        "max": "1",
+        "tests": "Wszystkie Testy, na które wpływa twój Status",
+        "description": "Albo urodziłeś się w rodzinie szlacheckiej, albo zostałeś wywyższony  już podczas gry. Jeśli jesteś odpowiednio ubrany, inni zawsze traktują  cię jak kogoś ze sfer wyższych niż ich, chyba że ktoś z nich także  posiada ten Talent. Wtedy normalnie porównuje się Status."
+    },
+    "błogosławieństwo" : {
+        "name": "Błogosławieństwo (Boska Tradycja)",
+        "max": "1",
+        "tests": "N/A",
+        "description": "Któryś z bogów czuwa nad tobą i odpowiada na twoje proste modlitwy. Możesz wykorzystywać błogosławieństwa swojego pana, co  opisano w Rozdziale 7: Religie i wierzenia. Normalnie możesz  znać tylko jedną boską tradycję na Talent Błogosławieństwo."
+    },
+    "błyskawiczny_strzał" : {
+        "name": "Błyskawiczny Strzał",
+        "max": "Bonus ze Zwinności",
+        "tests": "Broń Zasięgowa, gdy wykorzystujesz Talent Błyskawiczny Strzał",
+        "description": "Jeśli posiadasz naładowaną broń dystansową, możesz z niej wystrzelić poza Kolejnością Inicjatywy, zanim zareaguje którykolwiek  z uczestników walki. Rzut na trafienie wykonaj z uwzględnieniem  wszystkich modyfikatorów. Użycie tego Talentu wymaga poświęcenia zarówno Akcji, jak i Ruchu z nadchodzącej Tury i kiedy nadejdzie twoja kolej, będą one traktowane jako wykorzystane. Jeśli ten Talent chcą wykorzystać dwie lub więcej postaci, pierwsza  strzela ta, która wykupiła go więcej razy. Jeśli i na tym polu mamy  remis, obydwie postacie strzelają równocześnie i wynik ich ataków  powinien być rozliczony jednocześnie."
+    },
+    "błyskotliwość" : {
+        "name": "Błyskotliwość",
+        "max": "1",
+        "tests": "N/A",
+        "description": "Twoja początkowa Inteligencja zostaje zwiększona o +5, co nie liczy się do twojej sumy Rozwinięć."
+    },
+    "celny_strzał" : {
+        "name": "Celny Strzał",
+        "max": "Bonus z Umiejętności Strzeleckich",
+        "tests": "N/A",
+        "description": "Jesteś strzelcem wyborowym i wiesz, gdzie posłać pocisk, by poczynić największe szkody. Używając broni strzeleckich, zadajesz  dodatkowe obrażenia, równe liczbie wykupień tego Talentu."
+    },
+    "charyzmatyczny" : {
+        "name": "Charyzmatyczny",
+        "max": "1",
+        "tests": "N/A",
+        "description": "Twoja początkowa Ogłada zwiększa się na stałe o +5 (co nie wlicza się do sumy Rozwinięć postaci)."
+    },
+    "chirurgia" : {
+        "name": "Chirurgia",
+        "max": "Premia z Inteligencji",
+        "tests": "Leczenie poza walką, czyli kiedy możesz właściwie zająć się rannym",
+        "description": "Lata nauki trudnego rzemiosła chirurga pozwalają ci dokonywać cudu operacji, zabiegu niezbędnego przy leczeniu najgroźniejszych obrażeń. W opisie wybranych Trafień Krytycznych  znajdziecie informację, że wymagają one interwencji chirurga.  Właśnie ty jesteś w stanie im zaradzić. Operacja to Wydłużony Wymagający (+0) Test Leczenia. Liczba wymaganych PS  jest ustalana przez MG, ale zwykle to 5-10. Podczas procedury zadajesz pacjentowi 1k10 obrażeń i nakładasz na niego Stan  Krwawienie za każdym razem, gdy wykonujesz Test. To oznacza,  że chory może umrzeć, a szansa na to jest wysoka. Po operacji  pacjent musi wykonać Przeciętny (+20) Test Odporności, a jego  niepowodzenie oznacza drobną infekcję (patrz strona 187)."
+    },
+    "chodu" : {
+        "name": "Chodu!",
+        "max": "Bonus ze Zwinności",
+        "tests": "Atletyka, gdy Uciekasz",
+        "description": "Kiedy na szali znajduje się twoje życie, potrafisz niezwykle sprawnie przebierać nogami. Podczas Ucieczki (patrz strona 165) twoja  Szybkość jest traktowana, jakby była o 1 wyższa."
+    },
+    "cień" : {
+        "name": "Cień",
+        "max": "Bonus ze Zwinności",
+        "tests": "Wszystkie związane ze śledzeniem",
+        "description": "Wiesz, jak podążać za innymi, by nie zostać na tym przyłapanym. Możesz wykorzystywać zasady śledzenia ze strony 128 bez  konieczności wykonywania Testu Łączonego. Wystarczy, że wykonasz rzut na Percepcję lub Skradanie, zależnie od tego, która  wartość jest wyższa."
+    },
+    "cios_mierzony" : {
+        "name": "Cios Mierzony",
+        "max": "Bonus z Inicjatywy",
+        "tests": "N/A",
+        "description": "Czy w walce wręcz, czy strzelając, umiesz trafiać tam, gdzie najbardziej zaboli. Możesz zmodyfikować Miejsce Trafienia +/-10  za każde wykupienie tego Talentu. Na przykład, jeśli kupiłeś go  dwa razy, a wynik 34 wskazuje na prawe ramię, to możesz zmniejszyć go do 14 i trafić w lewe ramię lub zwiększyć do 54 i ugodzić  w korpus (patrz strona 158)."
+    },
+    "cios_poniżej_pasa" : {
+        "name": "Cios Poniżej Pasa",
+        "max": "Bonus z Walki Wręcz",
+        "tests": "Broń Biała (Bijatyka)",
+        "description": "Nauczyłeś się brudnych sztuczek, stosowanych podczas walki bez  broni. Zadajesz +1 punkt obrażeń za każde wykupienie tego Talentu, gdy trafisz przeciwnika, używając Umiejętności Broń Biała  (Bijatyka). Uwaga: wykorzystanie tego Talentu w pojedynku bokserskim jest  uważane za oszustwo"
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
+    },
+    "" : {
+        "name": "",
+        "max": "",
+        "tests": "",
+        "description": ""
     }
 }
