@@ -17,6 +17,11 @@ play_next_song = asyncio.Event()
 
 BOT_TOKEN = environ.get('BOT_TOKEN')
 
+@client.event
+async def on_ready():
+    activity = discord.Game(name=">help")
+    await client.change_presence(status=discord.Status.online, activity=activity)
+
 @client.command()
 async def help(ctx):
     embed=discord.Embed(title='Help', description='A short list of currently available commands:', color=0xb44141)
