@@ -48,7 +48,10 @@ async def source(ctx):
 async def reaction(ctx):
     zus = {
         'https://i.imgur.com/lxBQV76.png':'shocked!',
-        'https://i.imgur.com/RBTMA0J.jpg':'not amused!'
+        'https://i.imgur.com/RBTMA0J.jpg':'not amused!',
+        'https://i.imgur.com/s8L0leY.png':'bored!',
+        'https://i.imgur.com/rbBa0p8.png':'hungry!',
+        'https://i.imgur.com/w7B3BwT.png':'thirsty!'
     }
     zus_choice = random.choice(list(zus.items()))
     embed=discord.Embed(title='Zus reaction table', description='Zus is ' + zus_choice[1], color=0xb44141)
