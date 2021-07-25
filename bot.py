@@ -15,6 +15,8 @@ client.remove_command('help')
 songs = asyncio.Queue()
 play_next_song = asyncio.Event()
 
+
+
 BOT_TOKEN = environ.get('BOT_TOKEN')
 
 @client.event
@@ -76,6 +78,11 @@ async def talent(ctx, talent_name: str):
     else:
         await ctx.send('Couldn\'t find the talent name.')
 
+def displayEmbedVideoInfo(name, id, thumbnail):
+    vid_info = '**Current track name:** \n' + name + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + id
+    embed=discord.Embed(title='Playing', description=vid_info, color=0xb44141)
+    embed.set_image(url=thumbnail)
+    return embed
 
 @client.command()
 async def play(ctx, url: str):
@@ -99,10 +106,9 @@ async def play(ctx, url: str):
         voice.is_playing()
         vid_name = info.get('title', None)
         vid_id = info.get('id', None)
-        vid_info = '**Current track name:** \n' + vid_name + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + vid_id
-        embed=discord.Embed(title='Playing', description=vid_info, color=0xb44141)
+        vid_thumbnail = info.get('thumbnail_url', None)
+        embed = displayEmbedVideoInfo(vid_name, vid_id, vid_thumbnail)
         await ctx.send(embed=embed)
-
     else:
         await ctx.send("Bot is already playing")
         return

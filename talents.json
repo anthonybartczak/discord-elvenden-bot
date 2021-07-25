@@ -285,7 +285,7 @@
     "name": "Magia Prosta",
     "max": "1",
     "tests": "N/A",
-    "description": "Zawsze miałeś smykałkę do rzucania czarów i opanowałeś metody ich podstawowej kontroli. Kiedy wykupujesz ten Talent, uczysz się i zapamiętujesz tyle czarów, ile wynosi modyfikator z twojej Siły Woli. Kolejnych czarów możesz się nauczyć, korzy stając z poniższej tabeli kosztów: \n\nhttps://i.imgur.com/gNIhljT.pngn\n\nJeśli twój Bonus z Siły Woli wynosi 3, to pierwsze trzy czary będą cię kosztowały 50 PD, kolejne trzy 100 PD i tak dalej…"
+    "description": "Zawsze miałeś smykałkę do rzucania czarów i opanowałeś metody ich podstawowej kontroli. Kiedy wykupujesz ten Talent, uczysz się i zapamiętujesz tyle czarów, ile wynosi modyfikator z twojej Siły Woli. Kolejnych czarów możesz się nauczyć, korzystając z poniższej tabeli kosztów: \n\nhttps://i.imgur.com/gNIhljT.pngn\n\nJeśli twój Bonus z Siły Woli wynosi 3, to pierwsze trzy czary będą cię kosztowały 50 PD, kolejne trzy 100 PD i tak dalej…"
   },
   "magia_tajemna" : {
     "name": "Magia Tajemna (Tradycja)",
