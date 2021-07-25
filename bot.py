@@ -88,6 +88,7 @@ def displayEmbedVideoInfo(name, id, thumbnail):
 async def play(ctx, url: str):
     channel = ctx.message.author.voice.channel
     voice = get(client.voice_clients, guild=ctx.guild)
+    await ctx.channel.purge(limit=1)
     if voice and voice.is_connected():
         await voice.move_to(channel)
     else:
@@ -106,7 +107,7 @@ async def play(ctx, url: str):
         voice.is_playing()
         vid_name = info.get('title', None)
         vid_id = info.get('id', None)
-        vid_thumbnail = info.get('thumbnail_url', None)
+        vid_thumbnail = info.get('thumbnail', None)
         embed = displayEmbedVideoInfo(vid_name, vid_id, vid_thumbnail)
         await ctx.send(embed=embed)
     else:
