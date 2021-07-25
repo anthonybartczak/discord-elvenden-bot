@@ -1,3 +1,4 @@
+from asyncio import queues
 import playlists
 import discord
 from discord.ext import commands
@@ -7,15 +8,16 @@ from discord import FFmpegPCMAudio
 from youtube_dl import YoutubeDL
 from json import load
 import random
-import asyncio
 
 
 client = commands.Bot(command_prefix='>')
 client.remove_command('help')
-songs = asyncio.Queue()
-play_next_song = asyncio.Event()
 
-
+def displayEmbedVideoInfo(name, id, thumbnail):
+    vid_info = '**Current track name:** \n' + name + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + id
+    embed=discord.Embed(title='Playing', description=vid_info, color=0xb44141)
+    embed.set_image(url=thumbnail)
+    return embed
 
 BOT_TOKEN = environ.get('BOT_TOKEN')
 
@@ -27,14 +29,13 @@ async def on_ready():
 @client.command()
 async def help(ctx):
     embed=discord.Embed(title='Help', description='A short list of currently available commands:', color=0xb44141)
-    embed.add_field(name=">source", value='Display the source code.', inline=True)
-    embed.add_field(name=">clear [value]", value='Clear [value] text messages.', inline=True)
-    embed.add_field(name=">play [url]", value='Play music from a YouTube video.', inline=True)
-    embed.add_field(name=">playlist [list]", value='Roll a random track from [list].', inline=True)
-    embed.add_field(name=">resume", value='Resume the music.', inline=True)
-    embed.add_field(name=">pause", value='Pause the music.', inline=True)
-    embed.add_field(name=">stop", value='Stop the music.', inline=True)
-    embed.add_field(name=">tracks", value='List the music currently available in the playlists.', inline=True)
+    embed.add_field(name=">source", value='Display the source code.', inline=False)
+    embed.add_field(name=">clear [value]", value='Clear [value] text messages.', inline=False)
+    embed.add_field(name=">play [url]", value='Play music from a YouTube video.', inline=False)
+    embed.add_field(name=">resume", value='Resume the music.', inline=False)
+    embed.add_field(name=">pause", value='Pause the music.', inline=False)
+    embed.add_field(name=">stop", value='Stop the music.', inline=False)
+    embed.add_field(name=">tracks", value='List the music currently available in the playlists.', inline=False)
     await ctx.send(embed=embed)
 
 @client.command()
@@ -66,6 +67,9 @@ async def clear(ctx, amount: int):
 
 @client.command()
 async def talent(ctx, talent_name: str):
+    
+    talent_name = talent_name.replace(' ','_').lower()
+    
     with open('talents.json') as jf:
         json_data = load(jf)
     if talent_name in json_data:
@@ -77,12 +81,6 @@ async def talent(ctx, talent_name: str):
         await ctx.send(embed=embed)
     else:
         await ctx.send('Couldn\'t find the talent name.')
-
-def displayEmbedVideoInfo(name, id, thumbnail):
-    vid_info = '**Current track name:** \n' + name + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + id
-    embed=discord.Embed(title='Playing', description=vid_info, color=0xb44141)
-    embed.set_image(url=thumbnail)
-    return embed
 
 @client.command()
 async def play(ctx, url: str):
@@ -113,64 +111,6 @@ async def play(ctx, url: str):
     else:
         await ctx.send("Bot is already playing")
         return
-
-@client.command()
-async def playlist(ctx, choice: str):
-    server = ctx.message.server
-    channel = ctx.message.author.voice.channel
-    voice = get(client.voice_clients, guild=ctx.guild)
-    if voice and voice.is_connected():
-        await voice.move_to(channel)
-    else:
-        voice = await channel.connect()
-    voice = get(client.voice_clients, guild=ctx.guild)
-
-
-    if choice == 'town':
-        chosen_list = playlists.TOWN_AMBIENCE
-    elif choice == 'day':
-        chosen_list = playlists.DAY_AMBIENCE
-    elif choice == 'dark':
-        chosen_list = playlists.DARK_AMBIENCE
-    elif choice == 'fight':
-        chosen_list = playlists.FIGHT_AMBIENCE
-    elif choice == 'night':
-        chosen_list = playlists.NIGHT_AMBIENCE
-    elif choice == 'emotional':
-        chosen_list = playlists.EMOTIONAL_AMBIENCE
-    elif choice == 'random':
-        chosen_list = playlists.RANDOM_MUSIC
-
-    
-    #queue_dict = dict.fromkeys(server.id, random.shuffle(chosen_list))
-
-    queue_local =  songs[server.id]
-    playTrackFromPlaylist(ctx, queue_local)
-    
-    
-async def playTrackFromPlaylist(ctx, queue_local):
-    
-    voice = get(client.voice_clients, guild=ctx.guild)
-    url = queue_local.pop(0)
-    if not voice.is_playing():
-        YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
-        with YoutubeDL(YDL_OPTIONS) as ydl:
-            info = ydl.extract_info(url, download=False)
-        URL = info['url']
-        FFMPEG_OPTIONS = {
-            'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
-        voice.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS, after=lambda:playTrackFromPlaylist(ctx, queue_local)))
-        voice.is_playing()
-        vid_name = info.get('title', None)
-        vid_id = info.get('id', None)
-        vid_info = '**Current track name:** \n' + vid_name + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + vid_id
-        embed=discord.Embed(title='Playing', description=vid_info, color=0xb44141)
-        await ctx.send(embed=embed)
-        
-    else:
-        await ctx.send("Bot is already playing")
-        return
-
 
 @client.command()
 async def resume(ctx):
