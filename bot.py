@@ -95,7 +95,7 @@ async def play(ctx, url: str):
     voice = get(client.voice_clients, guild=ctx.guild)
 
     if not voice.is_playing():
-        YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
+        YDL_OPTIONS = {'format': 'bestaudio'}
         with YoutubeDL(YDL_OPTIONS) as ydl:
             info = ydl.extract_info(url, download=False)
         URL = info['url']
