@@ -89,7 +89,6 @@ async def advance(ctx, type: str, init: int, goal: int):
     dif = goal - init
     for key, value in chosen_map.items():
         while current < key and dif != 0:
-            print(value)
             cost_sum += value
             current += 1
             dif -= 1
@@ -99,7 +98,8 @@ async def advance(ctx, type: str, init: int, goal: int):
         'Twoja docelowa wartość **' + choice + '** to: **' + str(goal) + '**\n\n'\
         'Koszt rozwinięcia to: **' + str(cost_sum) + '**'
 
-    embed=discord.Embed(title='Rozwinięcie' + choice, description=description, image=image, color=0x007bff)
+    embed=discord.Embed(title='Rozwinięcie ' + choice, description=description, color=0x007bff)
+    embed.set_image(url=image)
     await ctx.send(embed=embed)
     
     
