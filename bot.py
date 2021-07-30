@@ -69,7 +69,7 @@ async def clear(ctx, amount: int):
     await ctx.send(f"Deleted {len(deleted)} messages")
 
 @client.command()
-async def advance(ctx, type, init, goal):
+async def advance(ctx, type: str, init: int, goal: int):
 
     image = 'https://cdn.discordapp.com/attachments/868802153014263851/870615749083926638/WHFRP_4ED_Rozwoj_cech_um.png'
 
