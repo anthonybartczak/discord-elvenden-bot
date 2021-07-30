@@ -96,7 +96,7 @@ async def advance(ctx, type: str, init: int, goal: int):
     description = \
         'Twoja początkowa wartość **' + choice + '** to: **' + str(init) + '**\n'\
         'Twoja docelowa wartość **' + choice + '** to: **' + str(goal) + '**\n\n'\
-        'Koszt rozwinięcia to: **' + str(cost_sum) + '**'
+        'Koszt rozwinięcia to: **' + str(cost_sum) + '** PD'
 
     embed=discord.Embed(title='Rozwinięcie ' + choice, description=description, color=0x007bff)
     embed.set_image(url=image)
