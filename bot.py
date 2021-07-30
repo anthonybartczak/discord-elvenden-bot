@@ -95,9 +95,9 @@ async def advance(ctx, type: str, init: int, goal: int):
             dif -= 1
     
     description = \
-        'Twoja początkowa wartość **' + choice + '** to: **' + init + '**\n'\
-        'Twoja docelowa wartość **' + choice + '** to: **' + goal + '**\n\n'\
-        'Koszt rozwinięcia to: **' + cost_sum + '**'
+        'Twoja początkowa wartość **' + choice + '** to: **' + str(init) + '**\n'\
+        'Twoja docelowa wartość **' + choice + '** to: **' + str(goal) + '**\n\n'\
+        'Koszt rozwinięcia to: **' + str(cost_sum) + '**'
 
     embed=discord.Embed(title='Rozwinięcie' + choice, description=description, image=image, color=0x007bff)
     await ctx.send(embed=embed)
