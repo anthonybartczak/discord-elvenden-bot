@@ -69,6 +69,41 @@ async def clear(ctx, amount: int):
     await ctx.send(f"Deleted {len(deleted)} messages")
 
 @client.command()
+async def advance(ctx, type, init, goal):
+
+    image = 'https://cdn.discordapp.com/attachments/868802153014263851/870615749083926638/WHFRP_4ED_Rozwoj_cech_um.png'
+
+    ability_map = {5:10, 10:15, 15:20, 20:30, 25:40, 30:60, 35:80, 40:110, 45:140, 50:180}
+    attribute_map = {5:25, 10:30, 15:40, 20:50, 25:70, 30:90, 35:120, 40:150, 45:190, 50:230}
+
+    if type == 'c':
+        chosen_map = attribute_map
+        choice = 'cechy'
+    elif type == 'u':
+        chosen_map = ability_map
+        choice = 'umiejętności'
+
+    current = init
+    cost_sum = 0
+
+    dif = goal - init
+    for key, value in chosen_map.items():
+        while current < key and dif != 0:
+            print(value)
+            cost_sum += value
+            current += 1
+            dif -= 1
+    
+    description = \
+        'Twoja początkowa wartość **' + choice + '** to: **' + init + '**\n'\
+        'Twoja docelowa wartość **' + choice + '** to: **' + goal + '**\n\n'\
+        'Koszt rozwinięcia to: **' + cost_sum + '**'
+
+    embed=discord.Embed(title='Rozwinięcie' + choice, description=description, image=image, color=0x007bff)
+    await ctx.send(embed=embed)
+    
+    
+@client.command()
 async def talent(ctx, talent_name: str):
     
     talent_name = talent_name.replace(' ','_').lower()
