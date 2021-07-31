@@ -8,6 +8,7 @@ from discord import FFmpegPCMAudio
 from youtube_dl import YoutubeDL
 from json import load
 import random
+from typing import Optional
 
 
 client = commands.Bot(command_prefix='>')
@@ -69,9 +70,9 @@ async def clear(ctx, amount: int):
     await ctx.send(f"Deleted {len(deleted)} messages")
 
 @client.command()
-async def advance(ctx, type: str=None, init: int=None, goal: int=None, talent: str=None, help: str=None):
+async def advance(ctx, help: Optional[str], type, init: int, goal: int, talent: str=None):
 
-    if help is None:
+    if not help:
         image = 'https://cdn.discordapp.com/attachments/868802153014263851/870615749083926638/WHFRP_4ED_Rozwoj_cech_um.png'
 
         ability_map = {5:10, 10:15, 15:20, 20:30, 25:40, 30:60, 35:80, 40:110, 45:140, 50:180}
