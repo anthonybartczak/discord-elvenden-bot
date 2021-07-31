@@ -97,7 +97,7 @@ async def advance(ctx, type: str, init: int, goal: int, talent: str=None):
         'Twoja początkowa wartość **' + choice + '** to: **' + str(init) + '**\n'\
         'Twoja docelowa wartość **' + choice + '** to: **' + str(goal) + '**\n\n'\
     
-    if talent is 'talent':
+    if talent == 't':
         description += 'Jeden z Twoich talentów obniża koszt o **-5 PD** za każde rozwinięcie.\n'\
         'Finalny koszt rozwinięcia to: **' + str(cost_sum - 5 * dif) + '** PD'
     else:
