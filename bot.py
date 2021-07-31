@@ -69,7 +69,7 @@ async def clear(ctx, amount: int):
     await ctx.send(f"Deleted {len(deleted)} messages")
 
 @client.command()
-async def advance(ctx, type: str, init: int, goal: int):
+async def advance(ctx, type: str, init: int, goal: int, talent: str=None):
 
     image = 'https://cdn.discordapp.com/attachments/868802153014263851/870615749083926638/WHFRP_4ED_Rozwoj_cech_um.png'
 
@@ -96,7 +96,12 @@ async def advance(ctx, type: str, init: int, goal: int):
     description = \
         'Twoja początkowa wartość **' + choice + '** to: **' + str(init) + '**\n'\
         'Twoja docelowa wartość **' + choice + '** to: **' + str(goal) + '**\n\n'\
-        'Koszt rozwinięcia to: **' + str(cost_sum) + '** PD'
+    
+    if talent is 'talent':
+        description += 'Jeden z Twoich talentów obniża koszt o **-5 PD** za każde rozwinięcie.\n'\
+        'Finalny koszt rozwinięcia to: **' + str(cost_sum - 5 * dif) + '** PD'
+    else:
+        description += 'Koszt rozwinięcia to: **' + str(cost_sum) + '** PD'
 
     embed=discord.Embed(title='Rozwinięcie ' + choice, description=description, color=0x007bff)
     embed.set_image(url=image)
