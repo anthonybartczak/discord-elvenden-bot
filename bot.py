@@ -69,41 +69,55 @@ async def clear(ctx, amount: int):
     await ctx.send(f"Deleted {len(deleted)} messages")
 
 @client.command()
-async def advance(ctx, type: str, init: int, goal: int, talent: str=None):
+async def advance(ctx, type: str=None, init: int=None, goal: int=None, talent: str=None, help: str=None):
 
-    image = 'https://cdn.discordapp.com/attachments/868802153014263851/870615749083926638/WHFRP_4ED_Rozwoj_cech_um.png'
+    if help is None:
+        image = 'https://cdn.discordapp.com/attachments/868802153014263851/870615749083926638/WHFRP_4ED_Rozwoj_cech_um.png'
 
-    ability_map = {5:10, 10:15, 15:20, 20:30, 25:40, 30:60, 35:80, 40:110, 45:140, 50:180}
-    attribute_map = {5:25, 10:30, 15:40, 20:50, 25:70, 30:90, 35:120, 40:150, 45:190, 50:230}
+        ability_map = {5:10, 10:15, 15:20, 20:30, 25:40, 30:60, 35:80, 40:110, 45:140, 50:180}
+        attribute_map = {5:25, 10:30, 15:40, 20:50, 25:70, 30:90, 35:120, 40:150, 45:190, 50:230}
 
-    if type == 'c':
-        chosen_map = attribute_map
-        choice = 'cechy'
-    elif type == 'u':
-        chosen_map = ability_map
-        choice = 'umiejętności'
+        if type == 'c':
+            chosen_map = attribute_map
+            choice = 'cechy'
+        elif type == 'u':
+            chosen_map = ability_map
+            choice = 'umiejętności'
 
-    current = init
-    cost_sum = 0
+        current = init
+        cost_sum = 0
 
-    dif = goal - init
-    for key, value in chosen_map.items():
-        while current < key and dif != 0:
-            cost_sum += value
-            current += 1
-            dif -= 1
-            
-    description = \
-        'Twoja początkowa wartość **' + choice + '** to: **' + str(init) + '**\n'\
-        'Twoja docelowa wartość **' + choice + '** to: **' + str(goal) + '**\n\n'
-    if talent == 't':
-        description += 'Jeden z Twoich talentów obniża koszt o **-5 PD** za każde rozwinięcie.\n\n'\
-        'Finalny koszt rozwinięcia to: **' + str(cost_sum - 5 * (goal - init)) + '** PD'
+        dif = goal - init
+        for key, value in chosen_map.items():
+            while current < key and dif != 0:
+                cost_sum += value
+                current += 1
+                dif -= 1
+
+        description = \
+            'Twoja początkowa wartość **' + choice + '** to: **' + str(init) + '**\n'\
+            'Twoja docelowa wartość **' + choice + '** to: **' + str(goal) + '**\n\n'
+        if talent == 't':
+            description += 'Jeden z Twoich talentów obniża koszt o **5 PD** za każde rozwinięcie.\n\n'\
+            'Finalny koszt rozwinięcia to: **' + str(cost_sum - 5 * (goal - init)) + ' PD**'
+        else:
+            description += 'Koszt rozwinięcia to: **' + str(cost_sum) + ' PD**'
+
+        embed=discord.Embed(title='Rozwinięcie ' + choice, description=description, color=0x007bff)
+        embed.set_image(url=image)
+
     else:
-        description += 'Koszt rozwinięcia to: **' + str(cost_sum) + '** PD'
+        description = \
+        'Poniżej krótka instrukcja dotycząca użytkowania polecenia **advance**:\n\n'\
+        'Format polecenia: \n\n'\
+        '**>advance** [c lub u] [wartość_początkowa] [wartość_docelowa] [talent*]\n\n\n'\
+        'c lub u ->  wybór pomiędzy rozwojem cechy lub umiejętności\n\n'\
+        'wartość_początkowa ->  początkowa wartość umiejętności lub cechy\n\n'\
+        'wartość_docelowa ->  docelowa wartość umiejętności lub cechy\n\n'\
+        'talent (opcjonalne) ->  jeśli któryś z talentów postaci obniża koszt rozwoju o 5 PD\n\n'\
+        'Przykłady:\n\n>advance c 5 12\n\n>advance u 12 16 t'
+        embed=discord.Embed(title='Advance: instrukcja ', description=description, color=0x007bff)
 
-    embed=discord.Embed(title='Rozwinięcie ' + choice, description=description, color=0x007bff)
-    embed.set_image(url=image)
     await ctx.send(embed=embed)
     
     
