@@ -14,7 +14,7 @@ client.remove_command('help')
 
 def displayEmbedVideoInfo(name, id, thumbnail):
     vid_info = '**Current track name:** \n' + name + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + id
-    embed=discord.Embed(title='Playing', description=vid_info, color=0xb44141)
+    embed=discord.Embed(title='Playing', description=vid_info, color=0x8b54cf)
     embed.set_image(url=thumbnail)
     return embed
 
@@ -27,18 +27,20 @@ async def on_ready():
 
 @client.command()
 async def help(ctx):
-    embed=discord.Embed(title='Help', description='Krótka lista obecnie dostępnych poleceń. Argumenty oznaczone * są opcjonalne:', color=0xb44141)
+    embed=discord.Embed(title='Help', description='Krótka lista obecnie dostępnych poleceń. Argumenty oznaczone * są opcjonalne:', color=0x8b54cf)
     embed.add_field(name=".advance [*c/u*] [*x*] [*y*] [*t* *]", value='Oblicz koszt rozwoju [od x do y] cechy [c] lub umiejętności [u]. Np.\n\n*.advance c 12 15*\n*.advance u 5 14 t*\n\nArgument t obniża koszt rozwinięcia o 5 PD.\n', inline=False)
     embed.add_field(name=".clear [value]", value='Wyczyść x wiadomości.', inline=False)
     embed.add_field(name=".play [URL]", value='Odtwórz muzkę z YouTube (URL).', inline=False)
     embed.add_field(name=".pause / .stop / .resume", value='Zapauzuj/zatrzymaj/wznów muzykę.', inline=False)
+    embed.set_footer(text='https://wiki.elvenden.pl/')
+    embed.set_thumbnail(url='https://i.imgur.com/bo7HXad.png')
 
     await ctx.send(embed=embed)
 
 @client.command()
 async def source(ctx):
     source_code = 'https://github.com/anthonybartczak/elvenden-bot'
-    embed=discord.Embed(title='Source code', description='You can check the source code here:\n' + source_code, color=0xb44141)
+    embed=discord.Embed(title='Source code', description='You can check the source code here:\n' + source_code, color=0x8b54cf)
     await ctx.send(embed=embed)
     
 @client.command()
@@ -51,13 +53,13 @@ async def reaction(ctx):
         'https://i.imgur.com/w7B3BwT.png':'thirsty!'
     }
     zus_choice = random.choice(list(zus.items()))
-    embed=discord.Embed(title='Zus reaction table', description='Zus is ' + zus_choice[1], color=0xb44141)
+    embed=discord.Embed(title='Zus reaction table', description='Zus is ' + zus_choice[1], color=0x8b54cf)
     embed.set_image(url=zus_choice[0])
     await ctx.send(embed=embed)
 
 @client.command()
 async def tracks(ctx):
-    embed=discord.Embed(title='Tracks', description='Work in progress.', color=0xb44141)
+    embed=discord.Embed(title='Tracks', description='Work in progress.', color=0x8b54cf)
     await ctx.send(embed=embed)
 
 @client.command()
@@ -100,7 +102,7 @@ async def advance(ctx, type: str, init: int, goal: int, talent: str=None):
     else:
         description += 'Koszt rozwinięcia to: **' + str(cost_sum) + ' PD**'
 
-    embed=discord.Embed(title='Rozwinięcie ' + choice, description=description, color=0x007bff)
+    embed=discord.Embed(title='Rozwinięcie ' + choice, description=description, color=0x8b54cf)
     embed.set_image(url=image)
 
     # else:
@@ -128,7 +130,7 @@ async def talent(ctx, *, talent_name: str):
     if talent_name in json_data:
         talent = json_data[talent_name]
         await ctx.send('Talent name found!')
-        embed=discord.Embed(title=talent['name'], description=talent['description'], color=0x007bff)
+        embed=discord.Embed(title=talent['name'], description=talent['description'], color=0x8b54cf)
         embed.add_field(name="Maksimum", value=talent['max'], inline=True)
         embed.add_field(name="Testy", value=talent['tests'], inline=True)
         await ctx.send(embed=embed)
