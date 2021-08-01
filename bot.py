@@ -32,7 +32,7 @@ async def help(ctx):
     embed.add_field(name=".clear [value]", value='Wyczyść x wiadomości.', inline=False)
     embed.add_field(name=".play [URL]", value='Odtwórz muzkę z YouTube (URL).', inline=False)
     embed.add_field(name=".pause / .stop / .resume", value='Zapauzuj/zatrzymaj/wznów muzykę.', inline=False)
-    embed.set_author(name='Elvie', url='https://wiki.elvenden.pl/')
+    embed.set_author(name='Więcej informacji znajdziesz na wiki', url='https://wiki.elvenden.pl/')
     embed.set_image(url='https://i.imgur.com/bo7HXad.png')
 
     await ctx.send(embed=embed)
