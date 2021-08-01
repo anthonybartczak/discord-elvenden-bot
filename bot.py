@@ -123,7 +123,7 @@ async def advance(ctx, type: str, init: int, goal: int, talent: str=None):
     
     
 @client.command()
-async def talent(ctx, talent_name: str):
+async def talent(ctx, *, talent_name: str):
     
     talent_name = talent_name.replace(' ','_').lower()
     
