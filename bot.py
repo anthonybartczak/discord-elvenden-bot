@@ -38,7 +38,7 @@ async def help(ctx):
          'Przykłady:\n\n>advance c 5 12\n\n>advance u 12 16 t'
 
     embed=discord.Embed(title='Help', description='A short list of currently available commands:', color=0xb44141)
-    embed.add_field(name=".advance", value=calc_help, inline=False)
+    embed.add_field(name=".advance", value='Oblicz koszt rozwoju cechy lub umiejętności. Np.\n.advance c 12 15\n.advance u 5 14 t', inline=False)
     embed.add_field(name=".clear [value]", value='Wyczyść x wiadomości.', inline=False)
     embed.add_field(name=".play [URL]", value='Odtwórz muzkę z YouTube (URL).', inline=False)
     embed.add_field(name=".pause / .stop / .resume", value='Zapauzuj/zatrzymaj/wznów muzykę.', inline=False)
