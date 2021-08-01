@@ -27,8 +27,8 @@ async def on_ready():
 
 @client.command()
 async def help(ctx):
-    embed=discord.Embed(title='Help', description='A short list of currently available commands:', color=0xb44141)
-    embed.add_field(name=".advance [c/u] [x] [y] [t*]", value='Oblicz koszt rozwoju [od x do y] cechy [c] lub umiejętności [u]. Np.\n\n*.advance c 12 15*\n*.advance u 5 14 t*\n\nArgument t obniża koszt rozwinięcia o 5 PD.\n', inline=False)
+    embed=discord.Embed(title='Help', description='Krótka lista obecnie dostępnych poleceń. Argumenty oznaczone * są opcjonalne:', color=0xb44141)
+    embed.add_field(name=".advance [*c/u*] [*x*] [**y] [*t**]", value='Oblicz koszt rozwoju [od x do y] cechy [c] lub umiejętności [u]. Np.\n\n*.advance c 12 15*\n*.advance u 5 14 t*\n\nArgument t obniża koszt rozwinięcia o 5 PD.\n', inline=False)
     embed.add_field(name=".clear [value]", value='Wyczyść x wiadomości.', inline=False)
     embed.add_field(name=".play [URL]", value='Odtwórz muzkę z YouTube (URL).', inline=False)
     embed.add_field(name=".pause / .stop / .resume", value='Zapauzuj/zatrzymaj/wznów muzykę.', inline=False)
