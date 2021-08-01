@@ -27,18 +27,8 @@ async def on_ready():
 
 @client.command()
 async def help(ctx):
-    calc_help = \
-         'Poniżej krótka instrukcja dotycząca użytkowania polecenia **advance**:\n\n'\
-         'Format polecenia: \n\n'\
-         '**>advance** [c lub u] [wartość_początkowa] [wartość_docelowa] [talent*]\n\n\n'\
-         'c lub u ->  wybór pomiędzy rozwojem cechy lub umiejętności\n\n'\
-         'wartość_początkowa ->  początkowa wartość umiejętności lub cechy\n\n'\
-         'wartość_docelowa ->  docelowa wartość umiejętności lub cechy\n\n'\
-         'talent (opcjonalne) ->  jeśli któryś z talentów postaci obniża koszt rozwoju o 5 PD\n\n'\
-         'Przykłady:\n\n>advance c 5 12\n\n>advance u 12 16 t'
-
     embed=discord.Embed(title='Help', description='A short list of currently available commands:', color=0xb44141)
-    embed.add_field(name=".advance [c/u] [x] [y] [t*]", value='Oblicz koszt rozwoju [od x do y] cechy [c] lub umiejętności [u]. Np.\n.advance c 12 15\n.advance u 5 14 t\n\nArgument t obniża koszt o 5 PD.\n', inline=False)
+    embed.add_field(name=".advance [c/u] [x] [y] [t*]", value='Oblicz koszt rozwoju [od x do y] cechy [c] lub umiejętności [u]. Np.\n\n*.advance c 12 15*\n*.advance u 5 14 t*\n\nArgument t obniża koszt rozwinięcia o 5 PD.\n', inline=False)
     embed.add_field(name=".clear [value]", value='Wyczyść x wiadomości.', inline=False)
     embed.add_field(name=".play [URL]", value='Odtwórz muzkę z YouTube (URL).', inline=False)
     embed.add_field(name=".pause / .stop / .resume", value='Zapauzuj/zatrzymaj/wznów muzykę.', inline=False)
