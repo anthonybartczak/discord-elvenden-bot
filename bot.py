@@ -8,13 +8,14 @@ from youtube_dl import YoutubeDL
 from json import load
 import random
 
+MAIN_COLOR = 0x8b54cf
 
 client = commands.Bot(command_prefix='.')
 client.remove_command('help')
 
 def displayEmbedVideoInfo(name, id, thumbnail):
     vid_info = '**Current track name:** \n' + name + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + id
-    embed=discord.Embed(title='Playing', description=vid_info, color=0x8b54cf)
+    embed=discord.Embed(title='Playing', description=vid_info, color=MAIN_COLOR)
     embed.set_image(url=thumbnail)
     return embed
 
@@ -27,9 +28,10 @@ async def on_ready():
 
 @client.command()
 async def help(ctx):
-    embed=discord.Embed(title='Help', description='Krótka lista obecnie dostępnych poleceń. Argumenty oznaczone * są opcjonalne:', color=0x8b54cf)
+    embed=discord.Embed(title='Krótka instrukcja bota Elvie.', description='Poniżej lista obecnie dostępnych poleceń. Argumenty oznaczone * są opcjonalne:', color=MAIN_COLOR)
     embed.add_field(name=".advance [*c/u*] [*x*] [*y*] [*t* *]", value='Oblicz koszt rozwoju [od x do y] cechy [c] lub umiejętności [u]. Np.\n\n*.advance c 12 15*\n*.advance u 5 14 t*\n\nArgument t obniża koszt rozwinięcia o 5 PD.\n', inline=False)
-    embed.add_field(name=".clear [value]", value='Wyczyść x wiadomości.', inline=False)
+    embed.add_field(name=".talent [nazwa]", value='Wyświetl opis talentu [nazwa]. Nazwa musi zostać podana z uwzględnieniem polskich znaków oraz bez użycia nawiasów. Np.\n\n*.talent bardzo szybki*\n*.talent magia tajemna*', inline=False)
+    embed.add_field(name=".clear [wartość]", value='Wyczyść x wiadomości.', inline=False)
     embed.add_field(name=".play [URL]", value='Odtwórz muzkę z YouTube (URL).', inline=False)
     embed.add_field(name=".pause / .stop / .resume", value='Zapauzuj/zatrzymaj/wznów muzykę.', inline=False)
     embed.set_author(name='Więcej informacji znajdziesz na wiki', url='https://wiki.elvenden.pl/')
@@ -40,7 +42,7 @@ async def help(ctx):
 @client.command()
 async def source(ctx):
     source_code = 'https://github.com/anthonybartczak/elvenden-bot'
-    embed=discord.Embed(title='Source code', description='You can check the source code here:\n' + source_code, color=0x8b54cf)
+    embed=discord.Embed(title='Source code', description='You can check the source code here:\n' + source_code, color=MAIN_COLOR)
     await ctx.send(embed=embed)
     
 @client.command()
@@ -53,13 +55,13 @@ async def reaction(ctx):
         'https://i.imgur.com/w7B3BwT.png':'thirsty!'
     }
     zus_choice = random.choice(list(zus.items()))
-    embed=discord.Embed(title='Zus reaction table', description='Zus is ' + zus_choice[1], color=0x8b54cf)
+    embed=discord.Embed(title='Zus reaction table', description='Zus is ' + zus_choice[1], color=MAIN_COLOR)
     embed.set_image(url=zus_choice[0])
     await ctx.send(embed=embed)
 
 @client.command()
 async def tracks(ctx):
-    embed=discord.Embed(title='Tracks', description='Work in progress.', color=0x8b54cf)
+    embed=discord.Embed(title='Tracks', description='Work in progress.', color=MAIN_COLOR)
     await ctx.send(embed=embed)
 
 @client.command()
@@ -70,7 +72,6 @@ async def clear(ctx, amount: int):
 @client.command()
 async def advance(ctx, type: str, init: int, goal: int, talent: str=None):
 
-    # if not help:
     image = 'https://cdn.discordapp.com/attachments/868802153014263851/870615749083926638/WHFRP_4ED_Rozwoj_cech_um.png'
 
     ability_map = {5:10, 10:15, 15:20, 20:30, 25:40, 30:60, 35:80, 40:110, 45:140, 50:180}
@@ -102,21 +103,9 @@ async def advance(ctx, type: str, init: int, goal: int, talent: str=None):
     else:
         description += 'Koszt rozwinięcia to: **' + str(cost_sum) + ' PD**'
 
-    embed=discord.Embed(title='Rozwinięcie ' + choice, description=description, color=0x8b54cf)
+    embed=discord.Embed(title='Rozwinięcie ' + choice, description=description, color=MAIN_COLOR)
     embed.set_image(url=image)
-
-    # else:
-    #     description = \
-    #     'Poniżej krótka instrukcja dotycząca użytkowania polecenia **advance**:\n\n'\
-    #     'Format polecenia: \n\n'\
-    #     '**>advance** [c lub u] [wartość_początkowa] [wartość_docelowa] [talent*]\n\n\n'\
-    #     'c lub u ->  wybór pomiędzy rozwojem cechy lub umiejętności\n\n'\
-    #     'wartość_początkowa ->  początkowa wartość umiejętności lub cechy\n\n'\
-    #     'wartość_docelowa ->  docelowa wartość umiejętności lub cechy\n\n'\
-    #     'talent (opcjonalne) ->  jeśli któryś z talentów postaci obniża koszt rozwoju o 5 PD\n\n'\
-    #     'Przykłady:\n\n>advance c 5 12\n\n>advance u 12 16 t'
-    #     embed=discord.Embed(title='Advance: instrukcja ', description=description, color=0x007bff)
-
+    
     await ctx.send(embed=embed)
     
     
@@ -130,7 +119,7 @@ async def talent(ctx, *, talent_name: str):
     if talent_name in json_data:
         talent = json_data[talent_name]
         await ctx.send('Talent name found!')
-        embed=discord.Embed(title=talent['name'], description=talent['description'], color=0x8b54cf)
+        embed=discord.Embed(title=talent['name'], description=talent['description'], color=MAIN_COLOR)
         embed.add_field(name="Maksimum", value=talent['max'], inline=True)
         embed.add_field(name="Testy", value=talent['tests'], inline=True)
         await ctx.send(embed=embed)
