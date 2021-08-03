@@ -27,7 +27,7 @@ async def on_ready():
     await client.change_presence(status=discord.Status.online, activity=activity)
 
 @client.command()
-async def servers():
+async def servers(ctx):
     servers = list(client.servers)
     await client.say(f"Connected on {str(len(servers))} servers:")
     await client.say('\n'.join(server.name for server in servers))
