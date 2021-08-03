@@ -28,21 +28,17 @@ async def on_ready():
 
 @client.command()
 async def help(ctx):
-    embed=discord.Embed(title='Krótka instrukcja bota Elvie.', description='Poniżej lista obecnie dostępnych poleceń. Argumenty oznaczone * są opcjonalne:', color=MAIN_COLOR)
+    embed=discord.Embed(title='Krótka instrukcja bota Elvie.', description='Poniżej znajdziesz listę obecnie dostępnych poleceń. Argumenty oznaczone * są opcjonalne:', color=MAIN_COLOR)
+    
     embed.add_field(name=".advance [*c/u*] [*x*] [*y*] [*t* *]", value='Oblicz koszt rozwoju [od x do y] cechy [c] lub umiejętności [u]. Np.\n\n*.advance c 12 15*\n*.advance u 5 14 t*\n\nArgument t obniża koszt rozwinięcia o 5 PD.\n', inline=False)
     embed.add_field(name=".talent [nazwa]", value='Wyświetl opis talentu [nazwa]. Nazwa musi zostać podana z uwzględnieniem polskich znaków oraz bez użycia nawiasów. Np.\n\n*.talent bardzo szybki*\n*.talent magia tajemna*', inline=False)
     embed.add_field(name=".clear [wartość]", value='Wyczyść x wiadomości.', inline=False)
     embed.add_field(name=".play [URL]", value='Odtwórz muzkę z YouTube (URL).', inline=False)
     embed.add_field(name=".pause / .stop / .resume", value='Zapauzuj/zatrzymaj/wznów muzykę.', inline=False)
+    
     embed.set_author(name='Więcej informacji znajdziesz na wiki', url='https://wiki.elvenden.pl/')
     embed.set_image(url='https://i.imgur.com/bo7HXad.png')
 
-    await ctx.send(embed=embed)
-
-@client.command()
-async def source(ctx):
-    source_code = 'https://github.com/anthonybartczak/elvenden-bot'
-    embed=discord.Embed(title='Source code', description='You can check the source code here:\n' + source_code, color=MAIN_COLOR)
     await ctx.send(embed=embed)
     
 @client.command()
@@ -72,10 +68,10 @@ async def clear(ctx, amount: int):
 @client.command()
 async def advance(ctx, type: str, init: int, goal: int, talent: str=None):
 
-    image = 'https://cdn.discordapp.com/attachments/868802153014263851/870615749083926638/WHFRP_4ED_Rozwoj_cech_um.png'
+    image = 'https://i.imgur.com/tFKyBBm.png'
 
-    ability_map = {5:10, 10:15, 15:20, 20:30, 25:40, 30:60, 35:80, 40:110, 45:140, 50:180}
-    attribute_map = {5:25, 10:30, 15:40, 20:50, 25:70, 30:90, 35:120, 40:150, 45:190, 50:230}
+    ability_map = {5:10, 10:15, 15:20, 20:30, 25:40, 30:60, 35:80, 40:110, 45:140, 50:180, 55:220, 60:270, 65:320, 70:380, 9999:440}
+    attribute_map = {5:25, 10:30, 15:40, 20:50, 25:70, 30:90, 35:120, 40:150, 45:190, 50:230, 55:280, 60:330, 65:390, 70:450, 9999:520}
 
     if type == 'c':
         chosen_map = attribute_map
