@@ -39,23 +39,19 @@ async def servers(ctx):
     description = 'Połączony z ' + {str(len(servers))} + ' serwerami\n\n'
     for i, server in enumerate(servers, start=1):
         description += str(i) + '. ' + server.name + '\n\n'
-    
     embed=discord.Embed(title='Lista serwerów', description=description, color=MAIN_COLOR)
     await ctx.send(embed=embed)
 
 @client.command()
 async def help(ctx):
     embed=discord.Embed(title='Krótka instrukcja bota Elvie', description='Poniżej znajdziesz listę obecnie dostępnych poleceń. Argumenty oznaczone * są opcjonalne:', color=MAIN_COLOR)
-    
     embed.add_field(name=".advance [*c/u*] [*x*] [*y*] [*t* *]", value='Oblicz koszt rozwoju [od x do y] cechy [c] lub umiejętności [u]. Np.\n\n*.advance c 12 15*\n*.advance u 5 14 t*\n\nArgument t obniża koszt rozwinięcia o 5 PD.\n', inline=False)
     embed.add_field(name=".talent [nazwa]", value='Wyświetl opis talentu [nazwa]. Nazwa musi zostać podana z uwzględnieniem polskich znaków oraz bez użycia nawiasów. Np.\n\n*.talent bardzo szybki*\n*.talent magia tajemna*', inline=False)
     embed.add_field(name=".clear [wartość]", value='Wyczyść x wiadomości.', inline=False)
     embed.add_field(name=".play [URL]", value='Odtwórz muzkę z YouTube (URL).', inline=False)
     embed.add_field(name=".pause / .stop / .resume", value='Zapauzuj/zatrzymaj/wznów muzykę.', inline=False)
-    
     embed.set_author(name='Więcej informacji znajdziesz na wiki', url='https://wiki.elvenden.pl/')
     embed.set_image(url='https://i.imgur.com/bo7HXad.png')
-
     await ctx.send(embed=embed)
     
 @client.command()
