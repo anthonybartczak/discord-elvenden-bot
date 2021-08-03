@@ -32,13 +32,14 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         embed=discord.Embed(title='Błąd polecenia', description='Nie znalazłem polecenia o tej nazwie. Może polecenie **.help** odpowie na Twoje pytanie?', color=ERROR_COLOR)
         await ctx.send(embed=embed)
+    raise error
 
 @client.command()
 async def servers(ctx):
     servers = list(client.guilds)
-    description = 'Połączony z ' + str(len(servers)) + ' serwerami\n\n'
+    description = 'Połączony z **' + str(len(servers)) + '** serwerami\n\n'
     for i, server in enumerate(servers, start=1):
-        description += str(i) + '. ' + server.name + '\n\n'
+        description += str(i) + '. ' + server.name + '\n'
     embed=discord.Embed(title='Lista serwerów', description=description, color=MAIN_COLOR)
     await ctx.send(embed=embed)
 
