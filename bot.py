@@ -36,7 +36,7 @@ async def on_command_error(ctx, error):
 @client.command()
 async def servers(ctx):
     servers = list(client.guilds)
-    description = 'Połączony z ' + {str(len(servers))} + ' serwerami\n\n'
+    description = 'Połączony z ' + str(len(servers)) + ' serwerami\n\n'
     for i, server in enumerate(servers, start=1):
         description += str(i) + '. ' + server.name + '\n\n'
     embed=discord.Embed(title='Lista serwerów', description=description, color=MAIN_COLOR)
