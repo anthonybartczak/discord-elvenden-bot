@@ -28,7 +28,7 @@ async def on_ready():
 
 @client.command()
 async def servers(ctx):
-    servers = list(client.servers)
+    servers = list(client.guilds)
     await client.say(f"Connected on {str(len(servers))} servers:")
     await client.say('\n'.join(server.name for server in servers))
 
