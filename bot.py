@@ -9,6 +9,7 @@ from json import load
 import random
 
 MAIN_COLOR = 0x8b54cf
+ERROR_COLOR = 0xff0000
 
 client = commands.Bot(command_prefix='.')
 client.remove_command('help')
@@ -25,6 +26,14 @@ BOT_TOKEN = environ.get('BOT_TOKEN')
 async def on_ready():
     activity = discord.Game(name=".help")
     await client.change_presence(status=discord.Status.online, activity=activity)
+
+@client.event
+async def on_command_error(error, ctx):
+    if isinstance(error, commands.CommandNotFound):
+        embed=discord.Embed(title='Błąd polecenia', description='Nie znalazłem polecenia o tej nazwie. Może polecenie .help odpowie na Twoje pytania?', color=ERROR_COLOR)
+        await ctx.send(embed=embed)
+    else:
+        raise error
 
 @client.command()
 async def servers(ctx):
