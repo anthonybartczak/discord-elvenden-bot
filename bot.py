@@ -27,6 +27,12 @@ async def on_ready():
     await client.change_presence(status=discord.Status.online, activity=activity)
 
 @client.command()
+async def servers():
+    servers = list(client.servers)
+    await client.say(f"Connected on {str(len(servers))} servers:")
+    await client.say('\n'.join(server.name for server in servers))
+
+@client.command()
 async def help(ctx):
     embed=discord.Embed(title='Krótka instrukcja bota Elvie.', description='Poniżej znajdziesz listę obecnie dostępnych poleceń. Argumenty oznaczone * są opcjonalne:', color=MAIN_COLOR)
     
