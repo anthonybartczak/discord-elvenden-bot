@@ -28,12 +28,10 @@ async def on_ready():
     await client.change_presence(status=discord.Status.online, activity=activity)
 
 @client.event
-async def on_command_error(error, ctx):
+async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
-        embed=discord.Embed(title='Błąd polecenia', description='Nie znalazłem polecenia o tej nazwie. Może polecenie .help odpowie na Twoje pytania?', color=ERROR_COLOR)
+        embed=discord.Embed(title='Błąd polecenia', description='Nie znalazłem polecenia o tej nazwie. Może polecenie .help odpowie na Twoje pytanie?', color=ERROR_COLOR)
         await ctx.send(embed=embed)
-    else:
-        raise error
 
 @client.command()
 async def servers(ctx):
@@ -83,7 +81,7 @@ async def clear(ctx, amount: int):
 @client.command()
 async def advance(ctx, type: str, init: int, goal: int, talent: str=None):
 
-    image = 'https://i.imgur.com/tFKyBBm.png'
+    image = 'https://cdn.discordapp.com/attachments/868802153014263851/872199283074535444/advancements.PNG'
 
     ability_map = {5:10, 10:15, 15:20, 20:30, 25:40, 30:60, 35:80, 40:110, 45:140, 50:180, 55:220, 60:270, 65:320, 70:380, 9999:440}
     attribute_map = {5:25, 10:30, 15:40, 20:50, 25:70, 30:90, 35:120, 40:150, 45:190, 50:230, 55:280, 60:330, 65:390, 70:450, 9999:520}
