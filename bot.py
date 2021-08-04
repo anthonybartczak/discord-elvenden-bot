@@ -53,17 +53,18 @@ async def help(ctx):
     embed.add_field(name=".play [URL]", value='Odtwórz muzkę z YouTube (URL).', inline=False)
     embed.add_field(name=".pause / .stop / .resume", value='Zapauzuj/zatrzymaj/wznów muzykę.', inline=False)
     embed.set_author(name='Więcej informacji znajdziesz na wiki', url='https://wiki.elvenden.pl/')
-    embed.set_image(url='https://i.imgur.com/bo7HXad.png')
+    embed.set_image(url='https://media.discordapp.net/attachments/872435741270097940/872442356673175602/elvenden-logos_white-thumb.png?width=1196&height=217')
     await ctx.send(embed=embed)
     
 @client.command()
 async def reaction(ctx):
     zus = {
-        'https://i.imgur.com/lxBQV76.png':'shocked!',
-        'https://i.imgur.com/RBTMA0J.jpg':'not amused!',
-        'https://i.imgur.com/s8L0leY.png':'bored!',
-        'https://i.imgur.com/rbBa0p8.png':'hungry!',
-        'https://i.imgur.com/w7B3BwT.png':'thirsty!'
+        'https://media.discordapp.net/attachments/872435741270097940/872439835967758356/shocked.png':'shocked!',
+        'https://media.discordapp.net/attachments/872435741270097940/872439831848972318/not_amused.jpg':'not amused!',
+        'https://media.discordapp.net/attachments/872435741270097940/872439830284488774/bored.PNG':'bored!',
+        'https://media.discordapp.net/attachments/872435741270097940/872439830531964968/hungry.PNG':'hungry!',
+        'https://media.discordapp.net/attachments/872435741270097940/872439832331321404/thirsty.PNG':'thirsty!',
+        'https://media.discordapp.net/attachments/872435741270097940/872439831224000542/fancy.PNG':'feeling fancy!'
     }
     zus_choice = random.choice(list(zus.items()))
     embed=discord.Embed(title='Zus reaction table', description='Zus is ' + zus_choice[1], color=MAIN_COLOR)
