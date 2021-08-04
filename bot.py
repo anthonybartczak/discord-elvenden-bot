@@ -140,7 +140,6 @@ async def talent(ctx, *, talent_name: str):
 async def play(ctx, url: str):
     channel = ctx.message.author.voice.channel
     voice = get(client.voice_clients, guild=ctx.guild)
-    await ctx.channel.purge(limit=1)
     if voice and voice.is_connected():
         await voice.move_to(channel)
     else:
