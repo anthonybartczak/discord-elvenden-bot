@@ -1,4 +1,4 @@
-import playlists, tables
+import playlists
 import discord
 from discord.ext import commands
 from os import environ
@@ -83,8 +83,6 @@ async def clear(ctx, amount: int):
 @client.command()
 async def advance(ctx, type: str, init: int, goal: int, talent: str=None):
 
-    image = 'https://cdn.discordapp.com/attachments/868802153014263851/872199283074535444/advancements.PNG'
-
     ability_map = {5:10, 10:15, 15:20, 20:30, 25:40, 30:60, 35:80, 40:110, 45:140, 50:180, 55:220, 60:270, 65:320, 70:380, 9999:440}
     attribute_map = {5:25, 10:30, 15:40, 20:50, 25:70, 30:90, 35:120, 40:150, 45:190, 50:230, 55:280, 60:330, 65:390, 70:450, 9999:520}
 
@@ -120,8 +118,9 @@ async def advance(ctx, type: str, init: int, goal: int, talent: str=None):
     
 @client.command()
 async def advance_table(ctx):
-    description = tables.ADV_TABLE
-    embed=discord.Embed(title='Koszt rozwoju cech i umiejętności w PD', description=description, color=MAIN_COLOR)
+    image = 'https://cdn.discordapp.com/attachments/872435741270097940/872436174340370472/advance.png'
+    embed=discord.Embed(title='Koszt rozwoju cech i umiejętności w PD', description='', color=MAIN_COLOR)
+    embed.set_image(url=image)
     await ctx.send(embed=embed)
     
 @client.command()
