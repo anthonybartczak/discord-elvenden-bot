@@ -10,6 +10,7 @@ import random
 
 MAIN_COLOR = 0x8b54cf
 ERROR_COLOR = 0xff0000
+BOT_TOKEN = environ.get('BOT_TOKEN')
 
 client = commands.Bot(command_prefix='.')
 client.remove_command('help')
@@ -20,7 +21,7 @@ def displayEmbedVideoInfo(name, id, thumbnail):
     embed.set_image(url=thumbnail)
     return embed
 
-BOT_TOKEN = environ.get('BOT_TOKEN')
+
 
 @client.event
 async def on_ready():
@@ -52,6 +53,7 @@ async def help(ctx):
     embed.add_field(name=".clear [wartość]", value='Wyczyść x wiadomości.', inline=False)
     embed.add_field(name=".play [URL]", value='Odtwórz muzkę z YouTube (URL).', inline=False)
     embed.add_field(name=".pause / .stop / .resume", value='Zapauzuj/zatrzymaj/wznów muzykę.', inline=False)
+    embed.add_field(name="Kontakt", value='W razie pytań, wykrytych bugów lub pomysłów napisz do mnie via Discord -> **canadian#6199**', inline=False)
     embed.set_author(name='Więcej informacji znajdziesz na wiki', url='https://wiki.elvenden.pl/')
     embed.set_image(url='https://media.discordapp.net/attachments/872435741270097940/872442356673175602/elvenden-logos_white-thumb.png?width=1196&height=217')
     await ctx.send(embed=embed)
