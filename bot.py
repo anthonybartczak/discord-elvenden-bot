@@ -1,4 +1,4 @@
-import playlists
+import playlists, tables
 import discord
 from discord.ext import commands
 from os import environ
@@ -47,6 +47,7 @@ async def servers(ctx):
 async def help(ctx):
     embed=discord.Embed(title='Krótka instrukcja bota Elvie', description='Poniżej znajdziesz listę obecnie dostępnych poleceń. Argumenty oznaczone * są opcjonalne:', color=MAIN_COLOR)
     embed.add_field(name=".advance [*c/u*] [*x*] [*y*] [*t* *]", value='Oblicz koszt rozwoju [od x do y] cechy [c] lub umiejętności [u]. Np.\n\n*.advance c 12 15*\n*.advance u 5 14 t*\n\nArgument t obniża koszt rozwinięcia o 5 PD.\n', inline=False)
+    embed.add_field(name=".advance_table", value='Wyświetl tabele *Koszt rozwoju cech i umiejętności w PD*', inline=False)
     embed.add_field(name=".talent [nazwa]", value='Wyświetl opis talentu [nazwa]. Nazwa musi zostać podana z uwzględnieniem polskich znaków oraz bez użycia nawiasów. Np.\n\n*.talent bardzo szybki*\n*.talent magia tajemna*', inline=False)
     embed.add_field(name=".clear [wartość]", value='Wyczyść x wiadomości.', inline=False)
     embed.add_field(name=".play [URL]", value='Odtwórz muzkę z YouTube (URL).', inline=False)
@@ -114,10 +115,14 @@ async def advance(ctx, type: str, init: int, goal: int, talent: str=None):
         description += 'Koszt rozwinięcia to: **' + str(cost_sum) + ' PD**'
 
     embed=discord.Embed(title='Rozwinięcie ' + choice, description=description, color=MAIN_COLOR)
-    embed.set_image(url=image)
     
     await ctx.send(embed=embed)
     
+@client.command()
+async def advance_table(ctx):
+    description = tables.ADV_TABLE
+    embed=discord.Embed(title='Koszt rozwoju cech i umiejętności w PD', description=description, color=MAIN_COLOR)
+    await ctx.send(embed=embed)
     
 @client.command()
 async def talent(ctx, *, talent_name: str):
