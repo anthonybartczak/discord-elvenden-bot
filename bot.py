@@ -34,9 +34,11 @@ async def on_ready():
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         embed=discord.Embed(title='⚠️Błąd polecenia⚠️', description='Nie znalazłem polecenia o tej nazwie. Może polecenie **.help** odpowie na Twoje pytanie?', color=ERROR_COLOR)
+        embed.set_footer(text = 'Elvie v0.81 - WFRP 4ED\nOstatnia aktualizacja: 8/8/2021', icon_url = pic.BOT_AVATAR)
         await ctx.send(embed=embed)
     elif isinstance(error, commands.MissingRequiredArgument):
         embed=discord.Embed(title='⚠️Brakujący argument⚠️', description='We wpisanym poleceniu brakuje jednego z argumentów. Sprawdź **.help** w celu weryfikacji składni polecenia.', color=ERROR_COLOR)
+        embed.set_footer(text = 'Elvie v0.81 - WFRP 4ED\nOstatnia aktualizacja: 8/8/2021', icon_url = pic.BOT_AVATAR)
         await ctx.send(embed=embed)
     raise error
 
@@ -47,6 +49,7 @@ async def servers(ctx):
     for i, server in enumerate(servers, start=1):
         description += '**' + str(i) + '.** ' + server.name + '\n'
     embed=discord.Embed(title='Lista serwerów', description=description, color=MAIN_COLOR)
+    embed.set_footer(text = 'Elvie v0.81 - WFRP 4ED\nOstatnia aktualizacja: 8/8/2021', icon_url = pic.BOT_AVATAR)
     await ctx.send(embed=embed)
 
 @client.command()
@@ -75,6 +78,7 @@ async def reaction(ctx):
     
     zus_choice = random.choice(list(zus.items()))
     embed=discord.Embed(title='Zus reaction table', description='Zus is ' + zus_choice[1], color=MAIN_COLOR)
+    embed.set_footer(text = 'Elvie v0.81 - WFRP 4ED\nOstatnia aktualizacja: 8/8/2021', icon_url = pic.BOT_AVATAR)
     embed.set_image(url=zus_choice[0])
     await ctx.send(embed=embed)
 
@@ -121,6 +125,7 @@ async def advance(ctx, type: str, init: int, goal: int, talent: str=None):
         description += 'Koszt rozwinięcia to: **' + str(cost_sum) + ' PD**'
 
     embed=discord.Embed(title='Rozwinięcie ' + choice, description=description, color=MAIN_COLOR)
+    embed.set_footer(text = 'Elvie v0.81 - WFRP 4ED\nOstatnia aktualizacja: 8/8/2021', icon_url = pic.BOT_AVATAR)
     
     await ctx.send(embed=embed)
     
@@ -129,10 +134,12 @@ async def advance_table(ctx, version: str='pc'):
     if version == 'm':
         image = pic.ADVANCE_TABLE_PIC
         embed=discord.Embed(title='Koszt rozwoju cech i umiejętności w PD', description='', color=MAIN_COLOR)
+        embed.set_footer(text = 'Elvie v0.81 - WFRP 4ED\nOstatnia aktualizacja: 8/8/2021', icon_url = pic.BOT_AVATAR)
         embed.set_image(url=image)
     else:
         description = tab.ADV_TABLE
         embed=discord.Embed(title='Koszt rozwoju cech i umiejętności w PD', description=description, color=MAIN_COLOR)
+        embed.set_footer(text = 'Elvie v0.81 - WFRP 4ED\nOstatnia aktualizacja: 8/8/2021', icon_url = pic.BOT_AVATAR)
     await ctx.send(embed=embed)
     
 @client.command()
@@ -146,11 +153,14 @@ async def talent(ctx, *, talent_name: str):
         talent = json_data[talent_name]
         await ctx.send('Talent name found!')
         embed=discord.Embed(title=talent['name'], description=talent['description'], color=MAIN_COLOR)
+        embed.set_footer(text = 'Elvie v0.81 - WFRP 4ED\nOstatnia aktualizacja: 8/8/2021', icon_url = pic.BOT_AVATAR)
         embed.add_field(name="Maksimum", value=talent['max'], inline=True)
         embed.add_field(name="Testy", value=talent['tests'], inline=True)
-        await ctx.send(embed=embed)
     else:
-        await ctx.send('Couldn\'t find the talent name.')
+        embed=discord.Embed(title='⚠️Nie znalazłem talentu⚠️', description='Pamiętaj o składni podanej w poleceniu **.help**.', color=ERROR_COLOR)
+        embed.set_footer(text = 'Elvie v0.81 - WFRP 4ED\nOstatnia aktualizacja: 8/8/2021', icon_url = pic.BOT_AVATAR)
+        
+    await ctx.send(embed=embed)
 
 @client.command()
 async def contact(ctx, *, message):
@@ -158,6 +168,7 @@ async def contact(ctx, *, message):
     author = ctx.message.author
     content = '"' + message + '"' + ' by ' + str(author)
     embed=discord.Embed(title='Wiadomość wysłana', description='Treść wiadomości: *' + message + '*', color=MAIN_COLOR)
+    embed.set_footer(text = 'Elvie v0.81 - WFRP 4ED\nOstatnia aktualizacja: 8/8/2021', icon_url = pic.BOT_AVATAR)
     await user.send(content)
     await ctx.send(embed=embed)
 
