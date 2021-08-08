@@ -1,4 +1,3 @@
-import playlists
 import discord
 from discord.ext import commands
 from os import environ
@@ -7,12 +6,16 @@ from discord import FFmpegPCMAudio
 from youtube_dl import YoutubeDL
 from json import load
 import random
+import content.tables as tab
+import content.pictures as pic
 
 MAIN_COLOR = 0x8b54cf
 ERROR_COLOR = 0xff0000
 BOT_TOKEN = environ.get('BOT_TOKEN')
 
-client = commands.Bot(command_prefix='.')
+intents = discord.Intents.default()
+intents.members = True
+client = commands.Bot(intents=intents, command_prefix='.')
 client.remove_command('help')
 
 def displayEmbedVideoInfo(name, id, thumbnail):
@@ -20,7 +23,6 @@ def displayEmbedVideoInfo(name, id, thumbnail):
     embed=discord.Embed(title='Playing', description=vid_info, color=MAIN_COLOR)
     embed.set_image(url=thumbnail)
     return embed
-
 
 
 @client.event
@@ -31,7 +33,10 @@ async def on_ready():
 @client.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
-        embed=discord.Embed(title='Błąd polecenia', description='Nie znalazłem polecenia o tej nazwie. Może polecenie **.help** odpowie na Twoje pytanie?', color=ERROR_COLOR)
+        embed=discord.Embed(title='⚠️Błąd polecenia⚠️', description='Nie znalazłem polecenia o tej nazwie. Może polecenie **.help** odpowie na Twoje pytanie?', color=ERROR_COLOR)
+        await ctx.send(embed=embed)
+    elif isinstance(error, commands.MissingRequiredArgument):
+        embed=discord.Embed(title='⚠️Brakujący argument⚠️', description='We wpisanym poleceniu brakuje jednego z argumentów. Sprawdź **.help** w celu weryfikacji składni polecenia.', color=ERROR_COLOR)
         await ctx.send(embed=embed)
     raise error
 
@@ -46,28 +51,28 @@ async def servers(ctx):
 
 @client.command()
 async def help(ctx):
-    embed=discord.Embed(title='Krótka instrukcja bota Elvie', description='Poniżej znajdziesz listę obecnie dostępnych poleceń. Argumenty oznaczone * są opcjonalne:', color=MAIN_COLOR)
-    embed.add_field(name=".advance [*c/u*] [*x*] [*y*] [*t* *]", value='Oblicz koszt rozwoju [od x do y] cechy [c] lub umiejętności [u]. Np.\n\n*.advance c 12 15*\n*.advance u 5 14 t*\n\nArgument t obniża koszt rozwinięcia o 5 PD.\n', inline=False)
-    embed.add_field(name=".advance_table", value='Wyświetl tabele *Koszt rozwoju cech i umiejętności w PD*', inline=False)
-    embed.add_field(name=".talent [nazwa]", value='Wyświetl opis talentu [nazwa]. Nazwa musi zostać podana z uwzględnieniem polskich znaków oraz bez użycia nawiasów. Np.\n\n*.talent bardzo szybki*\n*.talent magia tajemna*', inline=False)
-    embed.add_field(name=".clear [wartość]", value='Wyczyść x wiadomości.', inline=False)
-    embed.add_field(name=".play [URL]", value='Odtwórz muzkę z YouTube (URL).', inline=False)
-    embed.add_field(name=".pause / .stop / .resume", value='Zapauzuj/zatrzymaj/wznów muzykę.', inline=False)
-    embed.add_field(name="Kontakt", value='W razie pytań, wykrytych bugów lub pomysłów napisz do mnie via Discord -> **canadian#6199**', inline=False)
-    embed.set_author(name='Więcej informacji znajdziesz na wiki', url='https://wiki.elvenden.pl/')
-    embed.set_image(url='https://media.discordapp.net/attachments/872435741270097940/872442356673175602/elvenden-logos_white-thumb.png?width=1196&height=217')
+    description = \
+        'Poniżej znajdziesz listę obecnie dostępnych poleceń. Argumenty oznaczone `*` są opcjonalne:\n\n'\
+        '**.advance <c/u> <start> <cel> <t*>**\nOblicz koszt rozwoju od `start` do `cel` cechy lub umiejętności (`c` lub `u`). Argument `t` obniża koszt rozwinięcia o 5 PD. Przykładowo:\n`.advance c 12 15` albo `.advance u 5 14 t`\n\n'\
+        '**.advance_table <m*>**\nWyświetl tabelę *Koszt rozwoju cech i umiejętności w PD*. Argument `m` wyświetla tabelę w wersji na urządzenia mobilne. Przykładowo:\n`.advance_table` albo `.advance_table m`\n\n'\
+        '**.talent <nazwa>**\nWyświetl opis talentu `nazwa`. Nazwa musi zostać podana z uwzględnieniem polskich znaków oraz bez użycia nawiasów. Przykładowo:\n`.talent bardzo szybki` albo `.talent magia tajemna`\n\n'\
+        '**.clear <wartość>**\nWyczyść `wartość` wiadomości. Może się przydać w trzymaniu porządku na kanale z rzutami.\n\n'\
+        '**.contact <wiadomość>**\nWyślij `wiadomość` bezpośrednio do autora bota. Wszelkie wykryte błędy, zażalenia i pytania są mile widziane.'
+    
+    embed=discord.Embed(title='Krótka instrukcja bota Elvie', description=description, color=MAIN_COLOR)
+    embed.set_footer(text = 'Elvie v0.81 - WFRP 4ED\nOstatnia aktualizacja: 8/8/2021', icon_url = pic.BOT_AVATAR)
+    
     await ctx.send(embed=embed)
     
 @client.command()
 async def reaction(ctx):
     zus = {
-        'https://media.discordapp.net/attachments/872435741270097940/872439835967758356/shocked.png':'shocked!',
-        'https://media.discordapp.net/attachments/872435741270097940/872439831848972318/not_amused.jpg':'not amused!',
-        'https://media.discordapp.net/attachments/872435741270097940/872439830284488774/bored.PNG':'bored!',
-        'https://media.discordapp.net/attachments/872435741270097940/872439830531964968/hungry.PNG':'hungry!',
-        'https://media.discordapp.net/attachments/872435741270097940/872439832331321404/thirsty.PNG':'thirsty!',
-        'https://media.discordapp.net/attachments/872435741270097940/872439831224000542/fancy.PNG':'feeling fancy!'
-    }
+        pic.ZUS_PIC_NOT_AMUSED:'shocked!',
+        pic.ZUS_PIC_NOT_AMUSED:'bored!',
+        pic.ZUS_PIC_NOT_AMUSED:'hungry!',
+        pic.ZUS_PIC_NOT_AMUSED:'thirsty!',
+        pic.ZUS_PIC_NOT_AMUSED:'feeling fancy!'}
+    
     zus_choice = random.choice(list(zus.items()))
     embed=discord.Embed(title='Zus reaction table', description='Zus is ' + zus_choice[1], color=MAIN_COLOR)
     embed.set_image(url=zus_choice[0])
@@ -120,10 +125,14 @@ async def advance(ctx, type: str, init: int, goal: int, talent: str=None):
     await ctx.send(embed=embed)
     
 @client.command()
-async def advance_table(ctx):
-    image = 'https://cdn.discordapp.com/attachments/872435741270097940/872436174340370472/advance.png'
-    embed=discord.Embed(title='Koszt rozwoju cech i umiejętności w PD', description='', color=MAIN_COLOR)
-    embed.set_image(url=image)
+async def advance_table(ctx, version: str='pc'):
+    if version == 'm':
+        image = pic.ADVANCE_TABLE_PIC
+        embed=discord.Embed(title='Koszt rozwoju cech i umiejętności w PD', description='', color=MAIN_COLOR)
+        embed.set_image(url=image)
+    else:
+        description = tab.ADV_TABLE
+        embed=discord.Embed(title='Koszt rozwoju cech i umiejętności w PD', description=description, color=MAIN_COLOR)
     await ctx.send(embed=embed)
     
 @client.command()
@@ -131,7 +140,7 @@ async def talent(ctx, *, talent_name: str):
     
     talent_name = talent_name.replace(' ','_').lower()
     
-    with open('talents.json') as jf:
+    with open('content/talents.json', encoding="utf8") as jf:
         json_data = load(jf)
     if talent_name in json_data:
         talent = json_data[talent_name]
@@ -144,8 +153,18 @@ async def talent(ctx, *, talent_name: str):
         await ctx.send('Couldn\'t find the talent name.')
 
 @client.command()
+async def contact(ctx, *, message):
+    user = client.get_user(288608916525547520)
+    author = ctx.message.author
+    content = '"' + message + '"' + ' by ' + str(author)
+    embed=discord.Embed(title='Wiadomość wysłana', description='Treść wiadomości: *' + message + '*', color=MAIN_COLOR)
+    await user.send(content)
+    await ctx.send(embed=embed)
+
+@client.command()
 async def play(ctx, url: str):
     channel = ctx.message.author.voice.channel
+    await ctx.channel.purge(limit=1)
     voice = get(client.voice_clients, guild=ctx.guild)
     if voice and voice.is_connected():
         await voice.move_to(channel)
