@@ -36,6 +36,7 @@ async def on_command_error(ctx, error):
         await ctx.send(embed=embed)
     raise error
 
+
 @client.command()
 async def servers(ctx):
     servers = list(client.guilds)
@@ -84,10 +85,15 @@ async def tracks(ctx):
 
 @client.command()
 async def clear(ctx, amount: int):
-    deleted = await ctx.channel.purge(limit=amount)
-    embed=discord.Embed(title='Usunięto wiadomości', description='Usunięto **' + str(len(deleted)) + '** wiadomości.', color=MAIN_COLOR)
-    embed.set_footer(text = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021', icon_url = pic.BOT_AVATAR)
-    await ctx.send(embed=embed)
+    if ctx.author.guild_permissions.administrator:
+        deleted = await ctx.channel.purge(limit=amount)
+        embed=discord.Embed(title='Usunięto wiadomości', description='Usunięto **' + str(len(deleted)) + '** wiadomości.', color=MAIN_COLOR)
+        embed.set_footer(text = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021', icon_url = pic.BOT_AVATAR)
+        await ctx.send(embed=embed)
+    else:
+        embed=discord.Embed(title='⚠️Błąd uprawnień⚠️', description='Nie jesteś administratorem.', color=ERROR_COLOR)
+        embed.set_footer(text = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021', icon_url = pic.BOT_AVATAR)
+        await ctx.send(embed=embed)
     
 @client.command()
 async def invite(ctx):
