@@ -1,3 +1,4 @@
+import asyncio
 import discord
 from discord.ext import commands
 from os import environ
@@ -142,11 +143,24 @@ async def advance(ctx, type: str, init: int, goal: int, talent: str=None):
 @client.command()
 async def fortune(ctx):
     reactions = ['1️⃣', '2️⃣', '3️⃣', '4️⃣']
-    embed=discord.Embed(title='Punkt szczęścia użyty!', description='Czyli Twoja dobra passa się skończyła i nagle chcesz, by sam Ranald Ci dopomógł?\nDobrze, wybierz kartę śmiertelniku...', color=MAIN_COLOR)
+    author = ctx.message.author
+    winner = random.random(reactions)
+    
+    embed=discord.Embed(title='Punkt szczęścia użyty!', description='Czyli Twoja dobra passa się skończyła i nagle chcesz, by sam Ranald Ci dopomógł?\nDobrze, wybierz kartę śmiertelniku...\n\n🃵	🃵	🃵	🃵', color=MAIN_COLOR)
     embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
     message = await ctx.send(embed=embed)
     for emoji in reactions:
         await message.add_reaction(emoji)
+    
+    def check(reaction, user):
+        return user == ctx.message.author and str(reaction.emoji) == winner
+    
+    try:
+        reaction, user = await client.wait_for('reaction_add', timeout=45.0, check=check)
+    except asyncio.TimeoutError:
+        await ctx.channel.send('👎')
+    else:
+        await ctx.channel.send('👍')
 
 @client.command()
 async def advance_table(ctx, version: str='pc'):
