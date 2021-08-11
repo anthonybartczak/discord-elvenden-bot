@@ -13,6 +13,8 @@ MAIN_COLOR = 0x8b54cf
 ERROR_COLOR = 0xff0000
 BOT_TOKEN = environ.get('BOT_TOKEN')
 
+FOOTER_TEXT = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021'
+
 intents = discord.Intents.default()
 intents.members = True
 client = commands.Bot(intents=intents, command_prefix='.')
@@ -28,11 +30,11 @@ async def on_ready():
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         embed=discord.Embed(title='⚠️Błąd polecenia⚠️', description='Nie znalazłem polecenia o tej nazwie. Może polecenie **.help** odpowie na Twoje pytanie?', color=ERROR_COLOR)
-        embed.set_footer(text = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021', icon_url = pic.BOT_AVATAR)
+        embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
         await ctx.send(embed=embed)
     elif isinstance(error, commands.MissingRequiredArgument):
         embed=discord.Embed(title='⚠️Brakujący argument⚠️', description='We wpisanym poleceniu brakuje jednego z argumentów. Sprawdź **.help** w celu weryfikacji składni polecenia.', color=ERROR_COLOR)
-        embed.set_footer(text = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021', icon_url = pic.BOT_AVATAR)
+        embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
         await ctx.send(embed=embed)
     raise error
 
@@ -44,7 +46,7 @@ async def servers(ctx):
     for i, server in enumerate(servers, start=1):
         description += '**' + str(i) + '.** ' + server.name + '\n'
     embed=discord.Embed(title='Lista serwerów', description=description, color=MAIN_COLOR)
-    embed.set_footer(text = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021', icon_url = pic.BOT_AVATAR)
+    embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
     await ctx.send(embed=embed)
 
 @client.command()
@@ -59,7 +61,7 @@ async def help(ctx):
         '**.invite**\nWygeneruj `URL`, dzięki któremu będziesz mógł zaprosić Elviego na własny serwer.\n\n'\
     
     embed=discord.Embed(title='Krótka instrukcja bota Elvie', description=description, color=MAIN_COLOR)
-    embed.set_footer(text = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021', icon_url = pic.BOT_AVATAR)
+    embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
     
     await ctx.send(embed=embed)
     
@@ -71,10 +73,9 @@ async def reaction(ctx):
         pic.ZUS_PIC_HUNGRY:'hungry!',
         pic.ZUS_PIC_THIRSTY:'thirsty!',
         pic.ZUS_PIC_FANCY:'feeling fancy!'}
-    
     zus_choice = random.choice(list(zus.items()))
     embed=discord.Embed(title='Zus reaction table', description='Zus is ' + zus_choice[1], color=MAIN_COLOR)
-    embed.set_footer(text = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021', icon_url = pic.BOT_AVATAR)
+    embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
     embed.set_image(url=zus_choice[0])
     await ctx.send(embed=embed)
 
@@ -88,17 +89,17 @@ async def clear(ctx, amount: int):
     if ctx.author.guild_permissions.administrator:
         deleted = await ctx.channel.purge(limit=amount)
         embed=discord.Embed(title='Usunięto wiadomości', description='Usunięto **' + str(len(deleted)) + '** wiadomości.', color=MAIN_COLOR)
-        embed.set_footer(text = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021', icon_url = pic.BOT_AVATAR)
+        embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
         await ctx.send(embed=embed)
     else:
         embed=discord.Embed(title='⚠️Błąd uprawnień⚠️', description='Nie jesteś administratorem.', color=ERROR_COLOR)
-        embed.set_footer(text = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021', icon_url = pic.BOT_AVATAR)
+        embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
         await ctx.send(embed=embed)
     
 @client.command()
 async def invite(ctx):
     embed=discord.Embed(title='Link do zaproszenia', description='https://discord.com/oauth2/authorize?client_id=864205486056669244&permissions=8&scope=bot', color=MAIN_COLOR)
-    embed.set_footer(text = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021', icon_url = pic.BOT_AVATAR)
+    embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
     await ctx.send(embed=embed)
 
 @client.command()
@@ -134,21 +135,30 @@ async def advance(ctx, type: str, init: int, goal: int, talent: str=None):
         description += 'Koszt rozwinięcia to: **' + str(cost_sum) + ' PD**'
 
     embed=discord.Embed(title='Rozwinięcie ' + choice, description=description, color=MAIN_COLOR)
-    embed.set_footer(text = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021', icon_url = pic.BOT_AVATAR)
+    embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
     
     await ctx.send(embed=embed)
-    
+
+@client.command()
+async def fortune(ctx):
+    reactions = ['1️⃣', '2️⃣', '3️⃣', '4️⃣']
+    embed=discord.Embed(title='Punkt szczęścia użyty!', description='Czyli Twoja dobra passa się skończyła i nagle chcesz, by sam Ranald Ci dopomógł?\nDobrze, wybierz kartę śmiertelniku...', color=MAIN_COLOR)
+    embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
+    message = await ctx.send(embed=embed)
+    for emoji in reactions:
+        await message.add_reaction(emoji)
+
 @client.command()
 async def advance_table(ctx, version: str='pc'):
     if version == 'm':
         image = pic.ADVANCE_TABLE_PIC
         embed=discord.Embed(title='Koszt rozwoju cech i umiejętności w PD', description='', color=MAIN_COLOR)
-        embed.set_footer(text = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021', icon_url = pic.BOT_AVATAR)
+        embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
         embed.set_image(url=image)
     else:
         description = tab.ADV_TABLE
         embed=discord.Embed(title='Koszt rozwoju cech i umiejętności w PD', description=description, color=MAIN_COLOR)
-        embed.set_footer(text = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021', icon_url = pic.BOT_AVATAR)
+        embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
     await ctx.send(embed=embed)
     
 @client.command()
@@ -162,12 +172,12 @@ async def talent(ctx, *, talent_name: str):
         talent = json_data[talent_name]
         await ctx.send('Talent name found!')
         embed=discord.Embed(title=talent['name'], description=talent['description'], color=MAIN_COLOR)
-        embed.set_footer(text = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021', icon_url = pic.BOT_AVATAR)
+        embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
         embed.add_field(name="Maksimum", value=talent['max'], inline=True)
         embed.add_field(name="Testy", value=talent['tests'], inline=True)
     else:
         embed=discord.Embed(title='⚠️Nie znalazłem talentu⚠️', description='Pamiętaj o składni podanej w poleceniu **.help**.', color=ERROR_COLOR)
-        embed.set_footer(text = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021', icon_url = pic.BOT_AVATAR)
+        embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
         
     await ctx.send(embed=embed)
 
@@ -177,7 +187,7 @@ async def contact(ctx, *, message):
     author = ctx.message.author
     content = '"' + message + '"' + ' by ' + str(author)
     embed=discord.Embed(title='Wiadomość wysłana', description='Treść wiadomości: *' + message + '*', color=MAIN_COLOR)
-    embed.set_footer(text = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021', icon_url = pic.BOT_AVATAR)
+    embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
     await user.send(content)
     await ctx.send(embed=embed)
 
