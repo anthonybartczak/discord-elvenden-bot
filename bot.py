@@ -59,7 +59,7 @@ async def help(ctx):
         '**.advance <c/u> <start> <cel> <t*>**\nOblicz koszt rozwoju od `start` do `cel` cechy lub umiejętności (`c` lub `u`). Argument `t` obniża koszt rozwinięcia o 5 PD. Przykładowo:\n`.advance c 12 15` albo `.advance u 5 14 t`\n\n'\
         '**.advance_table <m*>**\nWyświetl tabelę *Koszt rozwoju cech i umiejętności w PD*. Argument `m` wyświetla tabelę w wersji na urządzenia mobilne. Przykładowo:\n`.advance_table` albo `.advance_table m`\n\n'\
         '**.talent <nazwa>**\nWyświetl opis talentu `nazwa`. Nazwa musi zostać podana z uwzględnieniem polskich znaków oraz bez użycia nawiasów. Przykładowo:\n`.talent bardzo szybki` albo `.talent magia tajemna`\n\n'\
-        '**.clear <wartość>**\nWyczyść `wartość` wiadomości. Może się przydać w trzymaniu porządku na kanale z rzutami.\n\n'\
+        '**.clear <wartość>**\nWyczyść `wartość` wiadomości. Może się przydać w trzymaniu porządku na kanale z rzutami. Użycie polecenia wymaga uprawnień administratora.\n\n'\
         '**.contact <wiadomość>**\nWyślij `wiadomość` bezpośrednio do autora bota. Wszelkie wykryte błędy, zażalenia i pytania są mile widziane.\n\n'\
         '**.invite**\nWygeneruj `URL`, dzięki któremu będziesz mógł zaprosić Elviego na własny serwer.\n\n'\
     
@@ -148,7 +148,8 @@ async def fortune(ctx):
     author = ctx.message.author
     winner = random.choice(reactions)
     
-    embed=discord.Embed(title='Punkt szczęścia użyty!', description='Czyli Twoja dobra passa się skończyła i nagle chcesz, by sam **Ranald** Ci dopomógł?\nDobrze, wybierz kartę śmiertelniku...\n\n🃵	🃵	🃵	🃵', color=MAIN_COLOR)
+    embed=discord.Embed(title='Punkt szczęścia użyty!', description='Czyli Twoja dobra passa się skończyła i nagle chcesz, by sam **Ranald** Ci dopomógł?\nDobrze, wybierz kartę śmiertelniku...\n\n', color=MAIN_COLOR)
+    embed.set_image(url=pic.CARD_REVERSE)
     embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
     message = await ctx.send(embed=embed)
     for emoji in reactions:
@@ -161,16 +162,16 @@ async def fortune(ctx):
         reaction, user = await client.wait_for('reaction_add', timeout=45.0, check= lambda reaction, user: user == ctx.message.author and str(reaction.emoji) in reactions)
         
     except asyncio.TimeoutError:
-        embed=discord.Embed(title='Za późno...', description='Śmiertelniku, Twój czas się skończył.', color=ERROR_COLOR)
+        embed=discord.Embed(title='Za późno ' + author.mention + '...', description='Śmiertelniku, Twój czas się skończył.', color=ERROR_COLOR)
         embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
         await ctx.send(embed=embed)
     else:
         if str(reaction.emoji) == winner:
-            embed=discord.Embed(title='🤞 To Twój wybór', description='Świetnie śmiertelniku, dziś Ranald wysłuchał Twej prośby!', color=SUCCESS_COLOR)
+            embed=discord.Embed(title='🤞 Twój wybór ' + author.mention + '...', description='Świetnie śmiertelniku, dziś Ranald wysłuchał Twej prośby!', color=SUCCESS_COLOR)
             embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
             await ctx.send(embed=embed)
         else:
-            embed=discord.Embed(title='🤞 Twój wybór...', description='Śmiertelniku, to bardzo zły wybór...', color=ERROR_COLOR)
+            embed=discord.Embed(title='🤞 Twój wybór ' + author.mention + '...', description='Śmiertelniku, to był bardzo zły wybór...', color=ERROR_COLOR)
             embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
             await ctx.send(embed=embed)
             

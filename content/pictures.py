@@ -9,3 +9,4 @@ ZUS_PIC_FANCY = 'https://cdn.discordapp.com/attachments/872435741270097940/87243
 # OTHER
 BOT_AVATAR = 'https://media.discordapp.net/attachments/872435741270097940/873703022071541810/bot-avatar.jpeg'
 ADVANCE_TABLE_PIC = 'https://cdn.discordapp.com/attachments/872435741270097940/872436174340370472/advance.png'
+CARD_REVERSE = 'https://media.discordapp.net/attachments/872435741270097940/875103202385752064/rewersy.png'
