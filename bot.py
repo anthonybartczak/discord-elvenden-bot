@@ -56,7 +56,7 @@ async def help(ctx):
         '**.talent <nazwa>**\nWyświetl opis talentu `nazwa`. Nazwa musi zostać podana z uwzględnieniem polskich znaków oraz bez użycia nawiasów. Przykładowo:\n`.talent bardzo szybki` albo `.talent magia tajemna`\n\n'\
         '**.clear <wartość>**\nWyczyść `wartość` wiadomości. Może się przydać w trzymaniu porządku na kanale z rzutami.\n\n'\
         '**.contact <wiadomość>**\nWyślij `wiadomość` bezpośrednio do autora bota. Wszelkie wykryte błędy, zażalenia i pytania są mile widziane.\n\n'\
-        '**.invite**\nWygeneruj link, który służy do zaproszenia bota na Twój serwer.\n\n'\
+        '**.invite**\nWygeneruj `URL`, dzięki któremu będziesz mógł zaprosić Elviego na własny serwer.\n\n'\
     
     embed=discord.Embed(title='Krótka instrukcja bota Elvie', description=description, color=MAIN_COLOR)
     embed.set_footer(text = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021', icon_url = pic.BOT_AVATAR)
@@ -97,7 +97,7 @@ async def clear(ctx, amount: int):
     
 @client.command()
 async def invite(ctx):
-    embed=discord.Embed(title='Link do zaproszenia', description='https://discord.com/oauth2/authorize?client_id=864205486056669244&permissions=8&scope=bot&fbclid=IwAR3-sQN8YcAY5ob6jw54HUVWCUGb-68mIfBIBJxqKaaY76BqG5Lu1NlpAJc', color=MAIN_COLOR)
+    embed=discord.Embed(title='Link do zaproszenia', description='https://discord.com/oauth2/authorize?client_id=864205486056669244&permissions=8&scope=bot', color=MAIN_COLOR)
     embed.set_footer(text = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021', icon_url = pic.BOT_AVATAR)
     await ctx.send(embed=embed)
 
