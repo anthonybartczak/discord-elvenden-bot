@@ -1,0 +1,8 @@
+{
+  "atletyka" : {
+    "name": "Atletyka",
+    "type": "Podstawowa",
+    "attribute": "Int",
+    "description": "Atletyka określa twoją umiejętność biegania, skakania, poruszania się z szybkością i gracją oraz ogólną sprawność fizyczną. Wykorzystanie Atletyki w walce jest dokładniej opisane na stronie 164 w podrozdziale Poruszanie się"
+  }
+}
