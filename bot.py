@@ -12,6 +12,8 @@ import content.pictures as pic
 
 MAIN_COLOR = 0x8b54cf
 ERROR_COLOR = 0xff0000
+SUCCESS_COLOR = 0x16bd00
+
 BOT_TOKEN = environ.get('BOT_TOKEN')
 
 FOOTER_TEXT = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021'
@@ -154,13 +156,25 @@ async def fortune(ctx):
     
     def check(reaction, user):
         return user == ctx.message.author and str(reaction.emoji) == winner
-    
+            
     try:
-        reaction, user = await client.wait_for('reaction_add', timeout=45.0, check=check)
+        reaction, user = await client.wait_for_reaction(timeout=45.0, check=check)
     except asyncio.TimeoutError:
-        await ctx.channel.send('👎')
+        embed=discord.Embed(title='Za późno...', description='Śmiertelniku, Twój czas się skończył.', color=ERROR_COLOR)
+        embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
+        await ctx.send(embed=embed)
     else:
-        await ctx.channel.send('👍')
+        if str(reaction.emoji) != winner:
+            embed=discord.Embed(title='To Twój wybór', description='Śmiertelniku, to bardzo zły wybór...', color=ERROR_COLOR)
+            embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
+            await ctx.send(embed=embed)
+        elif str(reaction.emoji) == winner:
+            embed=discord.Embed(title='To Twój wybór', description='Świetnie śmiertelniku, dziś Ranald wysłuchał Twej prośby!', color=SUCCESS_COLOR)
+            embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
+            await ctx.send(embed=embed)
+            
+        
+    
 
 @client.command()
 async def advance_table(ctx, version: str='pc'):
