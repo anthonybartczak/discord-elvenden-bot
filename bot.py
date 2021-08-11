@@ -148,7 +148,7 @@ async def fortune(ctx):
     author = ctx.message.author
     winner = random.choice(reactions)
     
-    embed=discord.Embed(title='Punkt szczęścia użyty!', description='Czyli Twoja dobra passa się skończyła i nagle chcesz, by sam Ranald Ci dopomógł?\nDobrze, wybierz kartę śmiertelniku...\n\n🃵	🃵	🃵	🃵', color=MAIN_COLOR)
+    embed=discord.Embed(title='Punkt szczęścia użyty!', description='Czyli Twoja dobra passa się skończyła i nagle chcesz, by sam **Ranald** Ci dopomógł?\nDobrze, wybierz kartę śmiertelniku...\n\n🃵	🃵	🃵	🃵', color=MAIN_COLOR)
     embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
     message = await ctx.send(embed=embed)
     for emoji in reactions:
@@ -166,16 +166,14 @@ async def fortune(ctx):
         await ctx.send(embed=embed)
     else:
         if str(reaction.emoji) == winner:
-            embed=discord.Embed(title='To Twój wybór', description='Świetnie śmiertelniku, dziś Ranald wysłuchał Twej prośby!', color=SUCCESS_COLOR)
+            embed=discord.Embed(title='🤞 To Twój wybór', description='Świetnie śmiertelniku, dziś Ranald wysłuchał Twej prośby!', color=SUCCESS_COLOR)
             embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
             await ctx.send(embed=embed)
         else:
-            embed=discord.Embed(title='To Twój wybór', description='Śmiertelniku, to bardzo zły wybór...', color=ERROR_COLOR)
+            embed=discord.Embed(title='🤞 Twój wybór...', description='Śmiertelniku, to bardzo zły wybór...', color=ERROR_COLOR)
             embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
             await ctx.send(embed=embed)
             
-        
-    
 
 @client.command()
 async def advance_table(ctx, version: str='pc'):
