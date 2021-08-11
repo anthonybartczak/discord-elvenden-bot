@@ -158,7 +158,7 @@ async def fortune(ctx):
         return user == ctx.message.author and str(reaction.emoji) == winner
             
     try:
-        reaction, user = await client.wait_for_reaction(timeout=45.0, check=check)
+        reaction, user = await client.wait_for('reaction_add', timeout=45.0, check=check)
     except asyncio.TimeoutError:
         embed=discord.Embed(title='Za późno...', description='Śmiertelniku, Twój czas się skończył.', color=ERROR_COLOR)
         embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
