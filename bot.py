@@ -144,7 +144,7 @@ async def advance(ctx, type: str, init: int, goal: int, talent: str=None):
 async def fortune(ctx):
     reactions = ['1️⃣', '2️⃣', '3️⃣', '4️⃣']
     author = ctx.message.author
-    winner = random.random(reactions)
+    winner = random.choice(reactions)
     
     embed=discord.Embed(title='Punkt szczęścia użyty!', description='Czyli Twoja dobra passa się skończyła i nagle chcesz, by sam Ranald Ci dopomógł?\nDobrze, wybierz kartę śmiertelniku...\n\n🃵	🃵	🃵	🃵', color=MAIN_COLOR)
     embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
