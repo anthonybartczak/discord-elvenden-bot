@@ -1,23 +1,27 @@
 import asyncio
 import discord
 from discord.ext import commands
-from os import environ
 from discord.utils import get
 from discord import FFmpegPCMAudio
-from youtube_dl import YoutubeDL
 from json import load
 import random
 import content.tables as tab
 import content.pictures as pic
+from os import environ
+from youtube_dl import YoutubeDL
 
+# Main colors used for the bot's embeded messages formating.
 MAIN_COLOR = 0x8b54cf
 ERROR_COLOR = 0xff0000
 SUCCESS_COLOR = 0x16bd00
 
+# Bot token imported from Heroku env.
 BOT_TOKEN = environ.get('BOT_TOKEN')
 
+# Footer text (version + update date) for every single command.
 FOOTER_TEXT = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021'
 
+# Discord intents declarations -> can be modified at https://discord.com/developers/
 intents = discord.Intents.default()
 intents.members = True
 client = commands.Bot(intents=intents, command_prefix='.')
@@ -148,15 +152,12 @@ async def fortune(ctx):
     author = ctx.message.author
     winner = random.choice(reactions)
     
-    embed=discord.Embed(title='Punkt szczęścia użyty!', description='Czyli Twoja dobra passa się skończyła i nagle chcesz, by sam **Ranald** Ci dopomógł?\nDobrze, wybierz kartę śmiertelniku...\n\n', color=MAIN_COLOR)
+    embed=discord.Embed(title='Punkt szczęścia użyty!', description='Czyli Twoja dobra passa się skończyła i nagle chcesz, by sam **Ranald** Ci dopomógł?\n\nDobrze, wybierz kartę śmiertelniku...\n\n', color=MAIN_COLOR)
     embed.set_image(url=pic.CARD_REVERSE)
     embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
     message = await ctx.send(embed=embed)
     for emoji in reactions:
         await message.add_reaction(emoji)
-    
-    def check(reaction, user):
-        return user == ctx.message.author and str(reaction.emoji) == winner
             
     try:
         reaction, user = await client.wait_for('reaction_add', timeout=45.0, check= lambda reaction, user: user == ctx.message.author and str(reaction.emoji) in reactions)
