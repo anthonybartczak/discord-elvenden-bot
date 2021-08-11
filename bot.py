@@ -162,16 +162,16 @@ async def fortune(ctx):
         reaction, user = await client.wait_for('reaction_add', timeout=45.0, check= lambda reaction, user: user == ctx.message.author and str(reaction.emoji) in reactions)
         
     except asyncio.TimeoutError:
-        embed=discord.Embed(title='Za późno ' + author.mention + '...', description='Śmiertelniku, Twój czas się skończył.', color=ERROR_COLOR)
+        embed=discord.Embed(title='Za późno...', description=author.mention + ', Twój czas się skończył.', color=ERROR_COLOR)
         embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
         await ctx.send(embed=embed)
     else:
         if str(reaction.emoji) == winner:
-            embed=discord.Embed(title='🤞 Twój wybór ' + author.mention + '...', description='Świetnie śmiertelniku, dziś Ranald wysłuchał Twej prośby!', color=SUCCESS_COLOR)
+            embed=discord.Embed(title='🤞 Twój wybór...', description='Świetnie ' + author.mention + ', dziś Ranald wysłuchał Twej prośby!', color=SUCCESS_COLOR)
             embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
             await ctx.send(embed=embed)
         else:
-            embed=discord.Embed(title='🤞 Twój wybór ' + author.mention + '...', description='Śmiertelniku, to był bardzo zły wybór...', color=ERROR_COLOR)
+            embed=discord.Embed(title='🤞 Twój wybór...', description=author.mention + ', to był bardzo zły wybór...', color=ERROR_COLOR)
             embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
             await ctx.send(embed=embed)
             
