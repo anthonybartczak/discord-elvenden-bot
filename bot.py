@@ -151,6 +151,8 @@ async def fortune(ctx):
     reactions = ['1️⃣', '2️⃣', '3️⃣', '4️⃣']
     author = ctx.message.author
     winner = random.choice(reactions)
+    index = reactions.index(winner)
+    win_card = pic.WIN_CARDS[index]
     
     embed=discord.Embed(title='Punkt szczęścia użyty!', description='Czyli Twoja dobra passa się skończyła i nagle chcesz, by sam **Ranald** Ci dopomógł?\n\nDobrze, wybierz kartę śmiertelniku...\n\n', color=MAIN_COLOR)
     embed.set_image(url=pic.CARD_REVERSE)
@@ -170,10 +172,13 @@ async def fortune(ctx):
         if str(reaction.emoji) == winner:
             embed=discord.Embed(title='🤞 Twój wybór...', description='Świetnie ' + author.mention + ', dziś Ranald wysłuchał Twej prośby!', color=SUCCESS_COLOR)
             embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
+            embed.set_image(url=win_card)
             await ctx.send(embed=embed)
         else:
+            lose_card = pic.WIN_CARDS[reactions.index(reaction)]
             embed=discord.Embed(title='🤞 Twój wybór...', description=author.mention + ', to był bardzo zły wybór...', color=ERROR_COLOR)
             embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
+            embed.set_image(url=lose_card)
             await ctx.send(embed=embed)
             
 
