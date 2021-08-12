@@ -175,7 +175,7 @@ async def fortune(ctx):
             embed.set_image(url=win_card)
             await ctx.send(embed=embed)
         else:
-            lose_card = pic.WIN_CARDS[reactions.index(reaction)]
+            lose_card = pic.WIN_CARDS[reactions.index(str(reaction.emoji))]
             embed=discord.Embed(title='🤞 Twój wybór...', description=author.mention + ', to był bardzo zły wybór...', color=ERROR_COLOR)
             embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
             embed.set_image(url=lose_card)
