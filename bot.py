@@ -97,12 +97,11 @@ async def clear(ctx, amount: int):
     if ctx.author.guild_permissions.administrator:
         deleted = await ctx.channel.purge(limit=amount)
         embed=discord.Embed(title='Usunięto wiadomości', description='Usunięto **' + str(len(deleted)) + '** wiadomości.', color=MAIN_COLOR)
-        embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
-        await ctx.send(embed=embed)
     else:
         embed=discord.Embed(title='⚠️Błąd uprawnień⚠️', description='Nie jesteś administratorem.', color=ERROR_COLOR)
-        embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
-        await ctx.send(embed=embed)
+
+    embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
+    await ctx.send(embed=embed)
     
 @client.command()
 async def invite(ctx):
@@ -148,23 +147,43 @@ async def advance(ctx, type: str, init: int, goal: int, talent: str=None):
     await ctx.send(embed=embed)
 
 @client.command()
+async def miscast(ctx, type: str='m'):
+    roll = random.randint(1,100)
+    
+    if type == 'w':
+        table = tab.MISCAST_MAJOR
+        name = 'Większa'
+    else:
+        table = tab.MISCAST_MINOR
+        name = 'Mniejsza'
+    
+    for i, r in enumerate(range(5, 101, 5)):
+        if roll <= r:
+            miscast = table[i]
+            
+    embed=discord.Embed(title=name + 'manifestacja', description=miscast, color=MAIN_COLOR)
+    embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
+    await ctx.send(embed=embed)
+            
+
+@client.command()
 async def fortune(ctx):
     reactions = ['1️⃣', '2️⃣', '3️⃣', '4️⃣']
     author = ctx.message.author
     winner = random.choice(reactions)
     index = reactions.index(winner)
     win_card = pic.WIN_CARDS[index]
-    
+
     embed=discord.Embed(title='Punkt szczęścia użyty!', description='Czyli Twoja dobra passa się skończyła i nagle chcesz, by sam **Ranald** Ci dopomógł?\n\nDobrze, wybierz kartę śmiertelniku...\n\n', color=MAIN_COLOR)
     embed.set_image(url=pic.CARD_REVERSE)
     embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
     message = await ctx.send(embed=embed)
     for emoji in reactions:
         await message.add_reaction(emoji)
-            
+
     try:
         reaction, user = await client.wait_for('reaction_add', timeout=45.0, check= lambda reaction, user: user == ctx.message.author and str(reaction.emoji) in reactions)
-        
+
     except asyncio.TimeoutError:
         embed=discord.Embed(title='Za późno...', description=author.mention + ', Twój czas się skończył.', color=ERROR_COLOR)
         embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
@@ -174,13 +193,13 @@ async def fortune(ctx):
             embed=discord.Embed(title='🤞 Twój wybór...', description='Świetnie ' + author.mention + ', dziś Ranald wysłuchał Twej prośby!', color=SUCCESS_COLOR)
             embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
             embed.set_image(url=win_card)
-            await ctx.send(embed=embed)
         else:
             lose_card = pic.LOSE_CARDS[reactions.index(str(reaction.emoji))]
             embed=discord.Embed(title='🤞 Twój wybór...', description=author.mention + ', to był bardzo zły wybór...', color=ERROR_COLOR)
             embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
             embed.set_image(url=lose_card)
-            await ctx.send(embed=embed)
+
+        await ctx.send(embed=embed)
             
 
 @client.command()
