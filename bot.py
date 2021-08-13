@@ -160,8 +160,9 @@ async def miscast(ctx, type: str='m'):
     for i, r in enumerate(range(5, 101, 5)):
         if roll <= r:
             miscast = table[i]
+            break
             
-    embed=discord.Embed(title=name + 'manifestacja', description=miscast, color=MAIN_COLOR)
+    embed=discord.Embed(title=name + ' manifestacja!', description=miscast, color=MAIN_COLOR)
     embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
     await ctx.send(embed=embed)
             
