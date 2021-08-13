@@ -19,7 +19,7 @@ SUCCESS_COLOR = 0x16bd00
 BOT_TOKEN = environ.get('BOT_TOKEN')
 
 # Footer text (version + update date) for every single command.
-FOOTER_TEXT = 'Elvie v0.82 - WFRP 4ED\nOstatnia aktualizacja: 8/11/2021'
+FOOTER_TEXT = 'Elvie v0.83 - WFRP 4ED\nOstatnia aktualizacja: 8/13/2021'
 
 # Discord intents declarations -> can be modified at https://discord.com/developers/
 intents = discord.Intents.default()
