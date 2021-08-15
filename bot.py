@@ -64,6 +64,7 @@ async def help(ctx):
         '**.advance_table <m*>**\nWyświetl tabelę *Koszt rozwoju cech i umiejętności w PD*. Argument `m` wyświetla tabelę w wersji na urządzenia mobilne. Przykładowo:\n`.advance_table` albo `.advance_table m`\n\n'\
         '**.talent <nazwa>**\nWyświetl opis talentu `nazwa`. Nazwa musi zostać podana z uwzględnieniem polskich znaków oraz bez użycia nawiasów. Przykładowo:\n`.talent bardzo szybki` albo `.talent magia tajemna`\n\n'\
         '**.miscast <w*>**\nWylosuj mniejszą lub większą (parametr `w`) manifestację. Przykładowo:\n`.miscast` albo `.miscast w`\n\n'\
+        '**.corruption <p*>**\nWylosuj spaczenie fizyczne lub zepsucie psychiczne (parametr `p`). Przykładowo:\n`.corruption` albo `.corruption p`\n\n'\
         '**.fortune**\nWylosuj 4 karty, wybierz jedną i sprawdź czy `Ranald` wysłucha Twej modlitwy.\n\n'\
         '**.clear <wartość>**\nWyczyść `wartość` wiadomości. Może się przydać w trzymaniu porządku na kanale z rzutami. Użycie polecenia wymaga uprawnień administratora.\n\n'\
         '**.contact <wiadomość>**\nWyślij `wiadomość` bezpośrednio do autora bota. Wszelkie wykryte błędy, zażalenia i pytania są mile widziane.\n\n'\
@@ -163,10 +164,29 @@ async def miscast(ctx, type: str='m'):
             miscast = table[i]
             break
             
-    embed=discord.Embed(title=name + ' manifestacja!', description='Wyrzuciłeś ' + str(roll) + '...\n\n' + miscast, color=MAIN_COLOR)
+    embed=discord.Embed(title=name + ' manifestacja!', description='Wyrzuciłeś **' + str(roll) + '**...\n\n' + miscast, color=MAIN_COLOR)
     embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
     await ctx.send(embed=embed)
             
+@client.command()
+async def corruption(ctx, type: str='f'):
+    roll = random.randint(1,100)
+    
+    if type == 'p':
+        table = tab.CORRUPTION_MENTAL
+        name = 'zepsucie psychiczne!'
+    else:
+        table = tab.CORRUPTION_PHYSICAL
+        name = 'spaczenie fizyczne!'
+    
+    for i, r in enumerate(range(5, 101, 5)):
+        if roll <= r:
+            corruption = table[i]
+            break
+            
+    embed=discord.Embed(title='Wylosowano ' + name, description='Wyrzuciłeś **' + str(roll) + '**...\n\n' + corruption, color=MAIN_COLOR)
+    embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
+    await ctx.send(embed=embed)
 
 @client.command()
 async def fortune(ctx):
