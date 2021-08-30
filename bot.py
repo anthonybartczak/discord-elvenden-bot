@@ -63,7 +63,7 @@ async def help(ctx):
         '**.advance <c/u> <start> <cel> <t*>**\nOblicz koszt rozwoju od `start` do `cel` cechy lub umiejętności (`c` lub `u`). Argument `t` obniża koszt rozwinięcia o 5 PD. Przykładowo:\n`.advance c 12 15` albo `.advance u 5 14 t`\n\n'\
         '**.advance_table <m*>**\nWyświetl tabelę *Koszt rozwoju cech i umiejętności w PD*. Argument `m` wyświetla tabelę w wersji na urządzenia mobilne. Przykładowo:\n`.advance_table` albo `.advance_table m`\n\n'\
         '**.talent <nazwa>**\nWyświetl opis talentu `nazwa`. Nazwa musi zostać podana z uwzględnieniem polskich znaków oraz bez użycia nawiasów. Przykładowo:\n`.talent bardzo szybki` albo `.talent magia tajemna`\n\n'\
-        '**.ability <nazwa>**\nWyświetl opis umiejętności `nazwa`. Nazwa musi zostać podana z uwzględnieniem polskich znaków oraz bez użycia nawiasów. Przykładowo:\n`.ability rzemiosło` albo `.ability mocna głowa`\n\n'\
+        '**.ability <nazwa>**\nWyświetl opis umiejętności `nazwa`. Nazwa musi zostać podana z uwzględnieniem polskich znaków oraz bez użycia nawiasów. Przykładowo:\n`.ability rzemiosło` albo `.ability mocna głowa`\n\nPodziękowania dla Kazyleusz#2024.'\
         '**.miscast <w*>**\nWylosuj mniejszą lub większą (parametr `w`) manifestację. Przykładowo:\n`.miscast` albo `.miscast w`\n\n'\
         '**.corruption <p*>**\nWylosuj spaczenie fizyczne lub zepsucie psychiczne (parametr `p`). Przykładowo:\n`.corruption` albo `.corruption p`\n\n'\
         '**.fortune**\nWylosuj 4 karty, wybierz jedną i sprawdź czy `Ranald` wysłucha Twej modlitwy.\n\n'\
