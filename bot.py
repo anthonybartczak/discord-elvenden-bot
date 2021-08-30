@@ -271,9 +271,9 @@ async def ability(ctx, *, ability_name: str):
         await ctx.send('Ability name found!')
         embed=discord.Embed(title=ability['name'], description=ability['description'], color=MAIN_COLOR)
         embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
-        embed.add_field(name="Typ", value=talent['type'], inline=True)
-        embed.add_field(name="Cecha", value=talent['attribute'], inline=True)
-        embed.add_field(name="Talenty", value=talent['talents'], inline=True)
+        embed.add_field(name="Typ", value=ability['type'], inline=True)
+        embed.add_field(name="Cecha", value=ability['attribute'], inline=True)
+        embed.add_field(name="Talenty", value=ability['talents'], inline=True)
     else:
         embed=discord.Embed(title='⚠️Nie znalazłem umiejętności⚠️', description='Pamiętaj o składni podanej w poleceniu **.help**.', color=ERROR_COLOR)
         embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
