@@ -19,7 +19,7 @@ SUCCESS_COLOR = 0x16bd00
 BOT_TOKEN = environ.get('BOT_TOKEN')
 
 # Footer text (version + update date) for every single command.
-FOOTER_TEXT = 'Elvie v0.84 - WFRP 4ED\nOstatnia aktualizacja: 8/15/2021'
+FOOTER_TEXT = 'Elvie v0.85 - WFRP 4ED\nOstatnia aktualizacja: 8/30/2021'
 
 # Discord intents declarations -> can be modified at https://discord.com/developers/
 intents = discord.Intents.default()
@@ -63,6 +63,7 @@ async def help(ctx):
         '**.advance <c/u> <start> <cel> <t*>**\nOblicz koszt rozwoju od `start` do `cel` cechy lub umiejętności (`c` lub `u`). Argument `t` obniża koszt rozwinięcia o 5 PD. Przykładowo:\n`.advance c 12 15` albo `.advance u 5 14 t`\n\n'\
         '**.advance_table <m*>**\nWyświetl tabelę *Koszt rozwoju cech i umiejętności w PD*. Argument `m` wyświetla tabelę w wersji na urządzenia mobilne. Przykładowo:\n`.advance_table` albo `.advance_table m`\n\n'\
         '**.talent <nazwa>**\nWyświetl opis talentu `nazwa`. Nazwa musi zostać podana z uwzględnieniem polskich znaków oraz bez użycia nawiasów. Przykładowo:\n`.talent bardzo szybki` albo `.talent magia tajemna`\n\n'\
+        '**.ability <nazwa>**\nWyświetl opis umiejętności `nazwa`. Nazwa musi zostać podana z uwzględnieniem polskich znaków oraz bez użycia nawiasów. Przykładowo:\n`.ability rzemiosło` albo `.ability mocna głowa`\n\n'\
         '**.miscast <w*>**\nWylosuj mniejszą lub większą (parametr `w`) manifestację. Przykładowo:\n`.miscast` albo `.miscast w`\n\n'\
         '**.corruption <p*>**\nWylosuj spaczenie fizyczne lub zepsucie psychiczne (parametr `p`). Przykładowo:\n`.corruption` albo `.corruption p`\n\n'\
         '**.fortune**\nWylosuj 4 karty, wybierz jedną i sprawdź czy `Ranald` wysłucha Twej modlitwy.\n\n'\
@@ -271,9 +272,9 @@ async def ability(ctx, *, ability_name: str):
         await ctx.send('Ability name found!')
         embed=discord.Embed(title=ability['name'], description=ability['description'], color=MAIN_COLOR)
         embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
-        embed.add_field(name="Typ", value=ability['type'], inline=True)
-        embed.add_field(name="Cecha", value=ability['attribute'], inline=True)
-        embed.add_field(name="Talenty", value=ability['talents'], inline=True)
+        embed.add_field(name="Typ", value=ability['type'], inline=False)
+        embed.add_field(name="Cecha", value=ability['attribute'], inline=False)
+        embed.add_field(name="Talenty", value=ability['talents'], inline=False)
     else:
         embed=discord.Embed(title='⚠️Nie znalazłem umiejętności⚠️', description='Pamiętaj o składni podanej w poleceniu **.help**.', color=ERROR_COLOR)
         embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
