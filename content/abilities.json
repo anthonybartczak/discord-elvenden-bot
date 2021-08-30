@@ -2,7 +2,316 @@
   "atletyka" : {
     "name": "Atletyka",
     "type": "Podstawowa",
+    "attribute": "Zr",
+    "description": "Atletyka określa twoją umiejętność biegania, skakania, poruszania się z szybkością i gracją oraz ogólną sprawność fizyczną. Wykorzystanie Atletyki w walce jest dokładniej opisane na stronie 164 w podrozdziale Poruszanie się",
+    "talents": "Chodu!, Doświadczony Wędrowiec (Teren), Na Cztery Łapy, Silne Nogi, Sprężynka, Szybkobiegacz"
+ },
+"badania_naukowe" : {
+    "name": "Badania Naukowe",
+    "type": "Zaawansowana",
     "attribute": "Int",
-    "description": "Atletyka określa twoją umiejętność biegania, skakania, poruszania się z szybkością i gracją oraz ogólną sprawność fizyczną. Wykorzystanie Atletyki w walce jest dokładniej opisane na stronie 164 w podrozdziale Poruszanie się"
-  }
+    "description": "Ta Umiejętność opisuje, jak sprawnie idzie ci łączenie faktów i synteza informacji znalezionych w zakamarkach bibliotek. Badania Naukowe wymagają posiadania Talentu Czytanie i Pisanie (patrz strona 134). Samo posiadanie tej Umiejętności oznacza, że nie musisz wykonywać Testu, by odnaleźć potrzebne informacje w uporządkowanej bibliotece, jeśli tylko będziesz miał dość czasu. Jeżeli szukasz konkretnej, choć mało znanej informacji lub jeśli się śpieszysz, będziesz musiał wykonać Wydłużony Test Badań Naukowych o stopniu trudności zmodyfikowanym przez zawartość biblioteki. Wymagany PS zależy od tego, jak wąski jest temat badań. Badania Naukowe nie mają zastosowania w walce, chyba że szukasz podręcznika o technikach szermierczych.",
+    "talents": "Mól Ksiązkowy, Szybkie Czytanie"
+ },
+"broń_biała" : {
+    "name": "Broń Biała",
+    "type": "Podstawowa",
+    "attribute": "WW",
+    "description": "Ta Umiejętność opisuje twoją sprawność w posługiwaniu się rodzajem broni do walki wręcz. Każda Specjalizacja w Broni Białej oznacza, że zostałeś wyszkolony w walce daną kategorią oręża. Jeśli chcesz lub przyjdzie ci walczyć bronią, w której nie jesteś wyszkolony, zajrzyj do Rozdziału 11: Przewodnik konsumenta, gdzie w opisie broni znajdziesz zasady i negatywne modyfikatory stosowane w tej sytuacji. Rozdział 5: Zasady bardziej szczegółowo opisuje walkę i wykorzystanie tej Umiejętności. Przykładowe Specjalizacje: Podstawowa, Bijatyka, Drzewcowa, Dwuręczna, Kawaleryjska, Korbacze, Parująca, Szermiercza.",
+    "talents": "Berserkerska Szarża, Bitewna Furia, Cios Mierzony, Cios Poniżej Pasa (Bijatyka), Dwie Bronie, Finta (Szermiercza), Musztra, Odwrócenie Szans, Ogłuszenie, Riposta, Rozbrojenie, Ruchliwe Dłonie, Silny Cios, Zbicie Broni"
+ },
+"broń_zasięgowa" : {
+    "name": "Broń Zasięgowa",
+    "type": "Zaawansowana",
+    "attribute": "US",
+    "description": "Byle pierwszy lepszy potrafi cisnąć kamieniem, wykorzystując do tego Umiejętności Strzeleckie, ale skuteczne używanie łuków czy pistoletów wymaga ćwiczeń i praktyki. Jeśli chcesz lub przyjdzie ci strzelać czy miotać bronią, gdy nie jesteś wyszkolony, zajrzyj do Rozdziału 11: Przewodnik konsumenta, gdzie w opisie oręża znajdziesz zasady i negatywne modyfikatory stosowane w tej sytuacji. Rozdział 5: Zasady bardziej szczegółowo opisuje walkę i wykorzystanie tej Umiejętności. Przykładowe Specjalizacje: Broń Eksperymentalna, Broń Miotana, Broń Oplątująca, Broń Prochowa, Kusze, Łuki, Materiały Wybuchowe, Proce.",
+    "talents": "Artylerzysta, Błyskawiczny Strzał, Celny Strzał, Cios Mierzony, Dwie Bronie, Snajper, Strzał Przebijający, Strzał w Dziesiątkę, Szybkie Przeładowanie, Wściekły Atak, Wtargnięcie z Włamaniem"
+ },
+"charyzma" : {
+    "name": "Charyzma",
+    "type": "Podstawowa",
+    "attribute": "Ogd",
+    "description": "Dzięki Charyzmie możesz sprawić, że ludzie będą dobrze o tobie myśleli, zgadzali się z twoim zdaniem i przystaną na twoje propozycje. Udany Przeciwstawny Test Charyzmy przeciw Opanowaniu pozwala wpłynąć na zachowanie jednej lub więcej istot. Ich liczba jest określana przez Bonus z Ogłady + PS Testu. Określanie, kogo udało się przekonać, należy zacząć od istot z najniższą Siłą Woli. Jeśli takie postaci są pozytywnie nastawione do bohaterów, nie trzeba tu wykonywać Testu Przeciwstawnego, wystarczy Test Prosty. MG może pozwolić na wykonanie Testu Charyzmy w walce, jeśli uważa, że wrogów wzruszy błaganie o życie lub nawoływania do porzucenia przemocy (aha, i powodzenia w przekonywaniu do czegokolwiek goblinów!). Jeśli używasz Charyzmy jako swojej Akcji, liczba istot pod jej wpływem jest określana, jak opisano wyżej. Jeżeli bronisz się tą Umiejętnością, możesz wpłynąć nią tylko na napastnika. Jeśli Test się powiedzie, w tej Rundzie przekonani napastnicy nie zaatakują, a ty zdobywasz +1 Przewagę. Testy Charyzmy możesz wykonywać co Rundę, aż z nich zrezygnujesz albo któryś z nich zakończy się porażką. Oznacza to, że czas gładkich słówek dobiegł końca.",
+    "talents": "Atrakcyjny, Etykieta (Grupa społeczna), Gadanina, Gładnie Słówka, Hulaka, Krasomóstwo, Mówca, Naciągacz (Żebractwo), Porywająca Gorliwość, Przekonujący"
+ },
+"dowodzenie" : {
+    "name": "Dowodzenie",
+    "type": "Podstawowa",
+    "attribute": "Ogd",
+    "description": "Ta Umiejętność opisuje twoją zdolność do przewodzenia innym oraz wzbudzania w nich szacunku. Choć zwykle ujawnia się ona na polu bitwy, to urodzony przywódca potrafi błyskawicznie reagować na zagrożenia takie jak pożar, a szlachcic sprawnie wyda polecenia służbie. Udany Test Dowodzenia pozwala ci kierować grupą innych istot w liczbie równej twojemu Bonusowi z Ogłady + uzyskanym PS. Jeśli polecenia kierujesz do tych, którzy są ci podlegli – jak arystokrata do służby czy sierżant do podkomendnych – jest to Test Zwykły. Jeżeli nie istnieje hierarchia przywództwa lub polecenie jest wyjątkowo niebezpieczne, na przykład zwykli piechurzy mają zaatakować hydrę, należy wykonać Test Przeciwstawny, zwykle przeciw Opanowaniu. W walce Test Dowodzenia może zachęcić podwładnych do bardziej zaciekłej walki. Powodzenie w nim daje premię +10 do wszelkich Testów Psychologii aż do końca następnej Rundy (patrz strona 190). Co więcej, dzięki tej Umiejętności możesz przenosić Przewagę na sprzymierzeńców, którzy są w stanie cię usłyszeć. Po udanym Teście Dowodzenia jesteś w stanie przenieść Przewagę na wybranego towarzysza, a za każdy PS możesz dodać +1 Przewagę ze swojej puli dowolnemu sprzymierzeńcowi, który jest w stanie cię usłyszeć.",
+    "talents": "Inspirujący, Władcza Postura, Wódz"
+ },
+"hazard" : {
+    "name": "Hazard",
+    "type": "Podstawowa",
+    "attribute": "Int",
+    "description": "Ta Umiejętność pozwala ci określić, jak opłacalny jest zakład i czy warto próbować szczęścia w grach na pieniądze. Podczas rozgrywki wszyscy jej uczestnicy wykonują Test Hazardu, korzystając ze wszystkich przysługujących im modyfikatorów. Wygrywa ten, kto uzyska najwięcej PS. Jeśli dojdzie do remisu, z gry odpadają te postaci, które uzyskały niższe wyniki, a remisujący muszą wykonać kolejny Test Hazardu i powtarzać go, aż zostanie wyłoniony jeden zwycięzca. Bardziej nieuczciwy wpływ na grę można mieć, wykorzystując Umiejętność Zwinne Palce.",
+    "talents": "Geniusz Arytmetyczny, Szuler, Szuler Kościalny"
+ },
+"intuicja" : {
+    "name": "Intuicja",
+    "type": "Podstawowa",
+    "attribute": "I",
+    "description": "Intuicja pozwala ci orientować się w otoczeniu tak, byś mógł ustalić, czy wszystko jest w porządku. Umożliwia także wyczuwanie, czy inne osoby są wobec ciebie szczere, a udany Test da ci podpowiedź dotyczącą tego, co tak naprawdę dzieje się wokoło. MG określa, co to za informacja, na przykład czy dana osoba wierzy w to, co mówi, jakie panuje nastawienie wobec miejscowego szlachcica, czy pomoc oferowana jest szczerze. Jeśli ktoś rzeczywiście działa w złej wierze, może przeciwstawić się twojej Intuicji Testem Opanowania lub Występów (Aktorstwo). W walce udany Test Intuicji może dać +1 Przewagę, kiedy uważnie będziesz obserwował otoczenie i przeciwników. Możesz ją gromadzić, jeśli masz jak obserwować wrogów i nikt ci nie przeszkadza (na przykład atakując cię). W ten sposób możesz zgromadzić Przewagę w maksymalnej wysokości równej twojemu Bonusowi z Inteligencji.",
+    "talents": "Rozpoznanie Artefaktu, Szósty Zmysł, Święte Wizje, Wykrywanie Magii"
+ },
+"jeździectwo" : {
+    "name": "Jedździectwo",
+    "type": "Podstawowa",
+    "attribute": "Zw",
+    "description": "Ta Umiejętność określa, jak dobrze radzisz sobie z jeżdżeniem na określonym rodzaju zwierząt. Jeździectwo (Konie) pozwala ci dosiadać koni, mułów czy osłów i im podobnych. Testy Jeździectwa musisz wykonywać jedynie wtedy, gdy podejmujesz się czegoś niecodziennego: zmuszasz rumaka do wyścigu, podejmujesz się ujeżdżania, pokonujesz niebezpieczny teren czy szarżujesz do walki. Jeśli robisz coś prostszego i posiadasz choć jeden punkt Rozwinięcia w tej Umiejętności, działanie kończy się sukcesem bez Testu. Dosiadając wierzchowca, poruszasz się z jego Szybkością, a jeśli zmuszasz go do skoków czy biegu, wykonujesz Test Jeździectwa, a nie Atletyki. Jeśli gnasz do dalekiego celu, może być wymagany Wydłużony Test Jeździectwa, a liczba potrzebnych PS zależy od odległości do pokonania. Liczba wymaganych Testów będzie wskazywała na to, jak daleko jest do punktu docelowego. Na Testy Jeździectwa mogą wpływać modyfikatory związane z warunkami pogodowymi czy narowistością wierzchowca. Więcej informacji o nich znajduje się w Rozdziale 12: Bestiariusz. Jeździectwo jest niezwykle przydatne i często wykorzystywane w walce, co opisano w Rozdziale 5: Zasady. Przykładowe Specjalizacje: Konie, Gryfy, Pegazy, Półgryfy, Wielkie Wilki.",
+    "talents": "Urodzony w Siodle (Konie), Wiltyżerka, Z Bata"
+ },
+"język" : {
+    "name": "Język",
+    "type": "Zaawansowana",
+    "attribute": "Int",
+    "description": "Ta Umiejętność pozwala ci władać innymi językami niż twój ojczysty. Wszyscy bohaterowie potrafią mówić w reikspielu (mowie Imperium), oraz rodzimym języku (jeśli postać pochodzi z rejonów, gdzie nie mawia się w reikspielu). Nie trzeba wykonywać Testu, by porozumieć się w ten sposób, a jeśli twoja gra dzieje się w innym regionie Starego Świata, zastąp reikspiel miejscowym językiem. Jeśli posiadasz Umiejętność Język, jesteś w stanie dogadać się w danej mowie oraz rozumieć proste pojęcia. Jeżeli temat rozmowy stanie się trudniejszy, możesz być zmuszony do wykonania Testu Umiejętności, by sprawdzić, czy znasz mało używany dialekt lub specjalistyczne słownictwo. Uwaga: Umiejętność Język (Magiczny) jest wykorzystywana do rzucania czarów i niekiedy skutki nieudanego Testu mogą być… nieprzyjemne. Więcej informacji na ten temat znajduje się w Rozdziale 8: Magia. Przykładowe Specjalizacje: Język Bitewny, Bretoński, Klasyczny, Gildii, Khazalid, Magiczny, Złodziei, Tileański.",
+    "talents": "Poliglota, Perfekcyjne Inkantowanie (Magiczny), Słuch Absolutny, Szybkie Czytanie"
+ },
+"kuglarstwo" : {
+    "name": "Kuglarstwo",
+    "type": "Zaawansowana",
+    "attribute": "Zw",
+    "description": "Opanowałeś którąś z dziedzin sztuki, być może występując na ulicach, by zarobić na życie, lub podróżując z wędrowną trupą. Udany Test Umiejętności pozwala ci zabawiać widzów znajdujących się dość blisko, by cię widzieć lub słyszeć, a PS pokazują, jak dobrze się spisałeś. W walce Kuglarstwo może dać pewną przewagę, zwłaszcza jeśli jest związane z aktywnością fizyczną. Za zgodą MG możesz spróbować Testu Kuglarstwa (Akrobatyki) w ramach uniku. Inne rodzaje sztuczek mogą okazać się przydatne do rozpraszania uwagi wrogów, być może dając Przewagę, jeśli wymyślisz odpowiednio ciekawy sposób. Niektóre odmiany jarmarcznej sztuki mogą być wykorzystane jako broń, na przykład Kuglarstwo (Połykanie Ognia), gdy zioniesz płomieniem w przeciwników. Przykładowe Specjalizacje: Akrobatyka, Chodzenie po Linie, Komedianctwo, Mimika, Połykanie Ognia, Taniec, Żonglowanie.",
+    "talents": "Człowiek Guma, Woltyżerka"
+ },
+"leczenie" : {
+    "name": "Leczenie",
+    "type": "Zaawansowana",
+    "attribute": "Int",
+    "description": "Zostałeś nauczony, jak leczyć rany i choroby. Udany Test Leczenia pozwala na: \n• Zdiagnozowanie choroby, infekcji czy zarazy.\n• Leczenie choroby (patrz strona 188).\n• Wyleczenie tylu Punktów Żywotności, ile wynosi twój Bonus z Inteligencji + PS (Uwaga: pacjent może skorzystać z efektów tylko jednego Testu Leczenia na spotkanie). Jeśli używane są sterylne narzędzia i odpowiednie środki, postać uniknie zakażenia spowodowanego przez ranę (patrz strona 181).\n• Zatamowanie Stanu Krwawienie. Każdy PS niweluje jedno wystąpienie tego Stanu.\nNieudany Test Leczenia może spowodować spadek Żywotność, za każdy punkt, o który suma PS +Bonus z Inteligencji spadnie poniżej 0. Zdumiewająca Porażka oznacza dodatkowo, że u pacjenta rozwinie się Pomniejsza Infekcja (patrz strona 187). Udany Test Leczenia podczas opieki nad chorym oznacza, że tego dnia medyk nie zaraził się chorobą. Każdy PS sprawia, że jedna dodatkowa postać także uniknie zarażenia. Każdy pełen dzień spędzony pod opieką medyka skraca czas trwania choroby o jeden dzień do minimum jednego. Więcej informacji na ten temat znajduje się w podrozdziale Choroby i infekcje w Rozdziale 5: Zasady. Niektóre obrażenia wymagają interwencji chirurgicznej. Więcej informacji na temat jej przeprowadzania znajduje się w opisie Talentu Chirurgia. Leczenie obrażeń zostało z kolei opisane w podrozdziale Obrażenia w Rozdziale 5: Zasady. MG może modyfikować trudność Testu, by oddać śmiertelność choroby, warunki leczenia, dostępne materiały czy wpływ stresu. Podczas walki Testy Leczenia powinny być rzadko wykonywane, a jeśli już, to jako Wymagające (+0).",
+    "talents": "Chirurgia, Pierwsza Pomoc"
+ },
+"mocna_głowa" : {
+    "name": "Mocna Głowa",
+    "type": "Podstawowa",
+    "attribute": "Wt",
+    "description": "Umiejętność pokazuje to, że potrafisz spożywać napoje wyskokowe, nie tracąc rezonu, pomyślunku ani przytomności. Po wypiciu każdej porcji należy wykonać Test Mocnej Głowy, zmodyfikowany o siłę trunku. Każdy nieudany Test oznacza upicie się i związany z tym modyfikator -10 do Walki Wręcz, Umiejętności Strzeleckich, Zwinności i Zręczności oraz Inteligencji. Maksymalnie każda z tych Cech może zostać zmniejszona o -30. Jeśli nie uda ci się tyle Testów, ile wynosi twój Bonus z Wytrzymałości, stajesz się śmierdzącym ochlapusem. Po godzinie powstrzymywania się od alkoholu należy wykonać Wymagający (+0) Test Mocnej Głowy. Postać otrzeźwieje po liczbie godzin równej 10 - PS tego Testu. Wtedy też znikną modyfikatory oddziałujące na Cechy. Gdy się już tak stanie, wykonaj kolejny Wymagający (+0) Test Mocnej Głowy. Jego niepowodzenie oznacza kaca i Stan Zmęczony, który nie minie wcześniej niż za 5 - PS godzin. Możesz wydać 1 Punkt Determinacji, by do końca swojej następnej Rundy otrząsnąć się z negatywnych skutków bycia pijanym (patrz strona 171).",
+    "talents": "N/A"
+ },
+"modlitwa" : {
+    "name": "Modlitwa",
+    "type": "Zaawansowana",
+    "attribute": "Ogd",
+    "description": "Twoja umiejętność przywoływania mocy boskiej i komunikowania się z nadprzyrodzonym patronem. Więcej informacji o tym, jak działają modlitwy i jak szukać boskiej pomocy, znajduje się w Rozdziale 7: Religie i Wierzenia. Jeśli MG (biorąc pod uwagę zasady wiary i sytuację) zgodzi się na to, możesz modlić się z prośbą o skupienie umysłu. Każda Runda poświęcona na to i udany Test Modlitwy dają ci +1 Przewagę. Możesz ich w ten sposób zebrać maksymalnie tyle, ile wynosi Bonus z twojej Ogłady. Jeśli twoi wrogowie rozumieją język, w którym przemawiasz, rozpoznają symbol twojej wiary (i się go obawiają), możesz użyć Testu Modlitwy tak, jakbyś próbował ich zastraszyć.",
+    "talents": "N/A"
+ },
+"muzyka" : {
+    "name": "Muzyka",
+    "type": "Zaawansowana",
+    "attribute": "Zr",
+    "description": "Ta Umiejętność wyraża, jak dobrze potrafisz grać na instrumencie muzycznym i zabawiać publiczność. Udany Test pozwala ci grać dla tych, którzy są dość blisko, by cię widzieć i słyszeć, a PS pokazują, jak dobrze wykonałeś utwór. Przykładowe Specjalizacje: Dudy, Harfa, Lutnia, Obój, Skrzypce.",
+    "talents": "N/A"
+},
+"nawigacja" : {
+    "name": "Nawigacja",
+    "type": "Podstawowa",
+    "attribute": "I",
+    "description": "Dzięki tej Umiejętności potrafisz odnaleźć się w dziczy, podróżować orientując się według charakterystycznych punktów terenowych, gwiazd lub korzystać z map. Samo posiadanie tej Umiejętności sprawia, że z grubsza wiesz gdzie jesteś i bez Testu potrafisz dotrzeć z jednego charakterystycznego miejsca do drugiego. Rzut na tę Umiejętność jest wymagany wtedy, gdy bohater jest zdezorientowany lub gdy podróżuje z dala od utartych szlaków i znanych mu okolic. Powodzenie Testu oznacza, że obiera dobry kierunek lub unika jakiegoś nieszczęścia. Jeżeli podróż się ciągnie, MG może poprosić o Wydłużony Test Nawigacji, zmodyfikowany przez panujące warunki, obecność charakterystycznych punktów terenowych i dostęp do informacji geograficznych. Wymagana liczba PS zależy od tego, jak daleko znajduje się cel podróży. Jeden rzut może oznaczać od godziny do dnia wędrówki, zależnie od tego dokąd udają się bohaterowie. Test: Wyczucie Kierunku",
+    "talents": "N/A"
+ },
+"odporność" : {
+    "name": "Odporność",
+    "type": "Podstawowa",
+    "attribute": "Wt",
+    "description": "Odporność pozwala oprzeć się trudnościom fizycznym, wytrzymać głód i pragnienie, siedzieć bez ruchu przez kilka godzin albo nie zważać na pogodę. Test Odporności jest wykonywany, by oprzeć się różnym Stanom czy uwolnić się spod ich wpływu (patrz strona 167) lub gdy postać odzyskuje utraconą Żywotność. Więcej informacji na ten temat znajduje się w Rozdziale 5: Zasady.",
+    "talents": "Odporny na (Zagrożenie), Urodzony Żeglarz, Wstrzemięźliwy, Wytrwały, Żelazna Szczęka"
+ },
+"opanowanie" : {
+    "name": "Opanowanie",
+    "type": "Podstawowa",
+    "attribute": "SW",
+    "description": "Opanowanie pozwala zachować spokój w nerwowej sytuacji, oprzeć się strachowi w obliczu czegoś potwornego i obstawać przy swoim. Opanowanie jest głównie wykorzystywane w Testach Przeciwstawnych przeciw Charyzmie, Zastraszaniu i im podobnych. Możesz zostać zmuszony do wykonania Testu Opanowania, gdy twoja postać ma zrobić coś, czego normalnie by się nie dopuściła. Opanowanie jest Umiejętnością wykorzystywaną do ograniczenia efektów Psychologii (patrz strona 190).",
+    "talents": "Nieustraszony (wróg), Niewzruszony, Odporny na (Zagrożenie), Waleczne Serce, Żelazna Wola"
+ },
+"opieka_nad_zwierzętami" : {
+    "name": "Opieka nad Zwierzętami",
+    "type": "Zaawansowana",
+    "attribute": "Int",
+    "description": "Opieka nad Zwierzętami pozwala ci dbać o zwierzęta i leczyć je, jeśli zachorują lub zostaną ranne. Jedno Rozwinięcie w tej Umiejętności oznacza, że nie musisz wykonywać Testów, by utrzymać zwierzęta w zdrowiu. Rzut na Opiekę nad Zwierzętami może być potrzebny, by:\n• zauważyć oznaki choroby;\n• zrozumieć, dlaczego zwierzęta są nieposłuszne, krnąbrne lub źle się mają;\n• ocenić jakość zwierzęcia;\n• wyleczyć zwierzę, przywracając mu tyle Żywotności, ile wynosi Bonus z Inteligencji postaci plus Poziomy Sukcesu (Uwaga: zwierzę może skorzystać z takiej pomocy tylko raz na potyczkę);\n• zatamować Stan Krwawienie;\n• przygotować zwierzę na wystawę.\nW walce możesz ocenić zwierzę pod kontrolą przeciwnika, wykonując Test Opieki nad Zwierzętami. Jego sukces daje tobie oraz tym, którym przekażesz informację, premię +10 do trafienia zwierzęcia lub jego jeźdźca. Utrzymuje się ona do końca twojej następnej Tury. Wskazujesz na poluzowany pas, zranioną kończynę czy inną słabość zwierzęcia. Opieka nad Zwierzętami daje maksymalną premię +10 na zwierzę, nawet jeśli więcej postaci zdało taki Test.",
+    "talents": "N/A" 
+},
+"oswajanie" : {
+    "name": "Oswajanie",
+    "type": "Podstawowa",
+    "attribute": "SW",
+    "description": "Ta Umiejętność opisuje, jak dobrze potrafisz zaprzyjaźnić się ze zwierzęciem, uspokoić je i zmusić do uległości. Udany Test Oswajania pozwala ci wpłynąć na zachowanie jednego lub więcej zwierząt (maksymalnie tylu, ile wynosi twój Bonus z Siły Woli + PS). Jeśli zwierzęta są z natury uległe, Test nie jest Przeciwstawny, choć z reguły zwierzę opiera się twoim wysiłkom swoją Siłą Woli. W walce możesz użyć Oswajania, jeśli twoimi przeciwnikami są zwierzęta. Powodzenie oznacza, że nie zaatakują cię w tej Rundzie, a ty zdobywasz +1 Przewagę. Możesz powtarzać Test co Rundę, aż zadecydujesz się zaprzestać lub zakończy się on niepowodzeniem. To oznacza, że zwierzę poddało się instynktowi i nie masz na nie już wpływu.",
+    "talents": "Posłuch u Zwierząt"
+ },
+"otwieranie_zamków" : {
+    "name": "Otwieranie Zamków",
+    "type": "Zaawansowana",
+    "attribute": "Zr",
+    "description": "Wiesz, jak działają zamki, i potrafisz je otworzyć, nie posiadając kluczy. Rozpracowanie zabezpieczenia wymaga zwykle Wydłużonego Testu i określonej liczby PS, zależnej od skomplikowania mechanizmu.",
+    "talents": "N/A"
+ },
+"percepcja" : {
+    "name": "Percepcja",
+    "type": "Podstawowa",
+    "attribute": "I",
+    "description": "Percepcja to twoje zmysły: wzrok, węch, słuch, dotyk i smak, a także wszystkie inne, którymi może dysponować istota żywa, jak również magiczne postrzeganie rzeczywistości. MG może wymagać Testu Percepcji, gdy chce wiedzieć, czy postać zauważy ruch za jej plecami, wypatrzy pułapkę, usłyszy śledzącego ją napastnika. Stopień trudności zależy od sytuacji, Percepcja zaś jest Umiejętnością używaną w Przeciwstawnych Testach Zwinnych Palców czy Skradania. Percepcja ma wiele zastosowań w walce, ale zwykle służy do zauważania istotnych, acz nieoczywistych szczegółów na temat otoczenia lub przeciwnika.",
+    "talents": "Czytanie z Ruchu Warg, Percepcja Magiczna, Widzenie w Ciemności, Wyczulony Zmysł, Zmysł Bitewny"
+ },
+"plotkowanie" : {
+    "name": "Plotkowanie",
+    "type": "Podstawowa",
+    "attribute": "Ogd",
+    "description": "Potrafisz szybko zdobywać i gromadzić nowinki, a także rozpuszczać plotki. Udany Test Plotkowania oznacza, że bohater trafił na jedną przydatną informację o okolicy. Każdy PS pozwala zdobyć kolejną albo rozpuścić własną plotkę, która dotrze do tylu osób, ile wynosi Bonus z twojej Ogłady. Czasochłonność plotkowania zależy od pomysłowości graczy oraz od tego, jak wiele dzieje się w okolicy (co zależy już od MG). W walce Plotkowanie raczej nie będzie przydatne, ale jeśli napastnik jest miejscowy, a ty znasz kilka pikantnych ploteczek…",
+    "talents": "Etykieta (Grupa Społeczna), Hulaka, Towarzyski"
+ },
+"pływanie" : {
+    "name": "Pływanie",
+    "type": "Zaawansowana",
+    "attribute": "S",
+    "description": "Dzięki tej Umiejętności potrafisz pływać i po wpadnięciu do wody nie idziesz na dno. O ile się ją wykupi, nie trzeba jej testować w normalnych, spokojnych warunkach. Sprawa ma się inaczej, jeśli porwie cię rwący prąd lub gdy uciekasz przed ogromnym rekinem, wysłanym przez Stromfelsa, boga tonących. Wtedy należy wykonać Test Pływania, na trudność którego mogą wpłynąć stan wody, obciążenie odzieniem, pancerzem czy dobytkiem. Pływanie jest używane w walce tylko wtedy, gdy toczy się ona w wodzie. Tam zastępuje ono Atletykę podczas obliczania zasięgu Ruchu. Jeśli zajdzie potrzeba dokładnego obliczenia przebytego dystansu, to pływając, poruszasz się z połową swojej Szybkości, a odpowiednie zasady znajdują się na stronie 164.",
+    "talents": "Mocne Plecy, Świetny Pływak"
+ },
+"powożenie" : {
+    "name": "Powożenie",
+    "type": "Podstawowa",
+    "attribute": "Zw",
+    "description": "Powożenie pozwala ci kierować pojazdami, zazwyczaj prostymi wozami, ogromnymi karetami czy tymi bardziej eksperymentalnymi pojazdami – dziełami imperialnych inżynierów. Dzięki niemu jesteś w stanie prowadzić je po drogach, powodując przy tym jak najmniej wypadków. Jeśli masz choć jedno Rozwinięcie w tej Umiejętności, nie musisz wykonywać Testów w normalnych sytuacjach na drodze. Jeżeli warunki nie są tak korzystne, na przykład droga jest w kiepskim stanie lub nie dopisuje pogoda, będzie już wymagany Test. Jeśli nie posiadasz tej Umiejętności, Testy Powożenia będą wymagane podczas wykonywania nawet najprostszych manewrów. Zdumiewająca Porażka (-6) Testu Powożenia oznacza, że doszło do nieszczęścia. Do jakiego dokładnie, okaże się po rzucie w poniższej tabeli. Jeśli warunki na to pozwolą, można zastosować Powożenie w walce, na przykład gdy bohaterowie postanowią staranować bandytów napadniętym powozem lub im uciec (patrz strona 166).",
+    "talents": "Z Bata"
+ },
+"przekupstwo" : {
+    "name": "Przekupstwo",
+    "type": "Podstawowa",
+    "attribute": "Ogd",
+    "description": "Ta Umiejętność pozwala ci ocenić, czy dana osoba przyjmie łapówkę oraz ile minimalnie należy jej zaoferować, by przystała na korupcyjną propozycję. Udany Test Przekupstwa powie ci, czy w ogóle jest sens cokolwiek oferować. Jeśli tak, MG powinien w tajemnicy określić, jakiej wysokości łapówka wchodzi w grę. Powinien wziąć pod uwagę dochody osiągane przez bohatera niezależnego (patrz strona 52) i zwiększyć żądaną sumę o stopień dotychczasowej uczciwości oraz ryzyko związane z sytuacją. Gracz musi podać proponowaną sumę, a MG odpowiada, czy łapówka jest za niska, zbyt wysoka czy odpowiednia. Każdy PS uzyskany podczas pierwszego Testu Przekupstwa pozwala ci na kolejną próbę odgadnięcia najniższej akceptowalnej kwoty. Kiedy skończysz zgadywać, można obliczyć, ile pieniędzy wręczasz w charakterze gratyfikacji pieniężnej. W walce można wykorzystać Test Przekupstwa, by przerwać starcie, ale wymaga to Trudnego (-20) Testu. Jeśli przeciwnicy nie należą do przekupnych, propozycja nie zda się na nic. Jeśli wrogowie nie mówią w twoim języku, żałosne próby targowania się o życie także spełzną na niczym. Poza tym, jeśli mają znaczącą przewagę, co powstrzyma ich od obrabowania postaci?",
+    "talents": "Łapówkarz"
+ },
+"rzemiosło" : {
+    "name": "Rzemiosło",
+    "type": "Zaawansowana",
+    "attribute": "Zr",
+    "description": "Większość mieszkańców Reiklandu wykonuje jakiś fach, nawet poszukiwacze przygód zwykle mają stabilne zajęcie czy pełnią godną funkcję, zapewniającą im byt pomiędzy przygodami, od których włos się jeży na głowie, a kiszki skręcają ze strachu. Posiadanie tej Umiejętności oznacza, że potrafisz coś wytwarzać lub oferujesz usługi i posiadasz wiedzę związaną z wykonywanym zawodem. Dzięki posiadaniu tej Umiejętności jesteś w stanie bez Testu wykonywać codzienne obowiązki związane z pracą, zakładając, że masz potrzebne narzędzia. Test Rzemiosła musisz wykonać, gdy pracujesz w pośpiechu, nieodpowiednich warunkach lub gdy próbujesz opracować coś nowego lub wysokiej jakości. Bardzo często Testy Rzemiosła są Testami Wydłużonymi. Wymagane PS i poświęcony czas zależą od tego, czego się podjąłeś. Ugotowanie szybkiego obiadu, by zachwycić miejscowego władykę, wymaga Testu Rzemiosła (Gotowanie), ale i mniej czasu niż zaprojektowanie i zbudowanie okrętu wojennego, przy czym nieodzowny będzie Test Rzemiosła (Szkutnictwo). Test Rzemiosła można wykonać zamiast odpowiedniej Wiedzy, jeśli bohater próbuje przypomnieć sobie informacje związane z jego fachem. W takim przypadku MG może wykorzystać do niego Inteligencję zamiast Zręczności, choć dla płynności gry można z tej zmiany zrezygnować. W większości przypadków Testy Rzemiosła nie mają zastosowania w walce. Z drugiej strony, ilu rzemieślników, tyle fachów, a wszystko zależy od okoliczności. Na przykład udany Test Rzemiosła (Aptekarstwo) może być przydatny, gdy walka będzie toczyła się w aptece. W takim przypadku osoba obeznana z ingrediencjami szybko znajdzie te, którymi warto cisnąć w przeciwnika. Umiejętność Rzemiosło jest wykorzystywana między przygodami podczas Zajęcia Wytwórstwo (patrz strona 199). Przykładowe Specjalizacje: Aptekarstwo, Balsamowanie, Garbarstwo, Gotowanie, Kaligrafia, Kowalstwo, Świecarstwo",
+    "talents": "Aptekarz (Aptekarstwo), Arcydzieło, Mistrz Rzemiosła, Przydządzanie Mikstur (Aptekarstwo), Wytwórca, Złota Rączka"
+ },
+"sekretne_znaki" : {
+    "name": "Sekretne Znaki",
+    "type": "Zaawansowana",
+    "attribute": "Int",
+    "description": "Zostałeś wtajemniczony w znaczenie tajemnych znaków, które rozpoznawać potrafią tylko członkowie pewnej grupy. Istnieje wiele powodów, z których ktoś mógłby chcieć zostawić zaszyfrowaną wiadomość: włóczędzy informują innych o tym, kto chętniej udziela jałmużny, złodzieje wskazują na słabości zabezpieczeń, a zwiadowcy ostrzegają, gdzie znajdują się leża groźnych potworów. Zazwyczaj nie ma potrzeby testowania tej Umiejętności: potrafisz odcyfrować znaki, kiedy je widzisz. Jednak jeśli zostały zatarte, zniszczone lub czas odcisnął na nich piętno, może być wymagany rzut na Umiejętność. Większość wiadomości jest bardzo krótka i składa się z nie więcej niż trzech słów. Specjalizacje: Gildii (wybranej), Kolegium Cienia, Łowców, Włóczęgów, Złodziei, Zwiadowców.",
+    "talents": "N/A"
+ },
+"skradanie" : {
+    "name": "Skradanie",
+    "type": "Podstawowa",
+    "attribute": "Zw",
+    "description": "Ta Umiejętność pozwala ci na podkradanie się i ukrywanie w lepszym stopniu niż innym. Testy Skradania są Testami Przeciwstawnymi, wykonywanymi przeciwko Percepcji przeciwnika i modyfikowanymi przez warunki, takie jak ciemność, łatwość ukrycia się w trakcie przemykania czy choćby twój ubiór. Spora lub Zdumiewająca Porażka podczas Testu Skradania oznacza, że ściągasz na siebie uwagę wrogów, przed którymi chciałeś się ukryć. Skradanie się może mieć wiele zastosowań w walce. Pierwszym przychodzącym na myśl jest ukrycie się, by przygotować zasadzkę lub by zakraść się i zaatakować od tyłu. Rozdział 5: Zasady opisuje, co się wtedy dzieje. Skradania można też użyć, by niepostrzeżenie dać nogę, jeśli walka nie idzie po naszej myśli… Przykładowe Specjalizacje: Podziemia, Miasto, Wieś.",
+    "talents": "Cień, Niegodny Uwagi, Szczur Tunelowy (Podziemia), Ulicznik (Miasto), Włóczykij (Wieś)"
+ },
+"splatanie_magii" : {
+    "name": "Splatanie Magii",
+    "type": "Zaawansowana",
+    "attribute": "SW",
+    "description": "Ta Umiejętność określa, jak sprawny jest bohater w przywoływaniu i kontrolowaniu różnych Wiatrów Magii, i jest ściśle powiązana z zasadami nią rządzącymi. To wyjątkowa Umiejętność, ponieważ z jednej strony, dla czarodziejów, zawiera w sobie Specjalizacje, z drugiej zaś, dla nieparających się magią, nie jest Grupą Umiejętności. Więcej informacji na ten temat znajduje się w Rozdziale 8: Magia. Specjalizacje: Aqshy, Azyr, Chamon, Dhar, Ghur, Ghyran, Hysh, Shyish, Ulgu.",
+    "talents": "Zmysł Magii"
+ },
+"sztuka" : {
+    "name": "Sztuka",
+    "type": "Podstawowa",
+    "attribute": "Zr",
+    "description": "Potrafisz tworzyć dzieła sztuki w jednej z jej licznych odmian. Brak fachowych narzędzi może wiązać się z negatywnymi modyfikatorami do Testu. Poziomy Sukcesu osiągnięte podczas Testu określają, jak wysokiej jakości jest tworzone dzieło. Skomplikowane lub duże przedsięwzięcie artystyczne może wymagać Testu Wydłużonego. Umiejętność tworzenia dzieł sztuki ma niewielkie zastosowanie w walce, ale marmurowe popiersie może być przydatne, gdy zwali się je przeciwnikowi na głowę. Przykładowe Specjalizacje: Grawerstwo, Kartografia, Malarstwo, Rzeźbiarstwo, Tatuowanie, Tkactwo, Układanie Mozaiki.",
+    "talents": "Talent Artystyczny"
+ },
+"sztuka_przetrwania" : {
+    "name": "Sztuka Przetrwania",
+    "type": "Podstawowa",
+    "attribute": "Int",
+    "description": "To Umiejętność wykorzystywana w dziczy, która pokazuje, jak dobrym myśliwym, rybakiem i zbieraczem jest postać, czy umie rozpalać ogień i budować schronienie. Doświadczeni podróżnicy potrafią rozpoznawać oznaki naturalnych niebezpieczeństw czy tropy pozostawiane przez groźną zwierzynę. Rozbijając obóz, wykonaj Test Sztuki Przetrwania, zmodyfikowany o panujące warunki. Podczas deszczu będzie on Wymagający (+0), w burzy Trudny (-20). Jego powodzenie oznacza, że jesteś w stanie zapewnić sobie pożywienie i schronienie na tę noc. Każdy PS oznacza, że możesz zadbać o kolejną osobę. Jeśli Test Sztuki Przetrwania nie powiedzie się, musisz wykonać Wymagający (+0) Test Odporności, którego niepowodzenie oznacza jeden Stan Zmęczenie. Zdumiewająca Porażka to znak, że stało się coś nieprzewidzianego, MG zaś określi, co się przytrafiło. Może nocą doszło do napaści na obóz? Walcząc w dziczy, możesz wykonać Test Sztuki Przetrwania, by otrzymać +1 Przewagę, tak jakbyś używał Intuicji. Możesz ich zgromadzić tyle, ile wynosi twój Bonus z Inteligencji, wyszukując zdradliwe podłoże lub teren, który da ci lepszą pozycję w starciu",
+    "talents": "N/A"
+},
+"targowanie" : {
+    "name": "Targowanie",
+    "type": "Podstawowa",
+    "attribute": "Ogd",
+    "description": "Ta Umiejętność pozwala ci na dobicie najlepszego targu w historii. Jej Test pozwala określić, czy uda ci się dokonać korzystnej transakcji, czy nie. Należy wykonać Przeciwstawny Test Targowania. Najczęściej będzie wykorzystywana podczas kupna ekwipunku, by obniżyć jego cenę. Więcej informacji na ten temat znajduje się w Rozdziale 11: Przewodnik konsumenta. Targowanie: Żyłka Handlowa",
+    "talents": "N/A"
+ },
+"tresura" : {
+    "name": "Tresura",
+    "type": "Zaawansowana",
+    "attribute": "Int",
+    "description": "Ta Umiejętność pokazuje, na ile znasz dany gatunek zwierząt i jak dobrze jesteś w stanie go wytresować. Udany Test Umiejętności pozwala ci określić, jakie zdolności wpojono już zwierzęciu należącemu do gatunku, w którym się specjalizujesz (patrz strona 118). Tresura pozwala także na podjęcie Zajęcia Tresura Zwierząt pomiędzy przygodami (patrz strona 199). W walce możesz wykonać Przeciwstawny Test Tresury przeciwko Sile Woli. Dzięki niemu możesz zastraszyć jedno zwierzę (odpowiadające twojej Specjalizacji). Wzbudzasz w nim Strach do końca swojej następnej Rundy (patrz strona 190). Jeśli w ten sposób zastraszysz zwierzę, możesz wykorzystać Tresurę zamiast Umiejętności Broń Biała, broniąc się przed atakiem przeciwnika. MG może pozwolić na wykorzystanie Tresury, jeśli twój atak będzie polegał na wydawaniu zwierzęciu komend. Przykładowe Specjalizacje: Gołębie, Konie, Pegazy, Półgryfy, Psy",
+    "talents": "N/A"
+ },
+"tropienie" : {
+    "name": "Tropienie",
+    "type": "Zaawansowana",
+    "attribute": "I",
+    "description": "Ta Umiejętność umożliwia ci podążanie śladami, które pozostawili inni. Jest wykorzystywana, by odnaleźć drogę w dziczy. Byle lebiega pójdzie po śladach pozostawionych na śniegu, do tego wystarczy zwykły Test Percepcji. Tropienie to sztuka rozpoznawania drobnych znaków i wiedza, jak je wykorzystać, by dopaść zwierzynę. Dzięki tej Umiejętności potrafisz też zacierać własne ślady, wykonując Przeciwstawny Test swojego Tropienia przeciwko Tropieniu przeciwnika. Podążanie śladami wymaga często Wydłużonego Testu Tropienia, którego stopień trudności zależy od tego, jak świeży jest trop. Wilgotna, miękka ziemia to wymarzony teren do tropienia, czego nie można powiedzieć o kamienistym gruncie. MG może wykorzystać zasady pościgów, by określić, czy udało ci się wytropić uciekającego przeciwnika (zasady tego dotyczące znajdują się na stronie 166).",
+    "talents": "Oko Łowcy, Rybak"
+ },
+"unik" : {
+    "name": "Unik",
+    "type": "Podstawowa",
+    "attribute": "Zw",
+    "description": "Ta Umiejętność pozwala na unikanie, uskakiwanie i schodzenie z drogi wszelkim niebezpieczeństwom, takim jak spadające kamienie, uruchamiane pułapki i tak dalej. W walce Unik wykorzystywany jest, by… uniknąć zadawanych obrażeń. Rozdział 5: Zasady zawiera więcej informacji na ten temat.",
+    "talents": "Walka w Ciasnocie, Woltyżerka, Zejśćie z Linii"
+ },
+"wiedza" : {
+    "name": "Wiedza",
+    "type": "Zaawansowana",
+    "attribute": "Int",
+    "description": "Posiadanie tej Umiejętności oznacza, że twoja postać została formalnie wykształcona w jakiejś dziedzinie lub w inny sposób posiadła specjalistyczną wiedzę. Bohater ma na tyle rozległą wiedzę, że nie musi wykonywać Testu, by MG przedstawił mu potrzebne ogólne i powszechnie dostępne informacje. Jeśli bohater musi się odwołać do faktów mniej znanych, wtedy musi wykonać Test Wiedzy, a liczba PS oznacza, jak bardzo szczegółowe informacje posiada. Jeśli MG na to przystanie, to w walce udany Test Wiedzy może zapewnić +1 Przewagę. Na przykład, jeśli walka odbywa się w jaskini, to udany test Wiedzy (Geologia) może przechylić szalę zwycięstwa na korzyść bohaterów. Wiedza (Inżynieria) może pozwolić na wykorzystanie słabości sprzętu wroga, który posługuje się skomplikowaną maszyną. Jeśli warunki będą temu sprzyjały i MG się zgodzi, bohater może gromadzić Przewagi, dopóki ktoś mu nie przeszkodzi. Ich maksymalna liczba może być równa Bonusowi z Inteligencji. Przykładowe Specjalizacje: Geologia, Heraldyka, Historia, Inżynieria, Magia, Metalurgia, Nauka, Prawo, Teologia.",
+    "talents": "Obieżyświat (teren), Pilot Rzeczny (rzeki), Znawca (Wiedza)"
+ },
+"wioślarstwo" : {
+    "name": "Wioślarstwo",
+    "type": "Podstawowa",
+    "attribute": "S",
+    "description": "Ta Umiejętność pokazuje, jak dobrze idzie ci napędzanie łodzi na wodzie. Zwykle testowana jest podczas zawodów, pokonywania wodospadów, ucieczek przed bagiennymi ośmiornicami oraz w podobnie niebezpiecznych sytuacjach. Każdy, kto posiada tę Umiejętność, potrafi przepłynąć łodzią przez spokojne jezioro czy leniwy nurt rzeki. Nie ma potrzeby wykonywania Testu w takiej sytuacji. Istoty nieposiadające tej Umiejętności muszą wykonywać rzuty, gdy próbują każdego odrobinę bardziej skomplikowanego manewru.",
+    "talents": "Mocne Plecy, Pilot"
+ },
+"wspinaczka" : {
+    "name": "Wspinaczka",
+    "type": "Podstawowa",
+    "attribute": "S",
+    "description": "Umiejętność pokonywania pionowych przeszkód. Jeśli czas nie jest przeszkodą, wspinaczka jest dość prosta i każda istota dysponująca tą Umiejętnością może wdrapać się na niewysokie wzniesienie. Jeśli wspinaczka przebiega w innych warunkach, należy zastosować reguły znajdujące się na stronie 165. Tam znajdują się też wskazówki związane z wpływem walki na wspinaczkę, a nawet wdrapywaniem się na ogromnych przeciwników, co jest manewrem tyleż odważnym, co nierozsądnym.",
+    "talents": "Wyborny Wspinacz"
+ },
+"wycena" : {
+    "name": "Wycena",
+    "type": "Zaawansowana",
+    "attribute": "Int",
+    "description": "Wycena pozwala określić wartość pradawnych artefaktów, niecodziennych towarów czy dzieł sztuki. Choć każdy wie, co jest bardziej, a co mniej cenne, to wykorzystanie tej Umiejętności umożliwia określenie wartości rzadko spotykanych rzeczy. Udany Test Wyceny pozwala rozpoznać podrabiane dobra lub monety. Jest to Test Przeciwstawny, wykonywany przeciwko PS fałszerza, uzyskanym w jego Teście Rzemiosła lub Sztuki. MG może wprowadzić modyfikatory zależne od tego, jak rzadko spotykany jest wyceniany przedmiot, jaką wiedzę i doświadczenia ma postać lub skąd pochodzi.",
+    "talents": "Geniusz Arytmetyczny, Numizmatyka"
+ },
+"występy" : {
+    "name": "Występy",
+    "type": "Podstawowa",
+    "attribute": "Ogd",
+    "description": "Ta Umiejętność pozwala ci zabawiać tłumy słowem mówionym, być może śpiewem, odgrywaniem ról lub nawet dowcipem. Udany Test oznacza, że widzowie słuchali występu, a PS wskazują, jak dobrze wypadłeś. W walce Występy mają raczej skromne zastosowanie, choć aktorstwo można wykorzystać, by zwieść lub oszukać przeciwników. Przykładowe Specjalizacje: Aktorstwo, Gawędziarstwo, Komedianctwo, Śpiewanie.",
+    "talents": "Mistrz Charakteryzacji (Aktorstwo), Naśladowca (Aktorstwo), Sekretna Tożsamość (Aktorstwo), Słuch Absolutny (Śpiewanie)"
+ },
+"zastawianie_pułapek" : {
+    "name": "Zastawianie Pułapek",
+    "type": "Zaawansowana",
+    "attribute": "Zr",
+    "description": "Od prostych wnyków i sideł na niedźwiedzie po skomplikowane urządzenia jak Rozpruwacz Złodziei von Grizzela, pułapki na pewno będą czyhały na bohaterów przemierzających Stary Świat. Ta Umiejętność pokazuje, jak radzisz sobie z zastawianiem i rozbrajaniem wszelkiego rodzaju pułapek. Jeśli ją posiadasz i nie spieszy ci się, zrobisz to bez konieczności wykonywania Testu. Ten jest z kolei wymagany, jeśli chcesz to samo zrobić szybko, w sytuacji stresowej albo gdy pułapka jest szczególnie skomplikowana. Przykłady prostych sideł i wnyków znajdziecie w Rozdziale 11: Przewodnik konsumenta. Zastawienie lub rozbrojenie większości z nich wymaga Przeciętnego (+20) Testu Zastawiania Pułapek, ale bardziej skomplikowane mechanizmy mogą oznaczać konieczność zebrania kilku PS, Testu Wydłużonego i wielu Rund.",
+    "talents": "N/A"
+},
+"zastraszanie" : {
+    "name": "Zastraszanie",
+    "type": "Podstawowa",
+    "attribute": "S",
+    "description": "Ta Umiejętność pozwala zmuszać do czegoś lub zastraszać inne istoty. To, jak wygląda samo zastraszanie, zależy od sytuacji. Niekiedy jest to wyraźna groźba, innym razem zawoalowana lub samo spojrzenie. Zastraszanie prawie zawsze jest Przeciwstawnym Testem, wykonywanym przeciwko Opanowaniu. Jeśli Test Zastraszania się powiedzie, wpływasz na liczbę istot równą Bonusowi z Siły + PS. Każdy z zastraszanych zareaguje zgodnie ze swoją naturą oraz tym, jak groźny się wydajesz. Cele najczęściej wycofają się, zejdą ci z drogi, nie będą obgadywać lub w inny sposób spróbują ci się nie narażać. Alternatywą jest walka, a jeśli zajdzie taka konieczność, sięgną po broń. W walce wzbudzasz Strach (patrz strona 190) we wszystkich zastraszonych istotach. Możesz wykorzystać tę Umiejętność zamiast Umiejętności Broń Biała, by zmusić zastraszonych do wycofania się z walki. Jeśli MG się zgodzi, możesz „zaatakować” zastraszaniem, wydając im krótkie rozkazy pokroju: „Rzuć broń!” czy „Wynocha!”. Jeśli któryś z tych kolejnych Testów się nie powiedzie, twoi przeciwnicy otrząsną się ze Strachu. MG może pozwolić na próbę zastraszania w późniejszych Rundach, ale z negatywnymi modyfikatorami, ponieważ wrogowie już raz przejrzeli twoją grę.",
+    "talents": "Groźny"
+ },
+"zwinne_palce" : {
+    "name": "Zwinne Palce",
+    "type": "Zaawansowana",
+    "attribute": "Zr",
+    "description": "To Umiejętność, która pozwala na okradanie, ukrywanie niewielkich przedmiotów w dłoni, wykonywanie sztuczek, a także kantowanie podczas gier hazardowych. Testy Zwinnych Palców są zazwyczaj Przeciwstawne przeciwko Percepcji. Sukces oznacza, że udało ci się coś zwędzić, okraść ofiarę czy podmienić karty. Marginalny sukces (od +0 do +1 PS) oznacza, że twój przeciwnik zrobił się podejrzliwy. Zwinne Palce można wykorzystać, by „pomóc” szczęściu podczas Testu Hazardu, określając przebieg gry losowej. Przed rozpoczęciem kolejki (lub cyklu gry) możesz wykonać Test Zwinnych Palców (Przeciwstawny, jeśli inni gracze są podejrzliwi). Jeśli będzie udany, możesz odwrócić kostki Testu Hazardu w tej Rundzie, jeśli przyniesie ci to sukces. Nieudany Test sprawi, że inni uczestnicy tej rozgrywki najpewniej okażą ci wprost swoje niezadowolenie… Zwinne Palce i walka rzadko idą ręka w rękę, ale pomysłowi gracze mogą wykorzystać Umiejętność, by rozproszyć uwagę przeciwnika, jeśli MG uzna to za możliwe. Być może zapewnią sobie +1 Przewagę, gdy w ich dłoniach znikąd pojawi się sztylet, co przerazi przesądnego wroga.",
+    "talents": "Ruchliwe Dłonie, Szuler, Szuler Kościany"
+ },
+"żeglarstwo" : {
+    "name": "Żeglarstwo",
+    "type": "Zaawansowana",
+    "attribute": "Zw",
+    "description": "Ta Umiejętność pokazuje, jak dobrze radzisz sobie z obsługą łodzi i statków żaglowych oraz sterowaniem czy manewrowaniem nimi. Zawiera się w niej znajomość węzłów, oceniania siły i kierunku wiatru oraz wiele innych przydatnych na żaglowcu biegłości. Jeśli masz odpowiednio liczną i wyszkoloną załogę, wykonujesz Test Żeglowania tylko wtedy, gdy musisz zmusić statek do trudnego manewru, podczas wyścigu, gdy lawiruje on między płyciznami czy zmaga się ze sztormową pogodą. Rejs przy pięknej aurze czy spływ z nurtem rzeki nie wymaga Testu. Umiejętność tę można wykorzystywać podczas czynności tylko luźno związanych z żeglarstwem, na przykład zwykłego wiązania węzłów i pętania więźniów. Kierowanie jednym statkiem nie różni się przesadnie od sterowania innym, więc posiadanie jednej Specjalizacji sprawia, że pozostałe są dla ciebie Umiejętnościami Podstawowymi. Przykładowe Specjalizacje: Barki, Karawele, Kogi, Fregaty, Wilcze Statki.",
+    "talents": "Pilot, Wilk Morski, Wodniak"
+ }
 }

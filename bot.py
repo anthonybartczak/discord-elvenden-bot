@@ -244,6 +244,7 @@ async def talent(ctx, *, talent_name: str):
     
     with open('content/talents.json', encoding="utf8") as jf:
         json_data = load(jf)
+        
     if talent_name in json_data:
         talent = json_data[talent_name]
         await ctx.send('Talent name found!')
@@ -253,6 +254,28 @@ async def talent(ctx, *, talent_name: str):
         embed.add_field(name="Testy", value=talent['tests'], inline=True)
     else:
         embed=discord.Embed(title='⚠️Nie znalazłem talentu⚠️', description='Pamiętaj o składni podanej w poleceniu **.help**.', color=ERROR_COLOR)
+        embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
+        
+    await ctx.send(embed=embed)
+    
+@client.command()
+async def ability(ctx, *, ability_name: str):
+    
+    ability_name = ability_name.replace(' ','_').lower()
+    
+    with open('content/abilites.json', encoding="utf8") as jf:
+        json_data = load(jf)
+        
+    if ability_name in json_data:
+        ability = json_data[ability_name]
+        await ctx.send('Ability name found!')
+        embed=discord.Embed(title=ability['name'], description=ability['description'], color=MAIN_COLOR)
+        embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
+        embed.add_field(name="Typ", value=talent['type'], inline=True)
+        embed.add_field(name="Cecha", value=talent['attribute'], inline=True)
+        embed.add_field(name="Talenty", value=talent['talents'], inline=True)
+    else:
+        embed=discord.Embed(title='⚠️Nie znalazłem umiejętności⚠️', description='Pamiętaj o składni podanej w poleceniu **.help**.', color=ERROR_COLOR)
         embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
         
     await ctx.send(embed=embed)
