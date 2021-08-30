@@ -263,7 +263,7 @@ async def ability(ctx, *, ability_name: str):
     
     ability_name = ability_name.replace(' ','_').lower()
     
-    with open('content/abilites.json', encoding="utf8") as jf:
+    with open('content/abilities.json', encoding="utf8") as jf:
         json_data = load(jf)
         
     if ability_name in json_data:
