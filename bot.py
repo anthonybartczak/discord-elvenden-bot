@@ -21,6 +21,11 @@ BOT_TOKEN = environ.get('BOT_TOKEN')
 # Footer text (version + update date) for every single command.
 FOOTER_TEXT = 'Elvie v0.85 - WFRP 4ED\nOstatnia aktualizacja: 8/30/2021'
 
+
+players = {}
+
+queues = {}
+
 # Discord intents declarations -> can be modified at https://discord.com/developers/
 intents = discord.Intents.default()
 intents.members = True
@@ -319,9 +324,23 @@ async def play(ctx, url: str):
         embed=discord.Embed(title='Playing', description=vid_info, color=MAIN_COLOR)
         embed.set_image(url=vid_thumbnail)
         await ctx.send(embed=embed)
+        while True:
+            await asyncio.sleep(5)
+
+            if voice.is_playing() == False:
+                await voice.disconnect()
+                break
     else:
         await ctx.send("Bot is already playing")
         return
+    
+
+@client.command(pass_context=True)
+async def queue(ctx, url):
+    server = ctx.message.guild
+    voice_client = get(client.voice_clients, guild=ctx.guild)
+    player = await voice_client
+
 
 @client.command()
 async def resume(ctx):
