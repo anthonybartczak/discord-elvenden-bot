@@ -9,6 +9,7 @@ import content.tables as tab
 import content.pictures as pic
 from os import environ
 from youtube_dl import YoutubeDL
+from cogs.music import Music
 
 # Main colors used for the bot's embeded messages formating.
 MAIN_COLOR = 0x8b54cf
@@ -21,10 +22,6 @@ BOT_TOKEN = environ.get('BOT_TOKEN')
 # Footer text (version + update date) for every single command.
 FOOTER_TEXT = 'Elvie v0.85 - WFRP 4ED\nOstatnia aktualizacja: 8/30/2021'
 
-
-players = {}
-
-queues = {}
 
 # Discord intents declarations -> can be modified at https://discord.com/developers/
 intents = discord.Intents.default()
@@ -296,76 +293,77 @@ async def contact(ctx, *, message):
     await user.send(content)
     await ctx.send(embed=embed)
 
-@client.command()
-async def play(ctx, url: str):
-    channel = ctx.message.author.voice.channel
-    await ctx.channel.purge(limit=1)
-    voice = get(client.voice_clients, guild=ctx.guild)
-    if voice and voice.is_connected():
-        await voice.move_to(channel)
-    else:
-        voice = await channel.connect()
+# @client.command()
+# async def play(ctx, url: str):
+#     channel = ctx.message.author.voice.channel
+#     await ctx.channel.purge(limit=1)
+#     voice = get(client.voice_clients, guild=ctx.guild)
+#     if voice and voice.is_connected():
+#         await voice.move_to(channel)
+#     else:
+#         voice = await channel.connect()
 
-    voice = get(client.voice_clients, guild=ctx.guild)
+#     voice = get(client.voice_clients, guild=ctx.guild)
 
-    if not voice.is_playing():
-        YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
-        with YoutubeDL(YDL_OPTIONS) as ydl:
-            info = ydl.extract_info(url, download=False)
-        URL = info['url']
-        FFMPEG_OPTIONS = {
-            'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
-        voice.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
-        voice.is_playing()
-        vid_name = info.get('title', None)
-        vid_id = info.get('id', None)
-        vid_thumbnail = info.get('thumbnail', None)
-        vid_info = '**Current track name:** \n' + vid_name + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + vid_id
-        embed=discord.Embed(title='Playing', description=vid_info, color=MAIN_COLOR)
-        embed.set_image(url=vid_thumbnail)
-        await ctx.send(embed=embed)
-        while True:
-            await asyncio.sleep(5)
+#     if not voice.is_playing():
+#         YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
+#         with YoutubeDL(YDL_OPTIONS) as ydl:
+#             info = ydl.extract_info(url, download=False)
+#         URL = info['url']
+#         FFMPEG_OPTIONS = {
+#             'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
+#         voice.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
+#         voice.is_playing()
+#         vid_name = info.get('title', None)
+#         vid_id = info.get('id', None)
+#         vid_thumbnail = info.get('thumbnail', None)
+#         vid_info = '**Current track name:** \n' + vid_name + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + vid_id
+#         embed=discord.Embed(title='Playing', description=vid_info, color=MAIN_COLOR)
+#         embed.set_image(url=vid_thumbnail)
+#         await ctx.send(embed=embed)
+#         while True:
+#             await asyncio.sleep(25)
 
-            if voice.is_playing() == False:
-                await voice.disconnect()
-                break
-    else:
-        await ctx.send("Bot is already playing")
-        return
+#             if voice.is_playing() == False:
+#                 await voice.disconnect()
+#                 break
+#     else:
+#         await ctx.send("Bot is already playing")
+#         return
     
 
-@client.command(pass_context=True)
-async def queue(ctx, url):
-    server = ctx.message.guild
-    voice_client = get(client.voice_clients, guild=ctx.guild)
-    player = await voice_client
+# @client.command(pass_context=True)
+# async def queue(ctx, url):
+#     server = ctx.message.guild
+#     voice_client = get(client.voice_clients, guild=ctx.guild)
+#     player = await voice_client
 
 
-@client.command()
-async def resume(ctx):
-    voice = get(client.voice_clients, guild=ctx.guild)
+# @client.command()
+# async def resume(ctx):
+#     voice = get(client.voice_clients, guild=ctx.guild)
 
-    if not voice.is_playing():
-        voice.resume()
-        await ctx.send('Bot is resuming')
-
-
-@client.command()
-async def pause(ctx):
-    voice = get(client.voice_clients, guild=ctx.guild)
-
-    if voice.is_playing():
-        voice.pause()
-        await ctx.send('Bot has been paused')
+#     if not voice.is_playing():
+#         voice.resume()
+#         await ctx.send('Bot is resuming')
 
 
-@client.command()
-async def stop(ctx):
-    voice = get(client.voice_clients, guild=ctx.guild)
+# @client.command()
+# async def pause(ctx):
+#     voice = get(client.voice_clients, guild=ctx.guild)
 
-    if voice.is_playing():
-        voice.stop()
-        await ctx.send('Stopping...')
+#     if voice.is_playing():
+#         voice.pause()
+#         await ctx.send('Bot has been paused')
 
+
+# @client.command()
+# async def stop(ctx):
+#     voice = get(client.voice_clients, guild=ctx.guild)
+
+#     if voice.is_playing():
+#         voice.stop()
+#         await ctx.send('Stopping...')
+
+client.add_cog(Music(client))
 client.run(BOT_TOKEN)
