@@ -16,6 +16,8 @@ SUCCESS_COLOR = 0x16bd00
 ytdlopts = {
     'format': 'bestaudio',
     'outtmpl': 'downloads/%(extractor)s-%(id)s-%(title)s.%(ext)s',
+    'extractaudio': True,
+    'audioformat': 'mp3',
     'restrictfilenames': True,
     'noplaylist': True,
     'nocheckcertificate': True,
@@ -23,12 +25,12 @@ ytdlopts = {
     'logtostderr': False,
     'quiet': True,
     'no_warnings': True,
-    'default_search': 'auto',
+    'default_search': 'ytsearch',
     'source_address': '0.0.0.0'  # ipv6 addresses cause issues sometimes
 }
 
 ffmpegopts = {
-    'before_options': '-nostdin -reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
+    'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
     'options': '-vn'
 }
 
@@ -76,7 +78,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
         
         vid_info = '**Added** \n' + data["title"] + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + data["id"]
         embed=discord.Embed(title='Playing', description=vid_info, color=MAIN_COLOR)
-        await ctx.send(embed=embed, delete_after=15)
+        await ctx.send(embed=embed)
 
         if download:
             source = ytdl.prepare_filename(data)
@@ -264,8 +266,6 @@ class Music(commands.Cog):
                 await channel.connect()
             except asyncio.TimeoutError:
                 raise VoiceConnectionError(f'Connecting to channel: <{channel}> timed out.')
-
-        await ctx.send(f'Connected to: **{channel}**', delete_after=20)
 
     @commands.command(name='play', aliases=['sing', 'p'])
     async def play_(self, ctx, *, search: str):
