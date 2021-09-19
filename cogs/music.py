@@ -1,6 +1,5 @@
 import discord
 from discord.ext import commands
-
 import asyncio
 import itertools
 import sys
@@ -73,11 +72,10 @@ class YTDLSource(discord.PCMVolumeTransformer):
         if 'entries' in data:
             # take first item from a playlist
             data = data['entries'][0]
-
-        #await ctx.send(f'```ini\n[Added {data["title"]} to the Queue.]\n```', delete_after=15)
         
-        vid_info = '**Added** \n' + data["title"] + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + data["id"]
-        embed=discord.Embed(title='Playing', description=vid_info, color=MAIN_COLOR)
+        vid_info = '**URL**:\nhttps://www.youtube.com/watch?v=' + data["id"]
+        embed=discord.Embed(title='Added: *' +  data["title"] + '*', description=vid_info, color=MAIN_COLOR)
+        embed.set_image(url= data["thumbnail"])
         await ctx.send(embed=embed)
 
         if download:
@@ -156,9 +154,9 @@ class MusicPlayer(commands.Cog):
             self._guild.voice_client.play(source, after=lambda _: self.bot.loop.call_soon_threadsafe(self.next.set))
             
             #data = await loop.run_in_executor(None, to_run)
-            vid_info = '**Namme:** \n' + str({source.title}) + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + str({source.id})
-            embed=discord.Embed(title='Added', description=vid_info, color=MAIN_COLOR)
-            embed.set_image(url=str({source.thumbnail}))
+            vid_info = f'**Name:** \n *{source.title}* \n\n **URL**:\n{source.web_url} \n\n **Requested by**:\n{source.requester}'
+            embed=discord.Embed(title='Playing', description=vid_info, color=MAIN_COLOR)
+            #embed.set_image(url=str({source.thumbnail}))
             
             self.np = await self._channel.send(embed=embed)
             
@@ -323,7 +321,6 @@ class Music(commands.Cog):
     async def skip_(self, ctx):
         """Skip the song."""
         vc = ctx.voice_client
-        player = self.get_player(ctx)
 
         if not vc or not vc.is_connected():
             return await ctx.send('I am not currently playing anything!', delete_after=20)
@@ -333,7 +330,7 @@ class Music(commands.Cog):
         elif not vc.is_playing():
             return
 
-        await player.stop()
+        vc.stop()
         await ctx.send(f'**`{ctx.author}`**: Skipped the song!')
 
     @commands.command(name='queue', aliases=['q', 'playlist'])
@@ -351,8 +348,8 @@ class Music(commands.Cog):
         # Grab up to 5 entries from the queue...
         upcoming = list(itertools.islice(player.queue._queue, 0, 5))
 
-        fmt = '\n'.join(f'**`{_["title"]}`**' for _ in upcoming)
-        embed = discord.Embed(title=f'Upcoming - Next {len(upcoming)}', description=fmt)
+        fmt = '\n'.join(f'➡️ **`{_["title"]}`**' for _ in upcoming)
+        embed = discord.Embed(title=f'Upcoming - {len(upcoming)} songs', description=fmt, color=MAIN_COLOR)
 
         await ctx.send(embed=embed)
 
