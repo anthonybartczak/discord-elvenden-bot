@@ -14,7 +14,7 @@ ERROR_COLOR = 0xff0000
 SUCCESS_COLOR = 0x16bd00
 
 ytdlopts = {
-    'format': 'bestaudio/best',
+    'format': 'bestaudio',
     'outtmpl': 'downloads/%(extractor)s-%(id)s-%(title)s.%(ext)s',
     'restrictfilenames': True,
     'noplaylist': True,
@@ -28,7 +28,7 @@ ytdlopts = {
 }
 
 ffmpegopts = {
-    'before_options': '-nostdin',
+    'before_options': '-nostdin -reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5',
     'options': '-vn'
 }
 
@@ -365,12 +365,6 @@ class Music(commands.Cog):
         player = self.get_player(ctx)
         if not player.current:
             return await ctx.send('I am not currently playing anything!')
-
-        try:
-            # Remove our previous now_playing message.
-            await player.np.delete()
-        except discord.HTTPException:
-            pass
         
         vid_info = '**Now playing:** \n' + {vc.source.title} + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + {vc.source.id}
         embed=discord.Embed(title='Playing', description=vid_info, color=MAIN_COLOR)
