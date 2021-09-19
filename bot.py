@@ -20,7 +20,7 @@ SUCCESS_COLOR = 0x16bd00
 BOT_TOKEN = environ.get('BOT_TOKEN')
 
 # Footer text (version + update date) for every single command.
-FOOTER_TEXT = 'Elvie v0.85 - WFRP 4ED\nOstatnia aktualizacja: 8/30/2021'
+FOOTER_TEXT = 'Elvie v0.90 - WFRP 4ED\nOstatnia aktualizacja: 9/19/2021'
 
 
 # Discord intents declarations -> can be modified at https://discord.com/developers/
@@ -68,12 +68,29 @@ async def help(ctx):
         '**.ability <nazwa>**\nWyświetl opis umiejętności `nazwa`. Nazwa musi zostać podana z uwzględnieniem polskich znaków oraz bez użycia nawiasów. Przykładowo:\n`.ability rzemiosło` albo `.ability mocna głowa`\n\nPodziękowania dla Kazyleusz#2024.\n\n'\
         '**.miscast <w*>**\nWylosuj mniejszą lub większą (parametr `w`) manifestację. Przykładowo:\n`.miscast` albo `.miscast w`\n\n'\
         '**.corruption <p*>**\nWylosuj spaczenie fizyczne lub zepsucie psychiczne (parametr `p`). Przykładowo:\n`.corruption` albo `.corruption p`\n\n'\
+        '**.music** \nWyświetl instrukcję dotyczącą odtwarzania muzyki z portalu YouTube\n\n'\
         '**.fortune**\nWylosuj 4 karty, wybierz jedną i sprawdź czy `Ranald` wysłucha Twej modlitwy.\n\n'\
         '**.clear <wartość>**\nWyczyść `wartość` wiadomości. Może się przydać w trzymaniu porządku na kanale z rzutami. Użycie polecenia wymaga uprawnień administratora.\n\n'\
         '**.contact <wiadomość>**\nWyślij `wiadomość` bezpośrednio do autora bota. Wszelkie wykryte błędy, zażalenia i pytania są mile widziane.\n\n'\
         '**.invite**\nWygeneruj `URL`, dzięki któremu będziesz mógł zaprosić Elviego na własny serwer.\n\n'\
     
     embed=discord.Embed(title='Krótka instrukcja bota Elvie', description=description, color=MAIN_COLOR)
+    embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
+    await ctx.send(embed=embed)
+    
+@client.command()
+async def music(ctx):
+    description = \
+        'Poniżej znajdziesz listę obecnie dostępnych poleceń związanych z odtwarzaniem muzyki. W (nawiasach) podane są alternatywne nazwy polecenia:\n\n'\
+        '**.play (p, sing) <URL/fraza>**\nOdtwórz utwór z platformy YouTube. Możesz wpisać URL lub wyszukać daną frazę. Przykładowo:\n`.play https://www.youtube.com/watch?v=tjJYxCxzVe4` albo `.play the city must survive`\n\n'\
+        '**.pause**\nZapauzuj myzukę bez czyszczenia kolejki. Bot pozostanie na kanale.\n\n'\
+        '**.stop**\nZatrzymaj muzykę i wyczyść kolejkę. Bot odłączy się z kanału.\n\n'\
+        '**.skip**\nPomiń aktualny utwór. Może nastąpić mała przerwa między utworami.\n\n'\
+        '**.volume (vol) <w>**\nZmień głośność odtwarzanego utworu na `w` procent. Przykładowo:\n`.volume 20` albo `.volume 80`\n\n'\
+        '**.now_playing (np, current, currentsong, playing)**\nWyświetl informacje o aktualnie odtwarzanym utworze.\n\n'\
+        '**.queue (q, playlist)**\nWyświetl zakolejkowane utwory. Kolejka nie uwzględnia aktualnie odtwarzanego utworu.\n\n'\
+    
+    embed=discord.Embed(title='Krótka instrukcja muzycznego modułu bota Elvie', description=description, color=MAIN_COLOR)
     embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
     
     await ctx.send(embed=embed)
@@ -293,77 +310,6 @@ async def contact(ctx, *, message):
     await user.send(content)
     await ctx.send(embed=embed)
 
-# @client.command()
-# async def play(ctx, url: str):
-#     channel = ctx.message.author.voice.channel
-#     await ctx.channel.purge(limit=1)
-#     voice = get(client.voice_clients, guild=ctx.guild)
-#     if voice and voice.is_connected():
-#         await voice.move_to(channel)
-#     else:
-#         voice = await channel.connect()
-
-#     voice = get(client.voice_clients, guild=ctx.guild)
-
-#     if not voice.is_playing():
-#         YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
-#         with YoutubeDL(YDL_OPTIONS) as ydl:
-#             info = ydl.extract_info(url, download=False)
-#         URL = info['url']
-#         FFMPEG_OPTIONS = {
-#             'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
-#         voice.play(FFmpegPCMAudio(URL, **FFMPEG_OPTIONS))
-#         voice.is_playing()
-#         vid_name = info.get('title', None)
-#         vid_id = info.get('id', None)
-#         vid_thumbnail = info.get('thumbnail', None)
-#         vid_info = '**Current track name:** \n' + vid_name + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + vid_id
-#         embed=discord.Embed(title='Playing', description=vid_info, color=MAIN_COLOR)
-#         embed.set_image(url=vid_thumbnail)
-#         await ctx.send(embed=embed)
-#         while True:
-#             await asyncio.sleep(25)
-
-#             if voice.is_playing() == False:
-#                 await voice.disconnect()
-#                 break
-#     else:
-#         await ctx.send("Bot is already playing")
-#         return
-    
-
-# @client.command(pass_context=True)
-# async def queue(ctx, url):
-#     server = ctx.message.guild
-#     voice_client = get(client.voice_clients, guild=ctx.guild)
-#     player = await voice_client
-
-
-# @client.command()
-# async def resume(ctx):
-#     voice = get(client.voice_clients, guild=ctx.guild)
-
-#     if not voice.is_playing():
-#         voice.resume()
-#         await ctx.send('Bot is resuming')
-
-
-# @client.command()
-# async def pause(ctx):
-#     voice = get(client.voice_clients, guild=ctx.guild)
-
-#     if voice.is_playing():
-#         voice.pause()
-#         await ctx.send('Bot has been paused')
-
-
-# @client.command()
-# async def stop(ctx):
-#     voice = get(client.voice_clients, guild=ctx.guild)
-
-#     if voice.is_playing():
-#         voice.stop()
-#         await ctx.send('Stopping...')
 
 client.add_cog(Music(client))
 client.run(BOT_TOKEN)
