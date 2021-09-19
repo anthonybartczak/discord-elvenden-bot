@@ -155,8 +155,9 @@ class MusicPlayer(commands.Cog):
 
             self._guild.voice_client.play(source, after=lambda _: self.bot.loop.call_soon_threadsafe(self.next.set))
             
-            vid_info = '**Added** \n' + str({source.title}) + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + str({source.id})
-            embed=discord.Embed(title='Playing', description=vid_info, color=MAIN_COLOR)
+            #data = await loop.run_in_executor(None, to_run)
+            vid_info = '**Namme:** \n' + str({source.title}) + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + str({source.id})
+            embed=discord.Embed(title='Added', description=vid_info, color=MAIN_COLOR)
             embed.set_image(url=str({source.thumbnail}))
             
             self.np = await self._channel.send(embed=embed)
@@ -322,6 +323,7 @@ class Music(commands.Cog):
     async def skip_(self, ctx):
         """Skip the song."""
         vc = ctx.voice_client
+        #player = self.get_player(ctx)
 
         if not vc or not vc.is_connected():
             return await ctx.send('I am not currently playing anything!', delete_after=20)
@@ -331,7 +333,7 @@ class Music(commands.Cog):
         elif not vc.is_playing():
             return
 
-        vc.stop()
+        await vc.stop()
         await ctx.send(f'**`{ctx.author}`**: Skipped the song!')
 
     @commands.command(name='queue', aliases=['q', 'playlist'])
