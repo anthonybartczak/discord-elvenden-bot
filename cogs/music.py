@@ -153,9 +153,9 @@ class MusicPlayer(commands.Cog):
 
             self._guild.voice_client.play(source, after=lambda _: self.bot.loop.call_soon_threadsafe(self.next.set))
             
-            vid_info = '**Added** \n' + {source.title} + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + {source.id}
+            vid_info = '**Added** \n' + str({source.title}) + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + str({source.id})
             embed=discord.Embed(title='Playing', description=vid_info, color=MAIN_COLOR)
-            embed.set_image(url={source.thumbnail})
+            embed.set_image(url=str({source.thumbnail}))
             
             self.np = await self._channel.send(embed=embed)
             
@@ -366,9 +366,9 @@ class Music(commands.Cog):
         if not player.current:
             return await ctx.send('I am not currently playing anything!')
         
-        vid_info = '**Now playing:** \n' + {vc.source.title} + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + {vc.source.id}
+        vid_info = '**Now playing:** \n' + str({vc.source.title}) + '\n\n' + '**URL**:\nhttps://www.youtube.com/watch?v=' + str({vc.source.id})
         embed=discord.Embed(title='Playing', description=vid_info, color=MAIN_COLOR)
-        embed.set_image(url={vc.source.thumbnail})
+        embed.set_image(url=str({vc.source.thumbnail}))
 
         player.np = await ctx.send(embed=embed)
 
