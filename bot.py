@@ -81,14 +81,14 @@ async def help(ctx):
 @client.command()
 async def music(ctx):
     description = \
-        'Poniżej znajdziesz listę obecnie dostępnych poleceń związanych z odtwarzaniem muzyki. W (nawiasach) podane są alternatywne nazwy polecenia:\n\n'\
-        '**.play (p, sing) <URL/fraza>**\nOdtwórz utwór z platformy YouTube. Możesz wpisać URL lub wyszukać daną frazę. Przykładowo:\n`.play https://www.youtube.com/watch?v=tjJYxCxzVe4` albo `.play the city must survive`\n\n'\
-        '**.pause**\nZapauzuj myzukę bez czyszczenia kolejki. Bot pozostanie na kanale.\n\n'\
-        '**.stop**\nZatrzymaj muzykę i wyczyść kolejkę. Bot odłączy się z kanału.\n\n'\
+        'Poniżej znajdziesz listę obecnie dostępnych poleceń związanych z odtwarzaniem muzyki:\n\n'\
+        '**.play (p, sing) <URL/fraza>**\nOdtwórz utwór z platformy YouTube. Możesz wpisać URL lub wyszukać daną frazę. Przykładowo:\n`.play <adres_url>` albo `.play the city must survive`\n\nAlternatywne nazwy:\n`.p` `.sing`\n\n'\
+        '**.pause**\nZapauzuj utwór bez czyszczenia kolejki. Bot pozostanie na kanale.\n\n'\
+        '**.stop**\nZatrzymaj utwór i wyczyść kolejkę. Bot odłączy się z kanału.\n\n'\
         '**.skip**\nPomiń aktualny utwór. Może nastąpić mała przerwa między utworami.\n\n'\
-        '**.volume (vol) <w>**\nZmień głośność odtwarzanego utworu na `w` procent. Przykładowo:\n`.volume 20` albo `.volume 80`\n\n'\
-        '**.now_playing (np, current, currentsong, playing)**\nWyświetl informacje o aktualnie odtwarzanym utworze.\n\n'\
-        '**.queue (q, playlist)**\nWyświetl zakolejkowane utwory. Kolejka nie uwzględnia aktualnie odtwarzanego utworu.\n\n'\
+        '**.volume <w>**\nZmień głośność odtwarzanego utworu na `w` procent. Przykładowo:\n`.volume 20` albo `.volume 80`\n\nAlternatywne nazwy:\n`.vol`\n\n'\
+        '**.now_playing**\nWyświetl informacje o aktualnie odtwarzanym utworze.\n\nAlternatywne nazwy:\n`.np` `.current` `.currentsong` `.playing`\n\n'\
+        '**.queue**\nWyświetl zakolejkowane utwory. Kolejka nie uwzględnia aktualnie odtwarzanego utworu.\n\nAlternatywne nazwy:\n`.q`, `.playlist`\n\n'\
     
     embed=discord.Embed(title='Krótka instrukcja muzycznego modułu bota Elvie', description=description, color=MAIN_COLOR)
     embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
