@@ -323,7 +323,7 @@ class Music(commands.Cog):
     async def skip_(self, ctx):
         """Skip the song."""
         vc = ctx.voice_client
-        #player = self.get_player(ctx)
+        player = self.get_player(ctx)
 
         if not vc or not vc.is_connected():
             return await ctx.send('I am not currently playing anything!', delete_after=20)
@@ -333,7 +333,7 @@ class Music(commands.Cog):
         elif not vc.is_playing():
             return
 
-        await vc.stop()
+        await player.stop()
         await ctx.send(f'**`{ctx.author}`**: Skipped the song!')
 
     @commands.command(name='queue', aliases=['q', 'playlist'])
