@@ -82,7 +82,7 @@ async def help(ctx):
 async def music(ctx):
     description = \
         'Poniżej znajdziesz listę obecnie dostępnych poleceń związanych z odtwarzaniem muzyki:\n\n'\
-        '**.play (p, sing) <URL/fraza>**\nOdtwórz utwór z platformy YouTube. Możesz wpisać URL lub wyszukać daną frazę. Przykładowo:\n`.play <adres_url>` albo `.play the city must survive`\n\nAlternatywne nazwy:\n`.p` `.sing`\n\n'\
+        '**.play <URL/fraza>**\nOdtwórz utwór z platformy YouTube. Możesz wpisać URL lub wyszukać daną frazę. Przykładowo:\n`.play <adres_url>` albo `.play the city must survive`\n\nAlternatywne nazwy:\n`.p` `.sing`\n\n'\
         '**.pause**\nZapauzuj utwór bez czyszczenia kolejki. Bot pozostanie na kanale.\n\n'\
         '**.stop**\nZatrzymaj utwór i wyczyść kolejkę. Bot odłączy się z kanału.\n\n'\
         '**.skip**\nPomiń aktualny utwór. Może nastąpić mała przerwa między utworami.\n\n'\
