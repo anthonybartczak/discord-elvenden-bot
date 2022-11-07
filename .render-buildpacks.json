@@ -1,7 +1,0 @@
-{
-  "buildpacks": [
-    "https://github.com/kitcast/buildpack-ffmpeg.git",
-    "https://github.com/xrisk/heroku-opus.git",
-    "heroku/python"
-  ]
-}

@@ -26,6 +26,7 @@ FOOTER_TEXT = 'Elvie v0.90 - WFRP 4ED\nOstatnia aktualizacja: 9/19/2021'
 intents = discord.Intents.default()
 intents.members = True
 client = commands.Bot(intents=intents, command_prefix='.')
+client.remove_command('help')
 
 
 @client.event
@@ -309,7 +310,6 @@ async def contact(ctx, *, message):
     await ctx.send(embed=embed)
 
 if __name__ == "__main__":
-    client.remove_command('help')
     client.add_cog(Music(client))
     client.run(BOT_TOKEN)
 
