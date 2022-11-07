@@ -22,12 +22,10 @@ BOT_TOKEN = environ.get('BOT_TOKEN')
 # Footer text (version + update date) for every single command.
 FOOTER_TEXT = 'Elvie v0.90 - WFRP 4ED\nOstatnia aktualizacja: 9/19/2021'
 
-
 # Discord intents declarations -> can be modified at https://discord.com/developers/
 intents = discord.Intents.default()
 intents.members = True
 client = commands.Bot(intents=intents, command_prefix='.')
-client.remove_command('help')
 
 
 @client.event
@@ -297,7 +295,7 @@ async def ability(ctx, *, ability_name: str):
     else:
         embed=discord.Embed(title='⚠️Nie znalazłem umiejętności⚠️', description='Pamiętaj o składni podanej w poleceniu **.help**.', color=ERROR_COLOR)
         embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
-        
+
     await ctx.send(embed=embed)
 
 @client.command()
@@ -310,6 +308,8 @@ async def contact(ctx, *, message):
     await user.send(content)
     await ctx.send(embed=embed)
 
+if __name__ == "__main__":
+    client.remove_command('help')
+    client.add_cog(Music(client))
+    client.run(BOT_TOKEN)
 
-client.add_cog(Music(client))
-client.run(BOT_TOKEN)
