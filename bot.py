@@ -227,7 +227,7 @@ async def fruits_autocomplete(
         return [
             discord.app_commands.Choice(name=talent, value=talent)
             for talent in talent_list if current.lower() in talent.lower()
-        ]
+        ][:25]
 
 @tree.command(name = "ability", description = "Wyświetl opis umiejętności.")
 async def ability(ctx, *, ability_name: str):
