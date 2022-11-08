@@ -1,7 +1,0 @@
-TOWN_AMBIENCE = 'https://www.youtube.com/playlist?list=PLKoXID3QHC79Kbn93aCMYeqGzXJDuNHUd'
-TAVERN_AMBIENCE = 'https://www.youtube.com/playlist?list=PLKoXID3QHC7_9qEiNM1sRttF1PGAjz6K7'
-DAY_AMBIENCE = 'https://www.youtube.com/playlist?list=PLKoXID3QHC78c8U6FbgoZIW1DdC1Gq4I8'
-DARK_AMBIENCE = 'https://www.youtube.com/playlist?list=PLKoXID3QHC78GZay_NzWtIyxzjR3QZLqv'
-FIGHT_AMBIENCE = 'https://www.youtube.com/playlist?list=PLKoXID3QHC7-XUZCLA-tR4pzLFTvgHcSZ'
-NIGHT_AMBIENCE = 'https://www.youtube.com/playlist?list=PLKoXID3QHC7_LlRQSYPsrYyyGW-_vzmNb'
-EMOTIONAL_AMBIENCE = 'https://www.youtube.com/playlist?list=PLKoXID3QHC781NniolgUltzIysNW0RfX5'
