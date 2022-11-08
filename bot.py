@@ -2,14 +2,16 @@ import asyncio
 import discord
 from discord.ext import commands
 from discord.utils import get
-from discord import FFmpegPCMAudio
 from json import load
 import random
 import content.tables as tab
 import content.pictures as pic
-from os import environ
-from youtube_dl import YoutubeDL
+from os import getenv
+from dotenv import load_dotenv
 from cogs.music import Music
+
+
+load_dotenv()
 
 # Main colors used for the bot's embeded messages formating.
 MAIN_COLOR = 0x8b54cf
@@ -17,13 +19,13 @@ ERROR_COLOR = 0xff0000
 SUCCESS_COLOR = 0x16bd00
 
 # Bot token imported from Heroku env.
-BOT_TOKEN = environ.get('BOT_TOKEN')
+BOT_TOKEN = getenv('BOT_TOKEN')
 
 # Footer text (version + update date) for every single command.
 FOOTER_TEXT = 'Elvie v0.90 - WFRP 4ED\nOstatnia aktualizacja: 9/19/2021'
 
 # Discord intents declarations -> can be modified at https://discord.com/developers/
-intents = discord.Intents.default()
+intents = discord.Intents.all()
 intents.members = True
 client = commands.Bot(intents=intents, command_prefix='.')
 client.remove_command('help')
