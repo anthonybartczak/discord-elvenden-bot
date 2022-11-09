@@ -21,7 +21,7 @@ SUCCESS_COLOR = 0x16bd00
 BOT_TOKEN = getenv('BOT_TOKEN')
 
 # Footer text (version + update date) for every single command.
-FOOTER_TEXT = 'Elvie v1.00 - WFRP 4ED\nOstatnia aktualizacja: 9/11/2022'
+FOOTER_TEXT = 'Elvie v1.01 - WFRP 4ED\nOstatnia aktualizacja: 9/11/2022'
 
 with open('content/talents.json', encoding="utf8") as jf:
     talents_json = load(jf)
@@ -62,14 +62,14 @@ async def servers(ctx):
 async def help(ctx):
     description = \
         'Poniżej znajdziesz listę obecnie dostępnych poleceń. Argumenty oznaczone `*` są opcjonalne:\n\n'\
-        '**rozwinięcie <cecha/umiejętność> <start> <cel> <t*>**\nOblicz koszt rozwoju od `start` do `cel` cechy lub umiejętności. Argument `talent` równy `tak` obniża koszt rozwinięcia o 5 PD.\n\n'\
+        '**rozwinięcie <cecha/umiejętność> <start> <cel> <talent*>**\nOblicz koszt rozwoju od `start` do `cel` cechy lub umiejętności. Argument `talent` równy `tak` obniża koszt rozwinięcia o 5 PD.\n\n'\
         '**tabela_rozwinięć <wersja>**\nWyświetl tabelę *Koszt rozwoju cech i umiejętności w PD*. Argument `mobilna` wyświetla tabelę w wersji na urządzenia mobilne.\n\n'\
         '**talent <nazwa>**\nWyświetl opis talentu `nazwa`.\n\n'\
         '**umiejętność <nazwa>**\nWyświetl opis umiejętności `nazwa`.\n\nPodziękowania dla Kazyleusz#2024.\n\n'\
-        '**manifestacja <mniejsza/większa>**\nWylosuj mniejszą lub większą (parametr `w`) manifestację.\n\n'\
-        '**spaczenie <fizyczne/psychiczne>**\nWylosuj spaczenie fizyczne lub zepsucie psychiczne (parametr `p`).\n\n'\
+        '**manifestacja <mniejsza/większa>**\nWylosuj mniejszą lub większą manifestację.\n\n'\
+        '**spaczenie <fizyczne/psychiczne>**\nWylosuj spaczenie fizyczne lub zepsucie psychiczne.\n\n'\
         '**fortuna**\nWylosuj 4 karty, wybierz jedną i sprawdź czy `Ranald` wysłucha Twej modlitwy.\n\n'\
-        '**zaproszenie**\nWygeneruj `URL`, dzięki któremu będziesz mógł zaprosić Elviego na własny serwer.\n\n'\
+        '**zaproszenie**\nWygeneruj link, dzięki któremu będziesz mógł zaprosić Elviego na własny serwer.\n\n'\
 
     embed=discord.Embed(title='Krótka instrukcja bota Elvie', description=description, color=MAIN_COLOR)
     embed.set_footer(text = FOOTER_TEXT, icon_url = pic.BOT_AVATAR)
