@@ -47,7 +47,8 @@ tree = discord.app_commands.CommandTree(client)
 @client.event
 async def on_ready():
     await client.change_presence(status=discord.Status.online, activity=discord.Game(name=".help"))
-    await tree.sync(guild=discord.Object(id=TEST_GUILD_ID))
+    #await tree.sync(guild=discord.Object(id=TEST_GUILD_ID))
+    await tree.sync()
 
 @tree.command(name = "serwery", description = "Sprawdź do ilu serwerów jest połączony Elvie.")
 async def servers(ctx):
@@ -313,7 +314,7 @@ async def abilities_autocomplete(
             for ability in abilities_list if current.lower() in ability.lower()
         ][:25]
 
-tree.copy_global_to(guild=discord.Object(id=TEST_GUILD_ID))
+#tree.copy_global_to(guild=discord.Object(id=TEST_GUILD_ID))
 
 if __name__ == '__main__':
     client.run(BOT_TOKEN)
