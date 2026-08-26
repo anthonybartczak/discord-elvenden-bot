@@ -1,0 +1,154 @@
+{
+  "blessings": {
+    "bitwy": {
+      "name": "Błogosławieństwo Bitwy",
+      "range": "6m",
+      "targets": 1,
+      "duration": "6 rund",
+      "effect": "+10 do Walki Wręcz"
+    },
+    "charyzmy": {
+      "name": "Błogosławieństwo Charyzmy",
+      "range": "6m",
+      "targets": 1,
+      "duration": "6 rund",
+      "effect": "+10 do Ogłady"
+    },
+    "dzikosci": {
+      "name": "Błogosławieństwo Dzikości",
+      "range": "6m",
+      "targets": 1,
+      "duration": "6 rund",
+      "effect": "Przy zadaniu Rany Krytycznej rzuć dwa razy i wybierz lepszy rezultat"
+    },
+    "finezji": {
+      "name": "Błogosławieństwo Finezji",
+      "range": "6m",
+      "targets": 1,
+      "duration": "6 rund",
+      "effect": "+10 do Zręczności"
+    },
+    "lowow": {
+      "name": "Błogosławieństwo Łowów",
+      "range": "6m",
+      "targets": 1,
+      "duration": "6 rund",
+      "effect": "+10 do Umiejętności Strzeleckich"
+    },
+    "madrosci": {
+      "name": "Błogosławieństwo Mądrości",
+      "range": "6m",
+      "targets": 1,
+      "duration": "6 rund",
+      "effect": "+10 do Inteligencji"
+    },
+    "nieustepliwosci": {
+      "name": "Błogosławieństwo Nieustępliwości",
+      "range": "6m",
+      "targets": 1,
+      "duration": "natychmiast",
+      "effect": "Cel może usunąć 1 Stan"
+    },
+    "ochrony": {
+      "name": "Błogosławieństwo Ochrony",
+      "range": "6m",
+      "targets": 1,
+      "duration": "6 rund",
+      "effect": "Przeciwnicy muszą zdać Przeciętny (+20) Test Siły Woli, by zaatakować obrany cel; w razie porażki muszą wybrać inny cel ataku albo inną Akcję"
+    },
+    "oddechu": {
+      "name": "Błogosławieństwo Oddechu",
+      "range": "6m",
+      "targets": 1,
+      "duration": "6 rund",
+      "effect": "Cel nie musi oddychać i ignoruje konsekwencje duszenia się"
+    },
+    "odwagi": {
+      "name": "Błogosławieństwo Odwagi",
+      "range": "6m",
+      "targets": 1,
+      "duration": "6 rund",
+      "effect": "+10 do Siły Woli"
+    },
+    "prawosci": {
+      "name": "Błogosławieństwo Prawości",
+      "range": "6m",
+      "targets": 1,
+      "duration": "6 rund",
+      "effect": "Broń celu uznawana jest za Magiczną"
+    },
+    "sily": {
+      "name": "Błogosławieństwo Siły",
+      "range": "6m",
+      "targets": 1,
+      "duration": "6 rund",
+      "effect": "+10 do Siły"
+    },
+    "sprytu": {
+      "name": "Błogosławieństwo Sprytu",
+      "range": "6m",
+      "targets": 1,
+      "duration": "6 rund",
+      "effect": "+10 do Inicjatywy"
+    },
+    "sumienia": {
+      "name": "Błogosławieństwo Sumienia",
+      "range": "6m",
+      "targets": 1,
+      "duration": "6 rund",
+      "effect": "Cel musi zdać Przeciętny (+20) Test Siły Woli, by wykonać Akcję łamiącą przykazanie bóstwa; w razie porażki nie podejmuje żadnej Akcji"
+    },
+    "szczescia": {
+      "name": "Błogosławieństwo Szczęścia",
+      "range": "6m",
+      "targets": 1,
+      "duration": "6 rund",
+      "effect": "Następny nieudany Test celu może zostać powtórzony; wiążący jest nowy wynik"
+    },
+    "uzdrawiania": {
+      "name": "Błogosławieństwo Uzdrawiania",
+      "range": "dotyk",
+      "targets": 1,
+      "duration": "natychmiast",
+      "effect": "1 Rana celu zostaje uleczona"
+    },
+    "wdzieku": {
+      "name": "Błogosławieństwo Wdzięku",
+      "range": "6m",
+      "targets": 1,
+      "duration": "6 rund",
+      "effect": "+10 do Zwinności"
+    },
+    "wytrzymalosci": {
+      "name": "Błogosławieństwo Wytrzymałości",
+      "range": "6m",
+      "targets": 1,
+      "duration": "6 rund",
+      "effect": "+10 do Wytrzymałości"
+    },
+    "zdrowia": {
+      "name": "Błogosławieństwo Zdrowia",
+      "range": "dotyk",
+      "targets": 1,
+      "duration": "natychmiast",
+      "effect": "Skraca Czas jednej choroby o 1 dzień; raz na daną chorobę u danej osoby"
+    }
+  },
+  "cults": {
+    "manann": ["bitwy", "dzikosci", "nieustepliwosci", "oddechu", "odwagi", "wytrzymalosci"],
+    "morr": ["madrosci", "nieustepliwosci", "oddechu", "odwagi", "prawosci", "szczescia"],
+    "myrmidia": ["bitwy", "ochrony", "odwagi", "prawosci", "sumienia", "szczescia"],
+    "ranald": ["charyzmy", "finezji", "ochrony", "sprytu", "sumienia", "szczescia"],
+    "rhya": ["ochrony", "oddechu", "sumienia", "uzdrawiania", "wdzieku", "zdrowia"],
+    "shallya": ["nieustepliwosci", "ochrony", "oddechu", "sumienia", "uzdrawiania", "zdrowia"],
+    "sigmar": ["bitwy", "ochrony", "odwagi", "prawosci", "sily", "wytrzymalosci"],
+    "taal": ["bitwy", "dzikosci", "lowow", "oddechu", "sumienia", "wytrzymalosci"],
+    "ulryk": ["bitwy", "dzikosci", "nieustepliwosci", "odwagi", "sily", "wytrzymalosci"],
+    "verena": ["madrosci", "odwagi", "prawosci", "sprytu", "sumienia", "szczescia"]
+  },
+  "sl_bonuses": [
+    { "per_sl": 2, "option": "range", "value": "+6 metrów" },
+    { "per_sl": 2, "option": "targets", "value": "+1" },
+    { "per_sl": 2, "option": "duration", "value": "+6 rund (niedostępne dla efektów natychmiastowych)" }
+  ]
+}

@@ -7,6 +7,7 @@
 - **`/rozwinięcie`**: Precyzyjne kalkulowanie kosztu w Punktach Doświadczenia (PD) dla cech i umiejętności (z uwzględnieniem zniżek z talentów).
 - **`/talent`**: Wyszukiwarka talentów z autouzupełnianiem (zwraca opis, testy i maksymalny poziom).
 - **`/umiejętność`**: Wyszukiwarka umiejętności z autouzupełnianiem (typ, cecha bazowa, powiązane talenty).
+- **`/błogosławieństwo`**: Przegląd błogosławieństw dla 10 bóstw WFRP 4e lub szczegółowe statystyki z autouzupełnianiem (zasięg, cel, czas trwania, efekt, bonusy za PS).
 - **`/manifestacja`**: Losowanie mniejszych i większych manifestacji z oficjalnych tabel magii WFRP 4e.
 - **`/spaczenie`**: Losowanie spaczenia fizycznego lub zepsucia psychicznego.
 - **`/fortuna`**: Interaktywny mini-system losowania kart z użyciem przycisków Discord UI.
@@ -68,6 +69,7 @@
 ```text
 ├── content/
 │   ├── abilities.json    # Baza umiejętności WFRP 4e
+│   ├── blessings.json    # Baza błogosławieństw i kultów bóstw WFRP 4e
 │   ├── talents.json      # Baza talentów WFRP 4e
 │   ├── pictures.py       # Adresy zasobów graficznych (karty, awatary, tabele)
 │   └── tables.py         # Tabele manifestacji, spaczeń i rozwinięć

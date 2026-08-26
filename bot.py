@@ -49,6 +49,33 @@ with open(CONTENT_DIR / "talents.json", "r", encoding="utf-8") as jf:
 with open(CONTENT_DIR / "abilities.json", "r", encoding="utf-8") as jf:
     ABILITIES_DATA: dict[str, dict] = json.load(jf)
 
+with open(CONTENT_DIR / "blessings.json", "r", encoding="utf-8") as jf:
+    BLESSINGS_DATA: dict[str, dict] = json.load(jf)
+
+BLESSINGS_MAP: dict[str, dict] = BLESSINGS_DATA.get("blessings", {})
+CULTS_MAP: dict[str, list[str]] = BLESSINGS_DATA.get("cults", {})
+SL_BONUSES: list[dict] = BLESSINGS_DATA.get("sl_bonuses", [])
+
+CULT_DISPLAY_NAMES: dict[str, str] = {
+    "manann": "Manann (Bóg Mórz i Oceanów)",
+    "morr": "Morr (Bóg Śmierci i Snów)",
+    "myrmidia": "Myrmidia (Bogini Sztuki Wojennej i Strategii)",
+    "ranald": "Ranald (Bóg Złodziei i Hazardu)",
+    "rhya": "Rhya (Bogini Ziemi, Płodności i Wiosny)",
+    "shallya": "Shallya (Bogini Miłosierdzia i Uzdrawiania)",
+    "sigmar": "Sigmar (Patron Imperium)",
+    "taal": "Taal (Bóg Natury, Dziczy i Zwierząt)",
+    "ulryk": "Ulryk (Bóg Wojny, Zimy i Wilków)",
+    "verena": "Verena (Bogini Mądrości i Sprawiedliwości)",
+}
+
+SL_BONUSES_TEXT = (
+    "Każde **+2 PS** pozwala wybrać jeden z bonusów:\n"
+    "• **Zasięg:** +6 metrów\n"
+    "• **Liczba celów:** +1\n"
+    "• **Czas trwania:** +6 rund *(niedostępne dla efektów natychmiastowych)*"
+)
+
 
 POLISH_CHAR_MAP = str.maketrans({
     "ł": "l", "Ł": "l",
@@ -63,6 +90,65 @@ def normalize_text(text: str) -> str:
     nfkd = unicodedata.normalize("NFKD", translated)
     stripped = "".join(c for c in nfkd if not unicodedata.combining(c))
     return stripped.replace("_", " ").replace("-", " ").strip()
+
+
+# ---------------------------
+# PRECOMPUTED LOOKUPS & ALIASES
+# ---------------------------
+
+CULT_CLEAN_NAMES: dict[str, str] = {
+    k: CULT_DISPLAY_NAMES.get(k, k).split(" (")[0] for k in CULTS_MAP
+}
+
+BLESSING_SHORT_NAMES: dict[str, str] = {
+    k: v.get("name", k).replace("Błogosławieństwo ", "").strip() for k, v in BLESSINGS_MAP.items()
+}
+
+PRECOMPUTED_CULTS = [
+    {
+        "key": k,
+        "display_name": disp,
+        "clean_name": CULT_CLEAN_NAMES.get(k, k),
+        "norm_key": normalize_text(k),
+        "norm_display": normalize_text(disp),
+        "norm_clean": normalize_text(CULT_CLEAN_NAMES.get(k, k)),
+    }
+    for k in CULTS_MAP
+    for disp in [CULT_DISPLAY_NAMES.get(k, k)]
+]
+
+PRECOMPUTED_BLESSINGS = [
+    {
+        "key": k,
+        "name": raw_name,
+        "short_name": BLESSING_SHORT_NAMES.get(k, raw_name),
+        "norm_key": normalize_text(k),
+        "norm_name": normalize_text(raw_name),
+        "norm_short": normalize_text(BLESSING_SHORT_NAMES.get(k, raw_name)),
+    }
+    for k, v in BLESSINGS_MAP.items()
+    for raw_name in [v.get("name", k)]
+]
+
+PRECOMPUTED_TALENTS = [
+    {
+        "key": k,
+        "name": data.get("name", k),
+        "norm_key": normalize_text(k),
+        "norm_name": normalize_text(data.get("name", k)),
+    }
+    for k, data in TALENTS_DATA.items()
+]
+
+PRECOMPUTED_ABILITIES = [
+    {
+        "key": k,
+        "name": data.get("name", k),
+        "norm_key": normalize_text(k),
+        "norm_name": normalize_text(data.get("name", k)),
+    }
+    for k, data in ABILITIES_DATA.items()
+]
 
 
 def create_embed(
@@ -234,6 +320,8 @@ async def help_command(interaction: discord.Interaction):
         "Wyświetl opis, testy oraz maksymalną wartość danego talentu.\n\n"
         "**`/umiejętność <nazwa>`**\n"
         "Wyświetl opis, cechę bazową oraz powiązane talenty danej umiejętności.\n\n"
+        "**`/błogosławieństwo <bóstwo*> <nazwa*>`**\n"
+        "Wyświetl błogosławieństwa dla wybranego bóstwa lub szczegółowe statystyki konkretnego błogosławieństwa.\n\n"
         "**`/manifestacja <mniejsza/większa>`**\n"
         "Wylosuj mniejszą lub większą manifestację magii z tabeli WFRP 4e.\n\n"
         "**`/spaczenie <fizyczne/psychiczne>`**\n"
@@ -456,9 +544,9 @@ async def talent(interaction: discord.Interaction, talent_name: str):
     # If exact key not found, fallback to normalized search
     if not talent_data:
         normalized_target = normalize_text(talent_name)
-        for k, v in TALENTS_DATA.items():
-            if normalize_text(k) == normalized_target or normalize_text(v.get("name", "")) == normalized_target:
-                talent_data = v
+        for t in PRECOMPUTED_TALENTS:
+            if t["norm_key"] == normalized_target or t["norm_name"] == normalized_target:
+                talent_data = TALENTS_DATA.get(t["key"])
                 break
 
     if talent_data:
@@ -492,13 +580,9 @@ async def talent_autocomplete(
     query = normalize_text(current)
     choices: List[app_commands.Choice[str]] = []
 
-    for key, data in TALENTS_DATA.items():
-        name = data.get("name", key)
-        normalized_name = normalize_text(name)
-        normalized_key = normalize_text(key)
-
-        if not query or query in normalized_name or query in normalized_key:
-            choices.append(app_commands.Choice(name=name[:100], value=key))
+    for t in PRECOMPUTED_TALENTS:
+        if not query or query in t["norm_name"] or query in t["norm_key"]:
+            choices.append(app_commands.Choice(name=t["name"][:100], value=t["key"]))
             if len(choices) >= 25:
                 break
 
@@ -513,9 +597,9 @@ async def ability(interaction: discord.Interaction, ability_name: str):
 
     if not ability_data:
         normalized_target = normalize_text(ability_name)
-        for k, v in ABILITIES_DATA.items():
-            if normalize_text(k) == normalized_target or normalize_text(v.get("name", "")) == normalized_target:
-                ability_data = v
+        for a in PRECOMPUTED_ABILITIES:
+            if a["norm_key"] == normalized_target or a["norm_name"] == normalized_target:
+                ability_data = ABILITIES_DATA.get(a["key"])
                 break
 
     if ability_data:
@@ -550,17 +634,234 @@ async def ability_autocomplete(
     query = normalize_text(current)
     choices: List[app_commands.Choice[str]] = []
 
-    for key, data in ABILITIES_DATA.items():
-        name = data.get("name", key)
-        normalized_name = normalize_text(name)
-        normalized_key = normalize_text(key)
-
-        if not query or query in normalized_name or query in normalized_key:
-            choices.append(app_commands.Choice(name=name[:100], value=key))
+    for a in PRECOMPUTED_ABILITIES:
+        if not query or query in a["norm_name"] or query in a["norm_key"]:
+            choices.append(app_commands.Choice(name=a["name"][:100], value=a["key"]))
             if len(choices) >= 25:
                 break
 
     return choices
+
+
+def find_cult(query: str) -> Optional[str]:
+    """Find cult key matching query (by key, full display name, deity name, or stem)."""
+    q = normalize_text(query)
+    for c in PRECOMPUTED_CULTS:
+        if q == c["norm_key"] or q == c["norm_display"] or q == c["norm_clean"]:
+            return c["key"]
+    for c in PRECOMPUTED_CULTS:
+        if (q in c["norm_key"] or q in c["norm_display"] or q in c["norm_clean"] or
+            c["norm_key"] in q or c["norm_clean"] in q):
+            return c["key"]
+    for c in PRECOMPUTED_CULTS:
+        if len(q) >= 3 and (q[:4] == c["norm_key"][:4] or c["norm_key"][:4] in q):
+            return c["key"]
+    return None
+
+
+def find_blessing(query: str) -> Optional[str]:
+    """Find blessing key matching query (by key, full name, short name, or stem)."""
+    q = normalize_text(query)
+    q_clean = q.replace("blogoslawienstwo", "").strip() or q
+    for b in PRECOMPUTED_BLESSINGS:
+        if (q == b["norm_key"] or 
+            q == b["norm_name"] or 
+            q == b["norm_short"] or
+            q_clean == b["norm_key"] or
+            q_clean == b["norm_short"]):
+            return b["key"]
+    for b in PRECOMPUTED_BLESSINGS:
+        if (q in b["norm_key"] or q in b["norm_name"] or q in b["norm_short"] or
+            q_clean in b["norm_key"] or q_clean in b["norm_short"] or
+            b["norm_key"] in q or b["norm_short"] in q or b["norm_key"] in q_clean or b["norm_short"] in q_clean):
+            return b["key"]
+    for b in PRECOMPUTED_BLESSINGS:
+        if len(q_clean) >= 4 and (q_clean[:4] == b["norm_key"][:4] or q_clean[:4] == b["norm_short"][:4]):
+            return b["key"]
+    return None
+
+
+async def handle_blessing_command(
+    interaction: discord.Interaction,
+    god_name: Optional[str] = None,
+    blessing_name: Optional[str] = None
+):
+    """Core logic to display deity blessings, specific blessing info, or an overview."""
+    matched_cult = find_cult(god_name) if god_name else None
+    matched_blessing = find_blessing(blessing_name) if blessing_name else None
+
+    # Error handling when user provided arguments that weren't found
+    if god_name and not matched_cult:
+        embed = create_embed(
+            title="⚠️ Nie znaleziono bóstwa",
+            description=(
+                f"Nie znaleziono bóstwa o nazwie `{god_name}`.\n\n"
+                "**Dostępne bóstwa:** Manann, Morr, Myrmidia, Ranald, Rhya, Shallya, Sigmar, Taal, Ulryk, Verena.\n"
+                "Użyj autouzupełniania podczas wpisywania, aby wybrać właściwą nazwę."
+            ),
+            color=ERROR_COLOR,
+            client_user=client.user
+        )
+        await interaction.response.send_message(embed=embed, ephemeral=True)
+        return
+
+    if blessing_name and not matched_blessing:
+        embed = create_embed(
+            title="⚠️ Nie znaleziono błogosławieństwa",
+            description=(
+                f"Nie znaleziono błogosławieństwa o nazwie `{blessing_name}`.\n"
+                "Użyj autouzupełniania podczas wpisywania, aby wybrać właściwą nazwę."
+            ),
+            color=ERROR_COLOR,
+            client_user=client.user
+        )
+        await interaction.response.send_message(embed=embed, ephemeral=True)
+        return
+
+    # Specific blessing requested (or both god and blessing specified)
+    if matched_blessing:
+        b_data = BLESSINGS_MAP[matched_blessing]
+        b_name = b_data.get("name", matched_blessing.capitalize())
+        cult_list = [
+            CULT_CLEAN_NAMES.get(c, c.capitalize())
+            for c, bl in CULTS_MAP.items()
+            if matched_blessing in bl
+        ]
+        cults_str = ", ".join(cult_list) if cult_list else "Brak powiązanych kultów"
+
+        desc = "Szczegółowe parametry błogosławieństwa (WFRP 4e):"
+        if matched_cult:
+            cult_name = CULT_CLEAN_NAMES.get(matched_cult, matched_cult)
+            if matched_blessing in CULTS_MAP.get(matched_cult, []):
+                desc = f"Błogosławieństwo dostępne w kulcie bóstwa **{cult_name}**:"
+            else:
+                desc = f"⚠️ Bóstwo **{cult_name}** nie posiada tego błogosławieństwa (jest ono dostępne dla: **{cults_str}**)."
+
+        embed = create_embed(
+            title=f"✨ {b_name}",
+            description=desc,
+            color=MAIN_COLOR,
+            client_user=client.user
+        )
+        embed.add_field(name="Zasięg", value=str(b_data.get("range", "–")), inline=True)
+        embed.add_field(name="Liczba celów", value=str(b_data.get("targets", "–")), inline=True)
+        embed.add_field(name="Czas trwania", value=str(b_data.get("duration", "–")), inline=True)
+        embed.add_field(name="Efekt", value=b_data.get("effect", "–"), inline=False)
+        embed.add_field(name="Dostępne dla bóstw", value=cults_str, inline=False)
+        embed.add_field(name="💫 Bonusy za Poziomy Sukcesu (+2 PS)", value=SL_BONUSES_TEXT, inline=False)
+        await interaction.response.send_message(embed=embed)
+        return
+
+    # Deity blessings requested
+    if matched_cult:
+        cult_display = CULT_DISPLAY_NAMES.get(matched_cult, matched_cult.capitalize())
+        cult_name = CULT_CLEAN_NAMES.get(matched_cult, matched_cult.capitalize())
+        blessings_list = CULTS_MAP[matched_cult]
+
+        embed = create_embed(
+            title=f"✨ Błogosławieństwa: {cult_display}",
+            description=f"Bóstwo **{cult_name}** obdarza swoich wyznawców 6 następującymi błogosławieństwami:\n",
+            color=MAIN_COLOR,
+            client_user=client.user
+        )
+        for b_key in blessings_list:
+            b_data = BLESSINGS_MAP.get(b_key, {})
+            b_name = b_data.get("name", b_key.capitalize())
+            b_range = b_data.get("range", "–")
+            b_targets = b_data.get("targets", "–")
+            b_dur = b_data.get("duration", "–")
+            b_eff = b_data.get("effect", "–")
+            embed.add_field(
+                name=f"🌟 {b_name}",
+                value=(
+                    f"**Zasięg:** {b_range} | **Cel:** {b_targets} | **Czas:** {b_dur}\n"
+                    f"**Efekt:** {b_eff}"
+                ),
+                inline=False
+            )
+        embed.add_field(
+            name="💫 Bonusy za Poziomy Sukcesu (+2 PS)",
+            value=SL_BONUSES_TEXT,
+            inline=False
+        )
+        await interaction.response.send_message(embed=embed)
+        return
+
+    # Overview of all cults
+    embed = create_embed(
+        title="✨ Błogosławieństwa bóstw (WFRP 4e)",
+        description=(
+            "W WFRP 4e kapłani oraz wtajemniczeni mogą prosić swoich bogów o zesłanie błogosławieństw "
+            "(**Test Modlitwy** oparty na **Charyzmie**).\n\n"
+            "Aby sprawdzić szczegóły, wpisz:\n"
+            "• `/błogosławieństwo bóstwo:<nazwa>` — lista 6 błogosławieństw danego bóstwa\n"
+            "• `/błogosławieństwo nazwa:<nazwa>` — statystyki i opis konkretnego błogosławieństwa\n\n"
+            "**Bóstwa i przypisane im błogosławieństwa:**"
+        ),
+        color=MAIN_COLOR,
+        client_user=client.user
+    )
+    overview_lines = []
+    for k, blist in CULTS_MAP.items():
+        cult_name = CULT_CLEAN_NAMES.get(k, k)
+        names = [BLESSING_SHORT_NAMES.get(b, b) for b in blist]
+        overview_lines.append(f"• **{cult_name}**: {', '.join(names)}")
+
+    embed.add_field(name="Kulty", value="\n".join(overview_lines), inline=False)
+    embed.add_field(name="💫 Bonusy za Poziomy Sukcesu (+2 PS)", value=SL_BONUSES_TEXT, inline=False)
+    await interaction.response.send_message(embed=embed)
+
+
+async def cult_autocomplete(
+    interaction: discord.Interaction,
+    current: str
+) -> List[app_commands.Choice[str]]:
+    query = normalize_text(current)
+    choices: List[app_commands.Choice[str]] = []
+
+    for c in PRECOMPUTED_CULTS:
+        if not query or query in c["norm_key"] or query in c["norm_display"] or query in c["norm_clean"]:
+            choices.append(app_commands.Choice(name=c["display_name"][:100], value=c["key"]))
+            if len(choices) >= 25:
+                break
+
+    return choices
+
+
+async def blessing_autocomplete(
+    interaction: discord.Interaction,
+    current: str
+) -> List[app_commands.Choice[str]]:
+    query = normalize_text(current)
+    q_clean = query.replace("blogoslawienstwo", "").strip() or query
+    choices: List[app_commands.Choice[str]] = []
+
+    for b in PRECOMPUTED_BLESSINGS:
+        if (not query or 
+            query in b["norm_name"] or 
+            query in b["norm_key"] or 
+            query in b["norm_short"] or
+            q_clean in b["norm_name"] or
+            q_clean in b["norm_short"]):
+            choices.append(app_commands.Choice(name=b["name"][:100], value=b["key"]))
+            if len(choices) >= 25:
+                break
+
+    return choices
+
+
+@tree.command(name="błogosławieństwo", description="Wyświetl błogosławieństwa bóstw lub szczegóły wybranego błogosławieństwa.")
+@app_commands.describe(
+    bóstwo="Wybierz bóstwo/kult (np. Sigmar, Ulryk, Shallya)",
+    nazwa="Nazwa konkretnego błogosławieństwa (np. Bitwy, Uzdrawiania)"
+)
+@app_commands.autocomplete(bóstwo=cult_autocomplete, nazwa=blessing_autocomplete)
+async def blessing(
+    interaction: discord.Interaction,
+    bóstwo: Optional[str] = None,
+    nazwa: Optional[str] = None
+):
+    await handle_blessing_command(interaction, god_name=bóstwo, blessing_name=nazwa)
 
 
 # ---------------------------
