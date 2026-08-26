@@ -47,7 +47,7 @@
    ```
 
 4. **Skonfiguruj zmienne środowiskowe:**
-   Skopiuj `.env.example` do `.env` i wklej swój token bota:
+   Stwórz `.env` i wklej swój token bota:
    ```bash
    cp .env.example .env
    ```
