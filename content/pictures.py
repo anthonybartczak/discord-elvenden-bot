@@ -1,11 +1,3 @@
-# ZUS REACTION PICTURES
-ZUS_PIC_SHOCKED = 'https://media.discordapp.net/attachments/872435741270097940/872439835967758356/shocked.png'
-ZUS_PIC_NOT_AMUSED = 'https://media.discordapp.net/attachments/872435741270097940/872439831848972318/not_amused.jpg'
-ZUS_PIC_BORED = 'https://media.discordapp.net/attachments/872435741270097940/872439830284488774/bored.PNG'
-ZUS_PIC_HUNGRY = 'https://media.discordapp.net/attachments/872435741270097940/872439830531964968/hungry.PNG'
-ZUS_PIC_THIRSTY = 'https://media.discordapp.net/attachments/872435741270097940/872439832331321404/thirsty.PNG'
-ZUS_PIC_FANCY = 'https://cdn.discordapp.com/attachments/872435741270097940/872439831224000542/fancy.PNG'
-
 # CARD CHOICE PICTURES
 CARD_REVERSE = 'https://media.discordapp.net/attachments/872435741270097940/875103202385752064/rewersy.png'
 WIN_CARDS = ['https://media.discordapp.net/attachments/872435741270097940/875245513153347664/ranald_na_1.png','https://media.discordapp.net/attachments/872435741270097940/875245514998808586/ranald_na_2.png','https://media.discordapp.net/attachments/872435741270097940/875245516458451004/ranald_na_3.png','https://media.discordapp.net/attachments/872435741270097940/875245518178091099/ranald_na_4.png']
