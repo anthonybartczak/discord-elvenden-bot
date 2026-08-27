@@ -792,7 +792,7 @@ async def handle_blessing_command(
         title="✨ Błogosławieństwa bóstw (WFRP 4e)",
         description=(
             "W WFRP 4e kapłani oraz wtajemniczeni mogą prosić swoich bogów o zesłanie błogosławieństw "
-            "(**Test Modlitwy** oparty na **Charyzmie**).\n\n"
+            "(**Test Modlitwy** oparty na **Ogładzie**).\n\n"
             "Aby sprawdzić szczegóły, wpisz:\n"
             "• `/błogosławieństwo bóstwo:<nazwa>` — lista 6 błogosławieństw danego bóstwa\n"
             "• `/błogosławieństwo nazwa:<nazwa>` — statystyki i opis konkretnego błogosławieństwa\n\n"
