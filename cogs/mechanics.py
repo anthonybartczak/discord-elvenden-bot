@@ -1,4 +1,5 @@
 import random
+from typing import Optional
 
 import discord
 from discord import app_commands
@@ -7,9 +8,14 @@ from discord.ext import commands
 from config import ERROR_COLOR, MAIN_COLOR
 import content.pictures as pic
 import content.tables as tab
-from utils.formatters import build_advance_embed, build_table_roll_embed
+from utils.formatters import (
+    build_advance_embed,
+    build_physiognomy_embed,
+    build_table_roll_embed,
+    generate_physiognomy,
+)
 from utils.helpers import create_embed
-from utils.views import FortuneCardView
+from utils.views import FortuneCardView, PhysiognomyRerollView
 
 
 class MechanicsCog(commands.Cog):
@@ -193,6 +199,40 @@ class MechanicsCog(commands.Cog):
             )
         await interaction.response.send_message(embed=embed)
 
+    @app_commands.command(
+        name="fizjonomia",
+        description="Wygeneruj losową fizjonomię postaci (wiek, wzrost, kolor oczu i włosów) na podstawie rasy."
+    )
+    @app_commands.describe(
+        rasa="Wybierz rasę postaci (lub pozostaw puste, aby wylosować rasę)"
+    )
+    @app_commands.choices(
+        rasa=[
+            app_commands.Choice(name="👤 Człowiek", value="czlowiek"),
+            app_commands.Choice(name="🧔 Krasnolud", value="krasnolud"),
+            app_commands.Choice(name="🧑‍🌾 Niziołek", value="niziolek"),
+            app_commands.Choice(name="🧝‍♂️ Wysoki elf", value="wysoki_elf"),
+            app_commands.Choice(name="🧝‍♀️ Leśny elf", value="lesny_elf"),
+            app_commands.Choice(name="🎲 Losowa rasa", value="losowa"),
+        ]
+    )
+    async def physiognomy(
+        self,
+        interaction: discord.Interaction,
+        rasa: Optional[str] = "losowa"
+    ):
+        chosen_race = rasa or "losowa"
+        physio_data = generate_physiognomy(chosen_race)
+        embed = build_physiognomy_embed(physio_data, client_user=self.bot.user)
+        view = PhysiognomyRerollView(
+            author=interaction.user,
+            race_key=physio_data["race_key"],
+            client_user=self.bot.user
+        )
+        await interaction.response.send_message(embed=embed, view=view)
+        view.message = await interaction.original_response()
+
 
 async def setup(bot: commands.Bot) -> None:
     await bot.add_cog(MechanicsCog(bot))
+

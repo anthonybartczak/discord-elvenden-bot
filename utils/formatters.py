@@ -1,3 +1,4 @@
+import random
 import re
 from typing import Dict, List, Optional, Tuple
 
@@ -5,19 +6,20 @@ import discord
 
 from config import FOOTER_TEXT, MAIN_COLOR
 import content.pictures as pic
+import content.tables as tab
 
 # Map of characteristic codes to full Polish names and representative emojis
 ATTRIBUTE_MAP: Dict[str, str] = {
-    "WW": "🎯 WW (Walka Wręcz)",
-    "US": "🏹 US (Umiejętności Strzeleckie)",
-    "S": "💪 S (Siła)",
-    "Wt": "🛡️ Wt (Wytrzymałość)",
-    "I": "⚡ I (Inicjatywa)",
-    "Zw": "🏃 Zw (Zwinność)",
-    "Zr": "🖐️ Zr (Zręczność)",
-    "Int": "🧠 Int (Inteligencja)",
-    "SW": "🔮 SW (Siła Woli)",
-    "Ogd": "👑 Ogd (Ogłada)",
+    "WW": "WW (Walka Wręcz)",
+    "US": "US (Umiejętności Strzeleckie)",
+    "S": "S (Siła)",
+    "Wt": "Wt (Wytrzymałość)",
+    "I": "I (Inicjatywa)",
+    "Zw": "Zw (Zwinność)",
+    "Zr": "Zr (Zręczność)",
+    "Int": "Int (Inteligencja)",
+    "SW": "SW (Siła Woli)",
+    "Ogd": "Ogd (Ogłada)",
 }
 
 # Key WFRP terms to highlight in descriptions for fast scanning during gameplay
@@ -72,52 +74,82 @@ def format_wfrp_description(text: str) -> str:
     # Insert clean section breaks before key subsections if present in text
     cleaned = re.sub(
         r"(?<=[.!?])\s*(Przykładowe Specjalizacje:\s*)",
-        r"\n\n🎯 **Przykładowe Specjalizacje:**\n",
+        r"\n\n**Przykładowe Specjalizacje:**\n",
         cleaned,
         flags=re.IGNORECASE
     )
     cleaned = re.sub(
         r"(?<=[.!?])\s*(Specjalizacje:\s*)",
-        r"\n\n🎯 **Specjalizacje:**\n",
+        r"\n\n**Specjalizacje:**\n",
         cleaned,
         flags=re.IGNORECASE
     )
     cleaned = re.sub(
-        r"(?<=[.!?])\s*(W walce\b)",
-        r"\n\n⚔️ **W walce:** W walce",
+        r"(?<=[.!?])\s*(?:W walce:\s*|W walce\s+)",
+        r"\n\n**W walce:** ",
         cleaned,
         flags=re.IGNORECASE
     )
     cleaned = re.sub(
         r"(?<=[.!?])\s*(Więcej informacji na ten temat znajduje się\b)",
-        r"\n\n📖 Więcej informacji na ten temat znajduje się",
+        r"\n\n*Więcej informacji na ten temat znajduje się*",
         cleaned,
         flags=re.IGNORECASE
     )
     cleaned = re.sub(
         r"(?<=[.!?])\s*(Uwaga:\s*)",
-        r"\n\n⚠️ **Uwaga:** ",
+        r"\n\n**Uwaga:** ",
+        cleaned,
+        flags=re.IGNORECASE
+    )
+    cleaned = re.sub(
+        r"(?<=[.!?])\s*(Na przykład:\s*|Dla przykładu:\s*)",
+        r"\n\n*Na przykład:* ",
         cleaned,
         flags=re.IGNORECASE
     )
 
-    # If text is still a single monolithic block without paragraphs (and longer than 400 chars),
-    # break naturally after sentences that end with a period.
-    if "\n\n" not in cleaned and len(cleaned) > 400:
-        sentences = re.split(r"(?<=[.!?])\s+", cleaned)
+    # Split into blocks by existing paragraph breaks
+    raw_blocks = [b.strip() for b in cleaned.split("\n\n") if b.strip()]
+    formatted_blocks = []
+
+    for block in raw_blocks:
+        # If block is a list or subsection header, preserve as is
+        if block.startswith("•") or block.startswith("**") or "\n•" in block:
+            formatted_blocks.append(block)
+            continue
+
+        sentences = re.split(r"(?<=[.!?])\s+", block)
+        if len(sentences) <= 1:
+            formatted_blocks.append(block)
+            continue
+
         paragraphs = []
-        current_p = []
+        curr_p = []
         curr_len = 0
+
         for s in sentences:
-            current_p.append(s)
-            curr_len += len(s)
-            if curr_len >= 280:
-                paragraphs.append(" ".join(current_p))
-                current_p = []
-                curr_len = 0
-        if current_p:
-            paragraphs.append(" ".join(current_p))
-        cleaned = "\n\n".join(paragraphs)
+            # Trigger paragraph break when a sentence starts with mechanical / conditional rules or references
+            is_rule_trigger = bool(re.match(
+                r"^(Kiedy|Jeśli|Jeżeli|Gdy|Za każdym razem|W przypadku|Dodatkowo|Ponadto|Możesz|Musisz|MG|Testy|Każde|Każda|Każdy|Więcej|Wykorzystanie|Rozdział)\b",
+                s,
+                re.IGNORECASE
+            ))
+
+            if curr_p and (curr_len >= 120 or is_rule_trigger or len(curr_p) >= 2):
+                paragraphs.append(" ".join(curr_p))
+                curr_p = [s]
+                curr_len = len(s)
+            else:
+                curr_p.append(s)
+                curr_len += len(s)
+
+        if curr_p:
+            paragraphs.append(" ".join(curr_p))
+
+        formatted_blocks.append("\n\n".join(paragraphs))
+
+    cleaned = "\n\n".join(formatted_blocks)
 
     # Highlight rules keywords (avoid double bolding)
     for kw in WFRP_RULES_KEYWORDS:
@@ -136,10 +168,14 @@ def parse_talents_list(talents_raw: str) -> List[str]:
 
 
 def format_talents_display(talents: List[str]) -> str:
-    """Formats a list of talents into Discord backtick chips."""
+    """Formats a list of talents into cleanly spaced Discord backtick chips."""
     if not talents:
-        return "Brak powiązanych talentów"
-    return " • ".join(f"`{t}`" for t in talents)
+        return "*Brak powiązanych talentów*"
+    if len(talents) <= 4:
+        return " • ".join(f"`{t}`" for t in talents)
+    # For longer lists, group neatly across lines (4 per line)
+    chunks = [talents[i:i + 4] for i in range(0, len(talents), 4)]
+    return "\n".join(" • ".join(f"`{t}`" for t in chunk) for chunk in chunks)
 
 
 def build_talent_embed(
@@ -190,8 +226,7 @@ def build_ability_embed(
     )
 
     # Top inline fields for instantaneous stat check
-    type_emoji = "🟢" if "podstawowa" in ab_type.lower() else "🔵"
-    embed.add_field(name="🏷️ Typ", value=f"{type_emoji} **{ab_type}**", inline=True)
+    embed.add_field(name="🏷️ Typ", value=f"**{ab_type}**", inline=True)
     embed.add_field(name="🎲 Cecha", value=f"**{formatted_attr}**", inline=True)
 
     raw_talents = ability_data.get("talents", "")
@@ -237,7 +272,7 @@ def build_blessing_embed(
 
     effect_text = format_wfrp_description(blessing_data.get("effect", "–"))
     embed.add_field(name="📜 Efekt", value=effect_text, inline=False)
-    embed.add_field(name="🏛️ Dostępne dla kultów", value=cults_str or "Brak", inline=False)
+    embed.add_field(name="🏛️ Dostępne dla kultów", value=f"**{cults_str}**" if cults_str else "Brak", inline=False)
     if sl_bonuses_text:
         embed.add_field(name="💫 Bonusy za Poziomy Sukcesu (+2 PS)", value=sl_bonuses_text, inline=False)
 
@@ -275,7 +310,7 @@ def build_cult_blessings_embed(
         embed.add_field(
             name=f"🌟 {b_name}",
             value=(
-                f"🎯 **Zasięg:** `{b_range}` • 👥 **Cel:** `{b_targets}` • ⏳ **Czas:** `{b_dur}`\n"
+                f"🎯 **Zasięg:** `{b_range}`  •  👥 **Cel:** `{b_targets}`  •  ⏳ **Czas:** `{b_dur}`\n\n"
                 f"> {b_eff}"
             ),
             inline=False
@@ -350,3 +385,194 @@ def build_table_roll_embed(
     icon_url = client_user.display_avatar.url if client_user else pic.BOT_AVATAR
     embed.set_footer(text=FOOTER_TEXT, icon_url=icon_url)
     return embed
+
+
+def format_years(n: int) -> str:
+    """Format year count according to Polish grammatical rules."""
+    if n == 1:
+        return "1 rok"
+    last_two = n % 100
+    if 11 <= last_two <= 14:
+        return f"{n} lat"
+    last_digit = n % 10
+    if last_digit in (2, 3, 4):
+        return f"{n} lata"
+    return f"{n} lat"
+
+
+def generate_physiognomy(race_key: str = "losowa") -> dict:
+    """
+    Generate character physiognomy (age, height, eye color, hair color)
+    based on WFRP 4e core rulebook tables.
+    """
+    valid_races = list(tab.PHYSIOGNOMY_RACES.keys())
+    if race_key == "losowa" or race_key not in tab.PHYSIOGNOMY_RACES:
+        race_key = random.choice(valid_races)
+
+    race_info = tab.PHYSIOGNOMY_RACES[race_key]
+    race_name = race_info["name"]
+    emoji = race_info.get("emoji", "👤")
+
+    # 1. Wiek (Age)
+    age_base = race_info["age_base"]
+    num_dice, die_faces = race_info["age_dice"]
+    age_rolls = [random.randint(1, die_faces) for _ in range(num_dice)]
+    age_dice_sum = sum(age_rolls)
+    total_age = age_base + age_dice_sum
+
+    if num_dice == 1:
+        age_roll_str = f"`{age_base} + 1k10 [{age_rolls[0]}]`"
+    elif num_dice <= 5:
+        rolls_joined = " + ".join(str(r) for r in age_rolls)
+        age_roll_str = f"`{age_base} + {num_dice}k{die_faces} [{rolls_joined} = {age_dice_sum}]`"
+    else:
+        age_roll_str = f"`{age_base} + {num_dice}k{die_faces} [suma: {age_dice_sum}]`"
+
+    # 2. Wzrost (Height)
+    height_base = race_info["height_base"]
+    h_num_dice, h_die_faces = race_info["height_dice"]
+    is_exploding = race_info.get("height_exploding", False)
+
+    height_rolls_details = []
+    height_dice_sum = 0
+
+    if is_exploding:
+        # Human exploding 10s rule
+        for _ in range(h_num_dice):
+            r = random.randint(1, 10)
+            if r == 10:
+                bonus_rolls = []
+                curr_bonus = random.randint(1, 10)
+                bonus_rolls.append(curr_bonus)
+                while curr_bonus == 10:
+                    curr_bonus = random.randint(1, 10)
+                    bonus_rolls.append(curr_bonus)
+                sub_sum = 10 + sum(bonus_rolls)
+                height_dice_sum += sub_sum
+                bonus_str = ", ".join(f"+{b}" for b in bonus_rolls)
+                height_rolls_details.append(f"10 ({bonus_str})")
+            else:
+                height_dice_sum += r
+                height_rolls_details.append(str(r))
+
+        rolls_joined = ", ".join(height_rolls_details)
+        total_height = height_base + height_dice_sum
+        height_roll_str = f"`{height_base} + 4k10 [{rolls_joined} = {height_dice_sum}]`"
+    else:
+        h_rolls = [random.randint(1, h_die_faces) for _ in range(h_num_dice)]
+        height_dice_sum = sum(h_rolls)
+        total_height = height_base + height_dice_sum
+        rolls_joined = " + ".join(str(r) for r in h_rolls)
+        height_roll_str = f"`{height_base} + {h_num_dice}k{h_die_faces} [{rolls_joined} = {height_dice_sum}]`"
+
+    # 3. Kolor Oczu (Eye Color)
+    if race_key in ("wysoki_elf", "lesny_elf"):
+        # Elves roll twice on 2k10
+        r1_a, r1_b = random.randint(1, 10), random.randint(1, 10)
+        r2_a, r2_b = random.randint(1, 10), random.randint(1, 10)
+        roll1 = r1_a + r1_b
+        roll2 = r2_a + r2_b
+        color1 = tab.lookup_eye_color(race_key, roll1)
+        color2 = tab.lookup_eye_color(race_key, roll2)
+
+        if color1 == color2:
+            eye_color_display = f"**{color1}** *(jednolite)*"
+            eye_roll_str = f"2x 2k10: `[{r1_a}+{r1_b} = {roll1}]`, `[{r2_a}+{r2_b} = {roll2}]`"
+        else:
+            eye_color_display = f"**{color1}** oraz **{color2}** *(dwubarwne / nakrapiane)*"
+            eye_roll_str = f"2x 2k10: `[{r1_a}+{r1_b} = {roll1} ➔ {color1}]`, `[{r2_a}+{r2_b} = {roll2} ➔ {color2}]`"
+    else:
+        r_a, r_b = random.randint(1, 10), random.randint(1, 10)
+        roll = r_a + r_b
+        color = tab.lookup_eye_color(race_key, roll)
+        eye_color_display = f"**{color}**"
+        eye_roll_str = f"2k10: `[{r_a}+{r_b} = {roll}]`"
+
+    # 4. Kolor Włosów (Hair Color)
+    hr_a, hr_b = random.randint(1, 10), random.randint(1, 10)
+    hair_roll = hr_a + hr_b
+    hair_color = tab.lookup_hair_color(race_key, hair_roll)
+    hair_color_display = f"**{hair_color}**"
+    hair_roll_str = f"2k10: `[{hr_a}+{hr_b} = {hair_roll}]`"
+
+    return {
+        "race_key": race_key,
+        "race_name": race_name,
+        "emoji": emoji,
+        "age": total_age,
+        "age_roll_str": age_roll_str,
+        "age_avg": race_info["age_avg"],
+        "height": total_height,
+        "height_roll_str": height_roll_str,
+        "height_avg": race_info["height_avg"],
+        "eye_color_display": eye_color_display,
+        "eye_roll_str": eye_roll_str,
+        "hair_color_display": hair_color_display,
+        "hair_roll_str": hair_roll_str,
+        "notes": race_info["notes"],
+    }
+
+
+def build_physiognomy_embed(
+    physio_data: dict,
+    client_user: Optional[discord.ClientUser] = None
+) -> discord.Embed:
+    """Builds a clean, elegant RPG character physiognomy sheet embed."""
+    race_name = physio_data["race_name"]
+    emoji = physio_data.get("emoji", "👤")
+
+    embed = discord.Embed(
+        title=f"{emoji} Fizjonomia postaci: {race_name}",
+        description="Wylosowane cechy wyglądu i budowy ciała na podstawie oficjalnych tabel **WFRP 4e**:",
+        color=MAIN_COLOR
+    )
+
+    embed.add_field(
+        name="⏳ Wiek",
+        value=(
+            f"**{format_years(physio_data['age'])}**\n"
+            f"Rzut: {physio_data['age_roll_str']}\n"
+            f"*Średnia życia: {physio_data['age_avg']}*"
+        ),
+        inline=False
+    )
+
+    embed.add_field(
+        name="📏 Wzrost",
+        value=(
+            f"**{physio_data['height']} cm**\n"
+            f"Rzut: {physio_data['height_roll_str']}\n"
+            f"*Średni wzrost: {physio_data['height_avg']}*"
+        ),
+        inline=False
+    )
+
+    embed.add_field(
+        name="👁️ Kolor oczu",
+        value=(
+            f"{physio_data['eye_color_display']}\n"
+            f"Rzut: {physio_data['eye_roll_str']}"
+        ),
+        inline=False
+    )
+
+    embed.add_field(
+        name="💇 Kolor włosów",
+        value=(
+            f"{physio_data['hair_color_display']}\n"
+            f"Rzut: {physio_data['hair_roll_str']}"
+        ),
+        inline=False
+    )
+
+    if physio_data.get("notes"):
+        embed.add_field(
+            name="📜 Cechy szczególne i wygląd",
+            value=f"*{physio_data['notes']}*",
+            inline=False
+        )
+
+    icon_url = client_user.display_avatar.url if client_user else pic.BOT_AVATAR
+    embed.set_footer(text=FOOTER_TEXT, icon_url=icon_url)
+    return embed
+

@@ -6,7 +6,12 @@ import discord
 from config import ERROR_COLOR, INVITE_URL, MAIN_COLOR, SUCCESS_COLOR
 import content.pictures as pic
 from core.data import find_talent
-from utils.formatters import build_blessing_embed, build_talent_embed
+from utils.formatters import (
+    build_blessing_embed,
+    build_physiognomy_embed,
+    build_talent_embed,
+    generate_physiognomy,
+)
 from utils.helpers import create_embed
 
 
@@ -256,6 +261,48 @@ class BlessingSelectView(discord.ui.View):
             )
 
 
+class PhysiognomyRerollView(discord.ui.View):
+    """Interactive view allowing the command author to reroll character physiognomy."""
+
+    def __init__(
+        self,
+        author: discord.User | discord.Member,
+        race_key: str,
+        client_user: Optional[discord.ClientUser] = None
+    ):
+        super().__init__(timeout=180.0)
+        self.author = author
+        self.race_key = race_key
+        self.client_user = client_user
+        self.message: Optional[discord.Message] = None
+
+    async def interaction_check(self, interaction: discord.Interaction) -> bool:
+        if interaction.user.id != self.author.id:
+            await interaction.response.send_message(
+                "Tylko autor polecenia może przelosować fizjonomię postaci!",
+                ephemeral=True
+            )
+            return False
+        return True
+
+    @discord.ui.button(label="Wylosuj ponownie", emoji="🎲", style=discord.ButtonStyle.primary)
+    async def reroll_button(self, interaction: discord.Interaction, button: discord.ui.Button):
+        physio_data = generate_physiognomy(self.race_key)
+        embed = build_physiognomy_embed(physio_data, client_user=self.client_user)
+        await interaction.response.edit_message(embed=embed, view=self)
+
+    async def on_timeout(self):
+        for item in self.children:
+            if isinstance(item, discord.ui.Button):
+                item.disabled = True
+
+        if self.message:
+            try:
+                await self.message.edit(view=self)
+            except discord.HTTPException:
+                pass
+
+
 class HelpCategoryView(discord.ui.View):
     """Interactive category selector for the /pomoc help command."""
 
@@ -266,23 +313,23 @@ class HelpCategoryView(discord.ui.View):
     def get_compendium_embed(self) -> discord.Embed:
         embed = create_embed(
             title="📚 Kompendium WFRP 4e",
-            description="Polecenia służące do szybkiego wyszukiwania informacji w trakcie rozgrywki:",
+            description="Polecenia służące do szybkiego wyszukiwania informacji w trakcie rozgrywki:\n",
             color=MAIN_COLOR,
             client_user=self.client_user
         )
         embed.add_field(
             name="⚡ `/talent <nazwa>`",
-            value="Wyświetla pełny opis, testy oraz maksymalną wartość danego talentu.",
+            value="> Wyświetla pełny opis, testy oraz maksymalną wartość danego talentu.",
             inline=False
         )
         embed.add_field(
             name="📖 `/umiejętność <nazwa>`",
-            value="Wyświetla opis, typ, cechę bazową oraz interaktywną listę powiązanych talentów.",
+            value="> Wyświetla opis, typ, cechę bazową oraz interaktywną listę powiązanych talentów.",
             inline=False
         )
         embed.add_field(
             name="✨ `/błogosławieństwo <bóstwo*> <nazwa*>`",
-            value="Lista błogosławieństw dla danego kultu lub szczegółowe statystyki wybranego błogosławieństwa.",
+            value="> Lista błogosławieństw dla danego kultu lub szczegółowe statystyki wybranego błogosławieństwa.",
             inline=False
         )
         return embed
@@ -290,33 +337,38 @@ class HelpCategoryView(discord.ui.View):
     def get_mechanics_embed(self) -> discord.Embed:
         embed = create_embed(
             title="🎲 Mechanika gry WFRP 4e",
-            description="Polecenia ułatwiające rozliczanie zasad i losowanie tabel:",
+            description="Polecenia ułatwiające rozliczanie zasad i losowanie tabel:\n",
             color=MAIN_COLOR,
             client_user=self.client_user
         )
         embed.add_field(
+            name="👤 `/fizjonomia <rasa*>`",
+            value="> Generuje cechy fizjonomii postaci (wiek, wzrost, kolor oczu i włosów) wg tabel rasowych WFRP 4e.",
+            inline=False
+        )
+        embed.add_field(
             name="📊 `/rozwinięcie <cecha/umiejętność> <start> <cel> <talent*>`",
-            value="Oblicza koszt rozwoju cechy lub umiejętności w punktach doświadczenia (PD).",
+            value="> Oblicza koszt rozwoju cechy lub umiejętności w punktach doświadczenia (PD).",
             inline=False
         )
         embed.add_field(
             name="📜 `/tabela_rozwinięć <wersja>`",
-            value="Wyświetla tabelę *Koszt rozwoju cech i umiejętności w PD* (tekstowo lub graficznie).",
+            value="> Wyświetla tabelę *Koszt rozwoju cech i umiejętności w PD* (tekstowo lub graficznie).",
             inline=False
         )
         embed.add_field(
             name="⚡ `/manifestacja <mniejsza/większa>`",
-            value="Losuje efekt mniejszej lub większej manifestacji magii z tabeli WFRP 4e (k100).",
+            value="> Losuje efekt mniejszej lub większej manifestacji magii z tabeli WFRP 4e (k100).",
             inline=False
         )
         embed.add_field(
             name="☣️ `/spaczenie <fizyczne/psychiczne>`",
-            value="Losuje spaczenie fizyczne lub zepsucie psychiczne z tabeli WFRP 4e (k100).",
+            value="> Losuje spaczenie fizyczne lub zepsucie psychiczne z tabeli WFRP 4e (k100).",
             inline=False
         )
         embed.add_field(
             name="🤞 `/fortuna`",
-            value="Interaktywny wybór karty Ranalda przy użyciu Punktu Szczęścia.",
+            value="> Interaktywny wybór karty Ranalda przy użyciu Punktu Szczęścia.",
             inline=False
         )
         return embed
@@ -324,23 +376,23 @@ class HelpCategoryView(discord.ui.View):
     def get_general_embed(self) -> discord.Embed:
         embed = create_embed(
             title="⚙️ Informacje i narzędzia",
-            description="Ogólne informacje o bocie Elvie i zarządzaniu nim:",
+            description="Ogólne informacje o bocie Elvie i zarządzaniu nim:\n",
             color=MAIN_COLOR,
             client_user=self.client_user
         )
         embed.add_field(
             name="❓ `/pomoc`",
-            value="Wyświetla to interaktywne menu pomocy.",
+            value="> Wyświetla to interaktywne menu pomocy z podziałem na kategorie.",
             inline=False
         )
         embed.add_field(
             name="🌐 `/serwery`",
-            value="Sprawdza liczbę połączonych serwerów Discord.",
+            value="> Sprawdza liczbę połączonych serwerów Discord.",
             inline=False
         )
         embed.add_field(
             name="🔗 `/zaproszenie`",
-            value="Generuje link z uprawnieniami do zaproszenia bota na Twój serwer.",
+            value="> Generuje link z uprawnieniami do zaproszenia bota na Twój serwer.",
             inline=False
         )
         return embed
@@ -349,10 +401,10 @@ class HelpCategoryView(discord.ui.View):
         embed = create_embed(
             title="📖 Instrukcja bota Elvie (WFRP 4e)",
             description=(
-                "Witaj! Elvie to asystent sesji **Warhammer Fantasy Roleplay 4. edycji**.\n"
+                "Witaj! Elvie to asystent sesji **Warhammer Fantasy Roleplay 4. edycji**.\n\n"
                 "Użyj poniższych przycisków, aby przeglądać poszczególne kategorie poleceń:\n\n"
                 "• 📚 **Kompendium** – talenty, umiejętności, błogosławieństwa\n"
-                "• 🎲 **Mechanika** – kalkulator PD, manifestacje, spaczenia, fortuna\n"
+                "• 🎲 **Mechanika** – kalkulator PD, fizjonomia, manifestacje, spaczenia, fortuna\n"
                 "• ⚙️ **Informacje** – serwery, link zaproszenia, pomoc"
             ),
             color=MAIN_COLOR,
@@ -375,3 +427,4 @@ class HelpCategoryView(discord.ui.View):
     @discord.ui.button(label="Informacje", emoji="⚙️", style=discord.ButtonStyle.secondary)
     async def btn_general(self, interaction: discord.Interaction, button: discord.ui.Button):
         await interaction.response.edit_message(embed=self.get_general_embed(), view=self)
+

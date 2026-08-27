@@ -4,6 +4,7 @@
 
 ## ✨ Funkcjonalności
 
+- **`/fizjonomia`**: Generator fizjonomii postaci (wiek, wzrost z wybuchającymi kośćmi, kolor oczu, kolor włosów) na podstawie tabel rasowych WFRP 4e wraz z przyciskiem ponownego losowania.
 - **`/rozwinięcie`**: Precyzyjne kalkulowanie kosztu w Punktach Doświadczenia (PD) dla cech i umiejętności (z uwzględnieniem zniżek z talentów).
 - **`/talent`**: Wyszukiwarka talentów z autouzupełnianiem (zwraca opis, testy i maksymalny poziom).
 - **`/umiejętność`**: Wyszukiwarka umiejętności z autouzupełnianiem (typ, cecha bazowa, powiązane talenty).
@@ -69,14 +70,14 @@
 ```text
 ├── cogs/                 # Rozszerzenia i obsługa poleceń Slash (Cogs)
 │   ├── general.py        # /pomoc, /serwery, /zaproszenie
-│   ├── mechanics.py      # /rozwinięcie, /tabela_rozwinięć, /manifestacja, /spaczenie, /fortuna
+│   ├── mechanics.py      # /fizjonomia, /rozwinięcie, /tabela_rozwinięć, /manifestacja, /spaczenie, /fortuna
 │   └── compendium.py     # /talent, /umiejętność, /błogosławieństwo (+ autouzupełnianie)
 ├── content/              # Bazy danych JSON, tabele i grafiki WFRP 4e
 │   ├── abilities.json    # Baza umiejętności WFRP 4e
 │   ├── blessings.json    # Baza błogosławieństw i kultów bóstw WFRP 4e
 │   ├── talents.json      # Baza talentów WFRP 4e
 │   ├── pictures.py       # Adresy zasobów graficznych (karty, awatary, tabele)
-│   └── tables.py         # Tabele manifestacji, spaczeń i rozwinięć
+│   └── tables.py         # Tabele manifestacji, spaczeń, rozwinięć i fizjonomii
 ├── core/                 # Inicjalizacja bota i ładowanie danych
 │   ├── bot.py            # Klasa ElvieBot i synchronizacja drzewa poleceń
 │   └── data.py           # Struktury danych i zindeksowane bazy wyszukiwania

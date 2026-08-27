@@ -215,10 +215,9 @@ class CompendiumCog(commands.Cog):
             description=(
                 "W WFRP 4e kapłani oraz wtajemniczeni mogą prosić swoich bogów o zesłanie błogosławieństw "
                 "(wymagany **Test Modlitwy** oparty na **Charyzmie**).\n\n"
-                "Aby sprawdzić szczegóły, wpisz:\n"
+                "📖 **Jak sprawdzić szczegóły:**\n"
                 "• `/błogosławieństwo bóstwo:<nazwa>` — lista 6 błogosławieństw danego bóstwa\n"
-                "• `/błogosławieństwo nazwa:<nazwa>` — statystyki i opis konkretnego błogosławieństwa\n\n"
-                "**Bóstwa i przypisane im błogosławieństwa:**"
+                "• `/błogosławieństwo nazwa:<nazwa>` — statystyki i opis konkretnego błogosławieństwa"
             ),
             color=MAIN_COLOR,
             client_user=self.bot.user
@@ -227,9 +226,9 @@ class CompendiumCog(commands.Cog):
         for k, blist in CULTS_MAP.items():
             cult_name = CULT_CLEAN_NAMES.get(k, k)
             names = [BLESSING_SHORT_NAMES.get(b, b) for b in blist]
-            overview_lines.append(f"• **{cult_name}**: {', '.join(names)}")
+            overview_lines.append(f"• **{cult_name}**:\n  `{', '.join(names)}`")
 
-        embed.add_field(name="🏛️ Kulty i Bóstwa", value="\n".join(overview_lines), inline=False)
+        embed.add_field(name="🏛️ Bóstwa i przypisane błogosławieństwa", value="\n\n".join(overview_lines), inline=False)
         embed.add_field(name="💫 Bonusy za Poziomy Sukcesu (+2 PS)", value=SL_BONUSES_TEXT, inline=False)
         await interaction.response.send_message(embed=embed)
 

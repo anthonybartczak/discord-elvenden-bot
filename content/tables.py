@@ -126,3 +126,239 @@ CORRUPTION_MENTAL = [
     '**Bezbożny szał**\nSzał Bojowy (patrz Psychologia), Walka Wręcz +10',
     '**Drżączka**\nZwinność +5, Ogłada –5',
 ]
+
+# -------------------------------------------------------------
+# TABELE FIZJONOMII POSTACI (WFRP 4e)
+# -------------------------------------------------------------
+
+PHYSIOGNOMY_RACES = {
+    "czlowiek": {
+        "name": "Człowiek",
+        "plural": "Ludzie",
+        "emoji": "👤",
+        "age_base": 15,
+        "age_dice": (1, 10),
+        "age_avg": "~60 lat",
+        "height_base": 150,
+        "height_dice": (4, 10),
+        "height_avg": "~175 cm",
+        "height_exploding": True,
+        "notes": "Włosy siwieją z wiekiem. Mężczyźni mogą nosić bujny zarost w kolorze włosów.",
+    },
+    "krasnolud": {
+        "name": "Krasnolud",
+        "plural": "Krasnoludy",
+        "emoji": "🧔",
+        "age_base": 15,
+        "age_dice": (10, 10),
+        "age_avg": "~200 lat",
+        "height_base": 130,
+        "height_dice": (2, 10),
+        "height_avg": "~140 cm",
+        "height_exploding": False,
+        "notes": "Krasnoludy szczycą się gęstym zarostem i brodami. Włosy i brody siwieją z wiekiem.",
+    },
+    "niziolek": {
+        "name": "Niziołek",
+        "plural": "Niziołki",
+        "emoji": "🧑‍🌾",
+        "age_base": 15,
+        "age_dice": (5, 10),
+        "age_avg": "~120 lat",
+        "height_base": 95,
+        "height_dice": (2, 10),
+        "height_avg": "~110 cm",
+        "height_exploding": False,
+        "notes": "Włosy niziołków siwieją z wiekiem, a w późnej starości stają się białe.",
+    },
+    "wysoki_elf": {
+        "name": "Wysoki elf",
+        "plural": "Wysokie elfy",
+        "emoji": "🧝‍♂️",
+        "age_base": 30,
+        "age_dice": (10, 10),
+        "age_avg": "Ponad 1000 lat",
+        "height_base": 180,
+        "height_dice": (3, 10),
+        "height_avg": "~195 cm",
+        "height_exploding": False,
+        "notes": "Elfy nie wykazują oznak starzenia ani nie siwieją. Ich oczy cechuje magiczna dwubarwność.",
+    },
+    "lesny_elf": {
+        "name": "Leśny elf",
+        "plural": "Leśne elfy",
+        "emoji": "🧝‍♀️",
+        "age_base": 30,
+        "age_dice": (10, 10),
+        "age_avg": "Ponad 1000 lat",
+        "height_base": 180,
+        "height_dice": (3, 10),
+        "height_avg": "~195 cm",
+        "height_exploding": False,
+        "notes": "Elfy nie wykazują oznak starzenia ani nie siwieją. Tęczówki leśnych elfów mają odcienie dzikiej natury.",
+    },
+}
+
+# Tabela koloru oczu: (min_roll, max_roll) -> {race_key: color_name}
+EYE_COLOR_TABLE = [
+    ((2, 2), {
+        "czlowiek": "Dowolny wybór",
+        "krasnolud": "Czarny jak węgiel",
+        "niziolek": "Jasnoszary",
+        "wysoki_elf": "Czarny jak smoła",
+        "lesny_elf": "Koloru kości słoniowej",
+    }),
+    ((3, 3), {
+        "czlowiek": "Zielony",
+        "krasnolud": "Szary jak ołów",
+        "niziolek": "Szary",
+        "wysoki_elf": "Ametystowy",
+        "lesny_elf": "Antracyt",
+    }),
+    ((4, 4), {
+        "czlowiek": "Błękitny",
+        "krasnolud": "Stalowoszary",
+        "niziolek": "Błękitny",
+        "wysoki_elf": "Akwamaryna",
+        "lesny_elf": "Zielony jak bluszcz",
+    }),
+    ((5, 7), {
+        "czlowiek": "Niebieski",
+        "krasnolud": "Niebieski",
+        "niziolek": "Niebieski",
+        "wysoki_elf": "Szafirowy",
+        "lesny_elf": "Zielony jak mech",
+    }),
+    ((8, 11), {
+        "czlowiek": "Blady szary",
+        "krasnolud": "Brązowy jak ziemia",
+        "niziolek": "Zielony",
+        "wysoki_elf": "Turkusowy",
+        "lesny_elf": "Kasztanowy",
+    }),
+    ((12, 14), {
+        "czlowiek": "Szary",
+        "krasnolud": "Ciemnobrązowy",
+        "niziolek": "Orzechowy",
+        "wysoki_elf": "Szmaragdowy",
+        "lesny_elf": "Kasztanowy",
+    }),
+    ((15, 17), {
+        "czlowiek": "Brązowy",
+        "krasnolud": "Orzechowy",
+        "niziolek": "Brązowy",
+        "wysoki_elf": "Bursztynowy",
+        "lesny_elf": "Ciemnobrązowy",
+    }),
+    ((18, 18), {
+        "czlowiek": "Orzechowy",
+        "krasnolud": "Zielony",
+        "niziolek": "Miedziany",
+        "wysoki_elf": "Miedziany",
+        "lesny_elf": "Jasnobrązowy",
+    }),
+    ((19, 19), {
+        "czlowiek": "Ciemnobrązowy",
+        "krasnolud": "Ciemny miedziany",
+        "niziolek": "Ciemnobrązowy",
+        "wysoki_elf": "Cytrynowożółty",
+        "lesny_elf": "Złotobrązowy",
+    }),
+    ((20, 20), {
+        "czlowiek": "Czarny",
+        "krasnolud": "Złoty",
+        "niziolek": "Ciemnobrązowy",
+        "wysoki_elf": "Złoty",
+        "lesny_elf": "Fiołkowy",
+    }),
+]
+
+# Tabela koloru włosów: (min_roll, max_roll) -> {race_key: color_name}
+HAIR_COLOR_TABLE = [
+    ((2, 2), {
+        "czlowiek": "Biały",
+        "krasnolud": "Blond",
+        "niziolek": "Biały",
+        "wysoki_elf": "Srebrnosiwy",
+        "lesny_elf": "Brzozowobiały",
+    }),
+    ((3, 3), {
+        "czlowiek": "Złoty blond",
+        "krasnolud": "Siwy",
+        "niziolek": "Lniany",
+        "wysoki_elf": "Popielaty",
+        "lesny_elf": "Blond",
+    }),
+    ((4, 4), {
+        "czlowiek": "Rudoblond",
+        "krasnolud": "Jasny blond",
+        "niziolek": "Rudawy",
+        "wysoki_elf": "Jasny blond",
+        "lesny_elf": "Różowe złoto",
+    }),
+    ((5, 7), {
+        "czlowiek": "Złoty",
+        "krasnolud": "Brązowy",
+        "niziolek": "Złoty",
+        "wysoki_elf": "Miodowoblond",
+        "lesny_elf": "Miodowoblond",
+    }),
+    ((8, 11), {
+        "czlowiek": "Jasny brąz",
+        "krasnolud": "Miedziany",
+        "niziolek": "Kasztanowy",
+        "wysoki_elf": "Żółty",
+        "lesny_elf": "Brązowy",
+    }),
+    ((12, 14), {
+        "czlowiek": "Ciemny brąz",
+        "krasnolud": "Brąz",
+        "niziolek": "Rudy",
+        "wysoki_elf": "Miedziany blond",
+        "lesny_elf": "Mahoniowy",
+    }),
+    ((15, 17), {
+        "czlowiek": "Czarny",
+        "krasnolud": "Brąz",
+        "niziolek": "Musztardowy",
+        "wysoki_elf": "Blond",
+        "lesny_elf": "Ciemny brąz",
+    }),
+    ((18, 18), {
+        "czlowiek": "Kasztanowy",
+        "krasnolud": "Ciemny brąz",
+        "niziolek": "Migdałowy",
+        "wysoki_elf": "Migdałowy",
+        "lesny_elf": "Sjena",
+    }),
+    ((19, 19), {
+        "czlowiek": "Rudy",
+        "krasnolud": "Rudy brąz",
+        "niziolek": "Czekoladowy",
+        "wysoki_elf": "Czerwony",
+        "lesny_elf": "Hebanowy",
+    }),
+    ((20, 20), {
+        "czlowiek": "Siwy",
+        "krasnolud": "Czarny",
+        "niziolek": "Lukrecjowy",
+        "wysoki_elf": "Czarny",
+        "lesny_elf": "Niebiesko-czarny",
+    }),
+]
+
+
+def lookup_eye_color(race_key: str, roll: int) -> str:
+    """Lookup eye color from 2k10 roll result."""
+    for (min_val, max_val), mapping in EYE_COLOR_TABLE:
+        if min_val <= roll <= max_val:
+            return mapping.get(race_key, "Niezdefiniowany")
+    return "Niezdefiniowany"
+
+
+def lookup_hair_color(race_key: str, roll: int) -> str:
+    """Lookup hair color from 2k10 roll result."""
+    for (min_val, max_val), mapping in HAIR_COLOR_TABLE:
+        if min_val <= roll <= max_val:
+            return mapping.get(race_key, "Niezdefiniowany")
+    return "Niezdefiniowany"
