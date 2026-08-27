@@ -6,7 +6,6 @@ from discord.ext import commands
 
 from config import ERROR_COLOR, MAIN_COLOR
 from core.data import (
-    ABILITIES_DATA,
     BLESSING_SHORT_NAMES,
     BLESSINGS_MAP,
     CULT_CLEAN_NAMES,
@@ -17,11 +16,19 @@ from core.data import (
     PRECOMPUTED_CULTS,
     PRECOMPUTED_TALENTS,
     SL_BONUSES_TEXT,
-    TALENTS_DATA,
+    find_ability,
     find_blessing,
     find_cult,
+    find_talent,
+)
+from utils.formatters import (
+    build_ability_embed,
+    build_blessing_embed,
+    build_cult_blessings_embed,
+    build_talent_embed,
 )
 from utils.helpers import create_embed, normalize_text
+from utils.views import BlessingSelectView, TalentSelectView
 
 
 class CompendiumCog(commands.Cog):
@@ -33,33 +40,21 @@ class CompendiumCog(commands.Cog):
     @app_commands.command(name="talent", description="Wyświetl opis i szczegóły talentu.")
     @app_commands.describe(talent_name="Nazwa szukanego talentu")
     async def talent(self, interaction: discord.Interaction, talent_name: str):
-        key = talent_name.strip().lower().replace(" ", "_")
-        talent_data = TALENTS_DATA.get(key)
-
-        # If exact key not found, fallback to normalized search
-        if not talent_data:
-            normalized_target = normalize_text(talent_name)
-            for t in PRECOMPUTED_TALENTS:
-                if t["norm_key"] == normalized_target or t["norm_name"] == normalized_target:
-                    talent_data = TALENTS_DATA.get(t["key"])
-                    break
+        talent_data = find_talent(talent_name)
 
         if talent_data:
-            embed = create_embed(
-                title=talent_data.get("name", talent_name),
-                description=talent_data.get("description", "Brak opisu."),
-                color=MAIN_COLOR,
+            embed = build_talent_embed(
+                talent_data=talent_data,
+                talent_name_fallback=talent_name,
                 client_user=self.bot.user
             )
-            embed.add_field(name="Maksimum", value=talent_data.get("max", "N/A"), inline=True)
-            embed.add_field(name="Testy", value=talent_data.get("tests", "N/A"), inline=True)
             await interaction.response.send_message(embed=embed)
         else:
             embed = create_embed(
                 title="⚠️ Nie znaleziono talentu",
                 description=(
-                    f"Nie znaleziono talentu o nazwie `{talent_name}`.\n"
-                    "Użyj autouzupełniania podczas wpisywania, aby wybrać właściwą nazwę."
+                    f"Nie znaleziono talentu o nazwie `{talent_name}`.\n\n"
+                    "💡 *Użyj podpowiedzi autouzupełniania podczas wpisywania, aby wybrać właściwą nazwę.*"
                 ),
                 color=ERROR_COLOR,
                 client_user=self.bot.user
@@ -86,33 +81,25 @@ class CompendiumCog(commands.Cog):
     @app_commands.command(name="umiejętność", description="Wyświetl opis i szczegóły umiejętności.")
     @app_commands.describe(ability_name="Nazwa szukanej umiejętności")
     async def ability(self, interaction: discord.Interaction, ability_name: str):
-        key = ability_name.strip().lower().replace(" ", "_")
-        ability_data = ABILITIES_DATA.get(key)
-
-        if not ability_data:
-            normalized_target = normalize_text(ability_name)
-            for a in PRECOMPUTED_ABILITIES:
-                if a["norm_key"] == normalized_target or a["norm_name"] == normalized_target:
-                    ability_data = ABILITIES_DATA.get(a["key"])
-                    break
+        ability_data = find_ability(ability_name)
 
         if ability_data:
-            embed = create_embed(
-                title=ability_data.get("name", ability_name),
-                description=ability_data.get("description", "Brak opisu."),
-                color=MAIN_COLOR,
+            embed, talents_list = build_ability_embed(
+                ability_data=ability_data,
+                ability_name_fallback=ability_name,
                 client_user=self.bot.user
             )
-            embed.add_field(name="Typ", value=ability_data.get("type", "N/A"), inline=False)
-            embed.add_field(name="Cecha", value=ability_data.get("attribute", "N/A"), inline=False)
-            embed.add_field(name="Talenty", value=ability_data.get("talents", "Brak"), inline=False)
-            await interaction.response.send_message(embed=embed)
+            view = TalentSelectView(talents=talents_list, client_user=self.bot.user) if talents_list else None
+            if view and len(view.children) > 0:
+                await interaction.response.send_message(embed=embed, view=view)
+            else:
+                await interaction.response.send_message(embed=embed)
         else:
             embed = create_embed(
                 title="⚠️ Nie znaleziono umiejętności",
                 description=(
-                    f"Nie znaleziono umiejętności o nazwie `{ability_name}`.\n"
-                    "Użyj autouzupełniania podczas wpisywania, aby wybrać właściwą nazwę."
+                    f"Nie znaleziono umiejętności o nazwie `{ability_name}`.\n\n"
+                    "💡 *Użyj podpowiedzi autouzupełniania podczas wpisywania, aby wybrać właściwą nazwę.*"
                 ),
                 color=ERROR_COLOR,
                 client_user=self.bot.user
@@ -153,7 +140,7 @@ class CompendiumCog(commands.Cog):
                 description=(
                     f"Nie znaleziono bóstwa o nazwie `{god_name}`.\n\n"
                     "**Dostępne bóstwa:** Manann, Morr, Myrmidia, Ranald, Rhya, Shallya, Sigmar, Taal, Ulryk, Verena.\n"
-                    "Użyj autouzupełniania podczas wpisywania, aby wybrać właściwą nazwę."
+                    "💡 *Użyj autouzupełniania podczas wpisywania, aby wybrać właściwą nazwę.*"
                 ),
                 color=ERROR_COLOR,
                 client_user=self.bot.user
@@ -165,8 +152,8 @@ class CompendiumCog(commands.Cog):
             embed = create_embed(
                 title="⚠️ Nie znaleziono błogosławieństwa",
                 description=(
-                    f"Nie znaleziono błogosławieństwa o nazwie `{blessing_name}`.\n"
-                    "Użyj autouzupełniania podczas wpisywania, aby wybrać właściwą nazwę."
+                    f"Nie znaleziono błogosławieństwa o nazwie `{blessing_name}`.\n\n"
+                    "💡 *Użyj autouzupełniania podczas wpisywania, aby wybrać właściwą nazwę.*"
                 ),
                 color=ERROR_COLOR,
                 client_user=self.bot.user
@@ -177,70 +164,49 @@ class CompendiumCog(commands.Cog):
         # Specific blessing requested (or both god and blessing specified)
         if matched_blessing:
             b_data = BLESSINGS_MAP[matched_blessing]
-            b_name = b_data.get("name", matched_blessing.capitalize())
             cult_list = [
                 CULT_CLEAN_NAMES.get(c, c.capitalize())
                 for c, bl in CULTS_MAP.items()
                 if matched_blessing in bl
             ]
             cults_str = ", ".join(cult_list) if cult_list else "Brak powiązanych kultów"
+            matched_cult_clean = CULT_CLEAN_NAMES.get(matched_cult, matched_cult) if matched_cult else None
 
-            desc = "Szczegółowe parametry błogosławieństwa (WFRP 4e):"
-            if matched_cult:
-                cult_name = CULT_CLEAN_NAMES.get(matched_cult, matched_cult)
-                if matched_blessing in CULTS_MAP.get(matched_cult, []):
-                    desc = f"Błogosławieństwo dostępne w kulcie bóstwa **{cult_name}**:"
-                else:
-                    desc = f"⚠️ Bóstwo **{cult_name}** nie posiada tego błogosławieństwa (jest ono dostępne dla: **{cults_str}**)."
-
-            embed = create_embed(
-                title=f"✨ {b_name}",
-                description=desc,
-                color=MAIN_COLOR,
+            embed = build_blessing_embed(
+                blessing_data=b_data,
+                blessing_name_fallback=matched_blessing.capitalize(),
+                matched_cult_clean=matched_cult_clean,
+                cults_str=cults_str,
+                sl_bonuses_text=SL_BONUSES_TEXT,
                 client_user=self.bot.user
             )
-            embed.add_field(name="Zasięg", value=str(b_data.get("range", "–")), inline=True)
-            embed.add_field(name="Liczba celów", value=str(b_data.get("targets", "–")), inline=True)
-            embed.add_field(name="Czas trwania", value=str(b_data.get("duration", "–")), inline=True)
-            embed.add_field(name="Efekt", value=b_data.get("effect", "–"), inline=False)
-            embed.add_field(name="Dostępne dla bóstw", value=cults_str, inline=False)
-            embed.add_field(name="💫 Bonusy za Poziomy Sukcesu (+2 PS)", value=SL_BONUSES_TEXT, inline=False)
             await interaction.response.send_message(embed=embed)
             return
 
         # Deity blessings requested
         if matched_cult:
             cult_display = CULT_DISPLAY_NAMES.get(matched_cult, matched_cult.capitalize())
-            cult_name = CULT_CLEAN_NAMES.get(matched_cult, matched_cult.capitalize())
+            cult_clean = CULT_CLEAN_NAMES.get(matched_cult, matched_cult.capitalize())
             blessings_list = CULTS_MAP[matched_cult]
 
-            embed = create_embed(
-                title=f"✨ Błogosławieństwa: {cult_display}",
-                description=f"Bóstwo **{cult_name}** obdarza swoich wyznawców 6 następującymi błogosławieństwami:\n",
-                color=MAIN_COLOR,
+            embed = build_cult_blessings_embed(
+                cult_display=cult_display,
+                cult_clean=cult_clean,
+                blessings_list=blessings_list,
+                blessings_map=BLESSINGS_MAP,
+                sl_bonuses_text=SL_BONUSES_TEXT,
                 client_user=self.bot.user
             )
-            for b_key in blessings_list:
-                b_data = BLESSINGS_MAP.get(b_key, {})
-                b_name = b_data.get("name", b_key.capitalize())
-                b_range = b_data.get("range", "–")
-                b_targets = b_data.get("targets", "–")
-                b_dur = b_data.get("duration", "–")
-                b_eff = b_data.get("effect", "–")
-                embed.add_field(
-                    name=f"🌟 {b_name}",
-                    value=(
-                        f"**Zasięg:** {b_range} | **Cel:** {b_targets} | **Czas:** {b_dur}\n"
-                        f"**Efekt:** {b_eff}"
-                    ),
-                    inline=False
-                )
-            embed.add_field(
-                name="💫 Bonusy za Poziomy Sukcesu (+2 PS)",
-                value=SL_BONUSES_TEXT,
-                inline=False
+            view = BlessingSelectView(
+                blessings_list=blessings_list,
+                cult_clean=cult_clean,
+                cult_clean_names=CULT_CLEAN_NAMES,
+                cults_map=CULTS_MAP,
+                blessings_map=BLESSINGS_MAP,
+                sl_bonuses_text=SL_BONUSES_TEXT,
+                client_user=self.bot.user
             )
-            await interaction.response.send_message(embed=embed)
+            await interaction.response.send_message(embed=embed, view=view)
             return
 
         # Overview of all cults
@@ -248,7 +214,7 @@ class CompendiumCog(commands.Cog):
             title="✨ Błogosławieństwa bóstw (WFRP 4e)",
             description=(
                 "W WFRP 4e kapłani oraz wtajemniczeni mogą prosić swoich bogów o zesłanie błogosławieństw "
-                "(**Test Modlitwy** oparty na **Charyzmie**).\n\n"
+                "(wymagany **Test Modlitwy** oparty na **Charyzmie**).\n\n"
                 "Aby sprawdzić szczegóły, wpisz:\n"
                 "• `/błogosławieństwo bóstwo:<nazwa>` — lista 6 błogosławieństw danego bóstwa\n"
                 "• `/błogosławieństwo nazwa:<nazwa>` — statystyki i opis konkretnego błogosławieństwa\n\n"
@@ -263,7 +229,7 @@ class CompendiumCog(commands.Cog):
             names = [BLESSING_SHORT_NAMES.get(b, b) for b in blist]
             overview_lines.append(f"• **{cult_name}**: {', '.join(names)}")
 
-        embed.add_field(name="Kulty", value="\n".join(overview_lines), inline=False)
+        embed.add_field(name="🏛️ Kulty i Bóstwa", value="\n".join(overview_lines), inline=False)
         embed.add_field(name="💫 Bonusy za Poziomy Sukcesu (+2 PS)", value=SL_BONUSES_TEXT, inline=False)
         await interaction.response.send_message(embed=embed)
 

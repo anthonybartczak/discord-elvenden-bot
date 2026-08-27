@@ -32,7 +32,7 @@
     "type": "Podstawowa",
     "attribute": "Ogd",
     "description": "Dzięki Charyzmie możesz sprawić, że ludzie będą dobrze o tobie myśleli, zgadzali się z twoim zdaniem i przystaną na twoje propozycje. Udany Przeciwstawny Test Charyzmy przeciw Opanowaniu pozwala wpłynąć na zachowanie jednej lub więcej istot. Ich liczba jest określana przez Bonus z Ogłady + PS Testu. Określanie, kogo udało się przekonać, należy zacząć od istot z najniższą Siłą Woli. Jeśli takie postaci są pozytywnie nastawione do bohaterów, nie trzeba tu wykonywać Testu Przeciwstawnego, wystarczy Test Prosty. MG może pozwolić na wykonanie Testu Charyzmy w walce, jeśli uważa, że wrogów wzruszy błaganie o życie lub nawoływania do porzucenia przemocy (aha, i powodzenia w przekonywaniu do czegokolwiek goblinów!). Jeśli używasz Charyzmy jako swojej Akcji, liczba istot pod jej wpływem jest określana, jak opisano wyżej. Jeżeli bronisz się tą Umiejętnością, możesz wpłynąć nią tylko na napastnika. Jeśli Test się powiedzie, w tej Rundzie przekonani napastnicy nie zaatakują, a ty zdobywasz +1 Przewagę. Testy Charyzmy możesz wykonywać co Rundę, aż z nich zrezygnujesz albo któryś z nich zakończy się porażką. Oznacza to, że czas gładkich słówek dobiegł końca.",
-    "talents": "Atrakcyjny, Etykieta (Grupa społeczna), Gadanina, Gładnie Słówka, Hulaka, Krasomóstwo, Mówca, Naciągacz (Żebractwo), Porywająca Gorliwość, Przekonujący"
+    "talents": "Atrakcyjny, Etykieta (Grupa społeczna), Gadanina, Gładkie Słówka, Hulaka, Krasomówstwo, Mówca, Naciągacz (Żebractwo), Porywająca Gorliwość, Przekonujący"
  },
 "dowodzenie" : {
     "name": "Dowodzenie",
@@ -46,7 +46,7 @@
     "type": "Podstawowa",
     "attribute": "Int",
     "description": "Ta Umiejętność pozwala ci określić, jak opłacalny jest zakład i czy warto próbować szczęścia w grach na pieniądze. Podczas rozgrywki wszyscy jej uczestnicy wykonują Test Hazardu, korzystając ze wszystkich przysługujących im modyfikatorów. Wygrywa ten, kto uzyska najwięcej PS. Jeśli dojdzie do remisu, z gry odpadają te postaci, które uzyskały niższe wyniki, a remisujący muszą wykonać kolejny Test Hazardu i powtarzać go, aż zostanie wyłoniony jeden zwycięzca. Bardziej nieuczciwy wpływ na grę można mieć, wykorzystując Umiejętność Zwinne Palce.",
-    "talents": "Geniusz Arytmetyczny, Szuler, Szuler Kościalny"
+    "talents": "Geniusz Arytmetyczny, Szuler, Szuler Kościany"
  },
 "intuicja" : {
     "name": "Intuicja",
@@ -56,18 +56,18 @@
     "talents": "Rozpoznanie Artefaktu, Szósty Zmysł, Święte Wizje, Wykrywanie Magii"
  },
 "jeździectwo" : {
-    "name": "Jedździectwo",
+    "name": "Jeździectwo",
     "type": "Podstawowa",
     "attribute": "Zw",
     "description": "Ta Umiejętność określa, jak dobrze radzisz sobie z jeżdżeniem na określonym rodzaju zwierząt. Jeździectwo (Konie) pozwala ci dosiadać koni, mułów czy osłów i im podobnych. Testy Jeździectwa musisz wykonywać jedynie wtedy, gdy podejmujesz się czegoś niecodziennego: zmuszasz rumaka do wyścigu, podejmujesz się ujeżdżania, pokonujesz niebezpieczny teren czy szarżujesz do walki. Jeśli robisz coś prostszego i posiadasz choć jeden punkt Rozwinięcia w tej Umiejętności, działanie kończy się sukcesem bez Testu. Dosiadając wierzchowca, poruszasz się z jego Szybkością, a jeśli zmuszasz go do skoków czy biegu, wykonujesz Test Jeździectwa, a nie Atletyki. Jeśli gnasz do dalekiego celu, może być wymagany Wydłużony Test Jeździectwa, a liczba potrzebnych PS zależy od odległości do pokonania. Liczba wymaganych Testów będzie wskazywała na to, jak daleko jest do punktu docelowego. Na Testy Jeździectwa mogą wpływać modyfikatory związane z warunkami pogodowymi czy narowistością wierzchowca. Więcej informacji o nich znajduje się w Rozdziale 12: Bestiariusz. Jeździectwo jest niezwykle przydatne i często wykorzystywane w walce, co opisano w Rozdziale 5: Zasady. Przykładowe Specjalizacje: Konie, Gryfy, Pegazy, Półgryfy, Wielkie Wilki.",
-    "talents": "Urodzony w Siodle (Konie), Wiltyżerka, Z Bata"
+    "talents": "Urodzony w Siodle (Konie), Woltyżerka, Z Bata"
  },
 "język" : {
     "name": "Język",
     "type": "Zaawansowana",
     "attribute": "Int",
     "description": "Ta Umiejętność pozwala ci władać innymi językami niż twój ojczysty. Wszyscy bohaterowie potrafią mówić w reikspielu (mowie Imperium), oraz rodzimym języku (jeśli postać pochodzi z rejonów, gdzie nie mawia się w reikspielu). Nie trzeba wykonywać Testu, by porozumieć się w ten sposób, a jeśli twoja gra dzieje się w innym regionie Starego Świata, zastąp reikspiel miejscowym językiem. Jeśli posiadasz Umiejętność Język, jesteś w stanie dogadać się w danej mowie oraz rozumieć proste pojęcia. Jeżeli temat rozmowy stanie się trudniejszy, możesz być zmuszony do wykonania Testu Umiejętności, by sprawdzić, czy znasz mało używany dialekt lub specjalistyczne słownictwo. Uwaga: Umiejętność Język (Magiczny) jest wykorzystywana do rzucania czarów i niekiedy skutki nieudanego Testu mogą być… nieprzyjemne. Więcej informacji na ten temat znajduje się w Rozdziale 8: Magia. Przykładowe Specjalizacje: Język Bitewny, Bretoński, Klasyczny, Gildii, Khazalid, Magiczny, Złodziei, Tileański.",
-    "talents": "Poliglota, Perfekcyjne Inkantowanie (Magiczny), Słuch Absolutny, Szybkie Czytanie"
+    "talents": "Poliglota, Precyzyjne Inkantowanie (Magiczny), Słuch Absolutny, Szybkie Czytanie"
  },
 "kuglarstwo" : {
     "name": "Kuglarstwo",
@@ -186,7 +186,7 @@
     "type": "Zaawansowana",
     "attribute": "Zr",
     "description": "Większość mieszkańców Reiklandu wykonuje jakiś fach, nawet poszukiwacze przygód zwykle mają stabilne zajęcie czy pełnią godną funkcję, zapewniającą im byt pomiędzy przygodami, od których włos się jeży na głowie, a kiszki skręcają ze strachu. Posiadanie tej Umiejętności oznacza, że potrafisz coś wytwarzać lub oferujesz usługi i posiadasz wiedzę związaną z wykonywanym zawodem. Dzięki posiadaniu tej Umiejętności jesteś w stanie bez Testu wykonywać codzienne obowiązki związane z pracą, zakładając, że masz potrzebne narzędzia. Test Rzemiosła musisz wykonać, gdy pracujesz w pośpiechu, nieodpowiednich warunkach lub gdy próbujesz opracować coś nowego lub wysokiej jakości. Bardzo często Testy Rzemiosła są Testami Wydłużonymi. Wymagane PS i poświęcony czas zależą od tego, czego się podjąłeś. Ugotowanie szybkiego obiadu, by zachwycić miejscowego władykę, wymaga Testu Rzemiosła (Gotowanie), ale i mniej czasu niż zaprojektowanie i zbudowanie okrętu wojennego, przy czym nieodzowny będzie Test Rzemiosła (Szkutnictwo). Test Rzemiosła można wykonać zamiast odpowiedniej Wiedzy, jeśli bohater próbuje przypomnieć sobie informacje związane z jego fachem. W takim przypadku MG może wykorzystać do niego Inteligencję zamiast Zręczności, choć dla płynności gry można z tej zmiany zrezygnować. W większości przypadków Testy Rzemiosła nie mają zastosowania w walce. Z drugiej strony, ilu rzemieślników, tyle fachów, a wszystko zależy od okoliczności. Na przykład udany Test Rzemiosła (Aptekarstwo) może być przydatny, gdy walka będzie toczyła się w aptece. W takim przypadku osoba obeznana z ingrediencjami szybko znajdzie te, którymi warto cisnąć w przeciwnika. Umiejętność Rzemiosło jest wykorzystywana między przygodami podczas Zajęcia Wytwórstwo (patrz strona 199). Przykładowe Specjalizacje: Aptekarstwo, Balsamowanie, Garbarstwo, Gotowanie, Kaligrafia, Kowalstwo, Świecarstwo",
-    "talents": "Aptekarz (Aptekarstwo), Arcydzieło, Mistrz Rzemiosła, Przydządzanie Mikstur (Aptekarstwo), Wytwórca, Złota Rączka"
+    "talents": "Aptekarz (Aptekarstwo), Arcydzieło, Mistrz Rzemiosła, Przyrządzanie Mikstur (Aptekarstwo), Wytwórca, Złota Rączka"
  },
 "sekretne_znaki" : {
     "name": "Sekretne Znaki",

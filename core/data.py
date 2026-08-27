@@ -133,3 +133,40 @@ def find_blessing(query: str) -> Optional[str]:
         if len(q_clean) >= 4 and (q_clean[:4] == b["norm_key"][:4] or q_clean[:4] == b["norm_short"][:4]):
             return b["key"]
     return None
+
+
+def find_talent(query: str) -> Optional[dict]:
+    """Find talent dataset matching query (by exact key, normalized name, or stripped specialization)."""
+    import re
+    key = query.strip().lower().replace(" ", "_")
+    if key in TALENTS_DATA:
+        return TALENTS_DATA[key]
+
+    q_norm = normalize_text(query)
+    for t in PRECOMPUTED_TALENTS:
+        if t["norm_key"] == q_norm or t["norm_name"] == q_norm:
+            return TALENTS_DATA.get(t["key"])
+
+    # Fallback stripping any parentheses e.g. "Aptekarz (Aptekarstwo)" -> "Aptekarz"
+    q_stripped = normalize_text(re.sub(r"\(.*?\)", "", query))
+    if q_stripped:
+        for t in PRECOMPUTED_TALENTS:
+            if t["norm_key"] == q_stripped or t["norm_name"] == q_stripped:
+                return TALENTS_DATA.get(t["key"])
+
+    return None
+
+
+def find_ability(query: str) -> Optional[dict]:
+    """Find ability dataset matching query (by exact key, normalized name, or alias)."""
+    key = query.strip().lower().replace(" ", "_")
+    if key in ABILITIES_DATA:
+        return ABILITIES_DATA[key]
+
+    q_norm = normalize_text(query)
+    for a in PRECOMPUTED_ABILITIES:
+        if a["norm_key"] == q_norm or a["norm_name"] == q_norm:
+            return ABILITIES_DATA.get(a["key"])
+
+    return None
+

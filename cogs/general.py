@@ -4,7 +4,7 @@ from discord.ext import commands
 
 from config import MAIN_COLOR
 from utils.helpers import create_embed
-from utils.views import InviteView
+from utils.views import HelpCategoryView, InviteView
 
 
 class GeneralCog(commands.Cog):
@@ -16,10 +16,10 @@ class GeneralCog(commands.Cog):
     @app_commands.command(name="serwery", description="Sprawdź do ilu serwerów jest połączony Elvie.")
     async def servers(self, interaction: discord.Interaction):
         guild_count = len(self.bot.guilds)
-        description = f"Połączony z **{guild_count}** {'serwerem' if guild_count == 1 else 'serwerami'}.\n\n"
+        server_word = "serwerem" if guild_count == 1 else "serwerami"
         embed = create_embed(
-            title="Lista serwerów",
-            description=description,
+            title="🌐 Połączone serwery",
+            description=f"Elvie aktualnie wspiera graczy na **{guild_count}** {server_word}.",
             color=MAIN_COLOR,
             client_user=self.bot.user
         )
@@ -27,40 +27,18 @@ class GeneralCog(commands.Cog):
 
     @app_commands.command(name="pomoc", description="Pokazuje instrukcję bota Elvie.")
     async def help_command(self, interaction: discord.Interaction):
-        description = (
-            "Poniżej znajdziesz listę obecnie dostępnych poleceń slash. Argumenty oznaczone `*` są opcjonalne:\n\n"
-            "**`/rozwinięcie <cecha/umiejętność> <start> <cel> <talent*>`**\n"
-            "Oblicz koszt rozwoju od `start` do `cel` cechy lub umiejętności. Wybór talentu obniża koszt każdego rozwinięcia o 5 PD.\n\n"
-            "**`/tabela_rozwinięć <wersja>`**\n"
-            "Wyświetl tabelę *Koszt rozwoju cech i umiejętności w PD* (tekstowo lub w wersji graficznej).\n\n"
-            "**`/talent <nazwa>`**\n"
-            "Wyświetl opis, testy oraz maksymalną wartość danego talentu.\n\n"
-            "**`/umiejętność <nazwa>`**\n"
-            "Wyświetl opis, cechę bazową oraz powiązane talenty danej umiejętności.\n\n"
-            "**`/błogosławieństwo <bóstwo*> <nazwa*>`**\n"
-            "Wyświetl błogosławieństwa dla wybranego bóstwa lub szczegółowe statystyki konkretnego błogosławieństwa.\n\n"
-            "**`/manifestacja <mniejsza/większa>`**\n"
-            "Wylosuj mniejszą lub większą manifestację magii z tabeli WFRP 4e.\n\n"
-            "**`/spaczenie <fizyczne/psychiczne>`**\n"
-            "Wylosuj spaczenie fizyczne lub zepsucie psychiczne z tabeli WFRP 4e.\n\n"
-            "**`/fortuna`**\n"
-            "Wylosuj 4 zakryte karty i sprawdź, czy Ranald wysłucha Twej prośby!\n\n"
-            "**`/zaproszenie`**\n"
-            "Wygeneruj link zaproszenia, dzięki któremu dodasz bota na własny serwer.\n"
-        )
-        embed = create_embed(
-            title="Krótka instrukcja bota Elvie",
-            description=description,
-            color=MAIN_COLOR,
-            client_user=self.bot.user
-        )
-        await interaction.response.send_message(embed=embed)
+        view = HelpCategoryView(client_user=self.bot.user)
+        embed = view.get_all_embed()
+        await interaction.response.send_message(embed=embed, view=view)
 
     @app_commands.command(name="zaproszenie", description="Wygeneruj zaproszenie dla bota Elvie.")
     async def invite(self, interaction: discord.Interaction):
         embed = create_embed(
-            title="Link do zaproszenia",
-            description="Kliknij poniższy przycisk, aby dodać Elviego do swojego serwera Discord:",
+            title="🔗 Zaproszenie bota",
+            description=(
+                "Kliknij poniższy przycisk, aby dodać **Elviego** do swojego serwera Discord "
+                "i korzystać z szybkiego kompendium WFRP 4e:"
+            ),
             color=MAIN_COLOR,
             client_user=self.bot.user
         )

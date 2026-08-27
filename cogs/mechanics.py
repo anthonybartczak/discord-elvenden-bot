@@ -7,6 +7,7 @@ from discord.ext import commands
 from config import ERROR_COLOR, MAIN_COLOR
 import content.pictures as pic
 import content.tables as tab
+from utils.formatters import build_advance_embed, build_table_roll_embed
 from utils.helpers import create_embed
 from utils.views import FortuneCardView
 
@@ -44,7 +45,7 @@ class MechanicsCog(commands.Cog):
     ):
         if init < 0 or goal < 0:
             embed = create_embed(
-                title="Błąd wartości",
+                title="⚠️ Błąd wartości",
                 description="Wartości poziomu rozwinięcia nie mogą być ujemne.",
                 color=ERROR_COLOR,
                 client_user=self.bot.user
@@ -54,8 +55,8 @@ class MechanicsCog(commands.Cog):
 
         if goal <= init:
             embed = create_embed(
-                title="Błąd wartości",
-                description=f"Wartość docelowa ({goal}) musi być większa od początkowej ({init}).",
+                title="⚠️ Błąd wartości",
+                description=f"Wartość docelowa (`{goal}`) musi być większa od początkowej (`{init}`).",
                 color=ERROR_COLOR,
                 client_user=self.bot.user
             )
@@ -88,25 +89,18 @@ class MechanicsCog(commands.Cog):
                 break
 
         total_steps = goal - init
-        description = (
-            f"Początkowa wartość **{choice}**: **{init}**\n"
-            f"Docelowa wartość **{choice}**: **{goal}** (Rozwinięcia: **+{total_steps}**)\n\n"
-        )
+        discount = (5 * total_steps) if talent == "tak" else 0
+        final_cost = max(0, cost_sum - discount)
 
-        if talent == "tak":
-            discount = 5 * total_steps
-            final_cost = max(0, cost_sum - discount)
-            description += (
-                f"Talent obniża koszt o **5 PD** za każde rozwinięcie (łącznie -{discount} PD).\n\n"
-                f"Finalny koszt rozwinięcia: **{final_cost} PD**"
-            )
-        else:
-            description += f"Koszt rozwinięcia: **{cost_sum} PD**"
-
-        embed = create_embed(
-            title=f"Rozwinięcie {choice}",
-            description=description,
-            color=MAIN_COLOR,
+        embed = build_advance_embed(
+            choice=choice,
+            init=init,
+            goal=goal,
+            total_steps=total_steps,
+            cost_sum=cost_sum,
+            talent=talent,
+            discount=discount,
+            final_cost=final_cost,
             client_user=self.bot.user
         )
         await interaction.response.send_message(embed=embed)
@@ -126,10 +120,11 @@ class MechanicsCog(commands.Cog):
         index = min((roll - 1) // 5, len(table) - 1)
         result_text = table[index]
 
-        embed = create_embed(
-            title=f"{choice.capitalize()} manifestacja!",
-            description=f"Wyrzuciłeś **{roll}** na kościach k100:\n\n{result_text}",
-            color=MAIN_COLOR,
+        table_label = "Większa Manifestacja Magii" if choice == "większa" else "Mniejsza Manifestacja Magii"
+        embed = build_table_roll_embed(
+            table_name=table_label,
+            roll=roll,
+            result_raw=result_text,
             client_user=self.bot.user
         )
         await interaction.response.send_message(embed=embed)
@@ -148,10 +143,11 @@ class MechanicsCog(commands.Cog):
         index = min((roll - 1) // 5, len(table) - 1)
         result_text = table[index]
 
-        embed = create_embed(
-            title=f"Wylosowano {choice}!",
-            description=f"Wyrzuciłeś **{roll}** na kościach k100:\n\n{result_text}",
-            color=MAIN_COLOR,
+        table_label = "Zepsucie Psychiczne" if choice == "zepsucie psychiczne" else "Spaczenie Fizyczne"
+        embed = build_table_roll_embed(
+            table_name=table_label,
+            roll=roll,
+            result_raw=result_text,
             client_user=self.bot.user
         )
         await interaction.response.send_message(embed=embed)
@@ -159,10 +155,10 @@ class MechanicsCog(commands.Cog):
     @app_commands.command(name="fortuna", description="Wylosuj kartę i sprawdź czy Ranald przygląda się Twoim losom!")
     async def fortune(self, interaction: discord.Interaction):
         embed = create_embed(
-            title="Punkt szczęścia użyty!",
+            title="🤞 Punkt szczęścia użyty!",
             description=(
                 "Czyli Twoja dobra passa się skończyła i nagle chcesz, by sam **Ranald** Ci dopomógł?\n\n"
-                "Dobrze, wybierz jedną z poniższych 4 kart, śmiertelniku..."
+                "Dobrze... Wybierz jedną z poniższych 4 kart, śmiertelniku:"
             ),
             color=MAIN_COLOR,
             image_url=pic.CARD_REVERSE,
@@ -182,7 +178,7 @@ class MechanicsCog(commands.Cog):
     async def advance_table(self, interaction: discord.Interaction, version: str):
         if version == "mobilna":
             embed = create_embed(
-                title="Koszt rozwoju cech i umiejętności w PD",
+                title="📜 Koszt rozwoju cech i umiejętności w PD",
                 description="",
                 color=MAIN_COLOR,
                 image_url=pic.ADVANCE_TABLE_PIC,
@@ -190,7 +186,7 @@ class MechanicsCog(commands.Cog):
             )
         else:
             embed = create_embed(
-                title="Koszt rozwoju cech i umiejętności w PD",
+                title="📜 Koszt rozwoju cech i umiejętności w PD",
                 description=tab.ADV_TABLE,
                 color=MAIN_COLOR,
                 client_user=self.bot.user
