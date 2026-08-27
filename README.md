@@ -67,14 +67,25 @@
 ## 📁 Struktura projektu
 
 ```text
-├── content/
+├── cogs/                 # Rozszerzenia i obsługa poleceń Slash (Cogs)
+│   ├── general.py        # /pomoc, /serwery, /zaproszenie
+│   ├── mechanics.py      # /rozwinięcie, /tabela_rozwinięć, /manifestacja, /spaczenie, /fortuna
+│   └── compendium.py     # /talent, /umiejętność, /błogosławieństwo (+ autouzupełnianie)
+├── content/              # Bazy danych JSON, tabele i grafiki WFRP 4e
 │   ├── abilities.json    # Baza umiejętności WFRP 4e
 │   ├── blessings.json    # Baza błogosławieństw i kultów bóstw WFRP 4e
 │   ├── talents.json      # Baza talentów WFRP 4e
 │   ├── pictures.py       # Adresy zasobów graficznych (karty, awatary, tabele)
 │   └── tables.py         # Tabele manifestacji, spaczeń i rozwinięć
+├── core/                 # Inicjalizacja bota i ładowanie danych
+│   ├── bot.py            # Klasa ElvieBot i synchronizacja drzewa poleceń
+│   └── data.py           # Struktury danych i zindeksowane bazy wyszukiwania
+├── utils/                # Narzędzia pomocnicze i interfejs Discord UI
+│   ├── helpers.py        # Normalizacja tekstu, generowanie embedów, wyszukiwarki
+│   └── views.py          # Interaktywne widoki i przyciski (karty Ranalda, zaproszenie)
 ├── .env.example          # Wzór konfiguracji środowiskowej
-├── bot.py                # Główny kod bota i obsługa poleceń Slash
+├── bot.py                # Punkt startowy aplikacji
+├── config.py             # Stałe konfiguracyjne, kolory, ścieżki i logger
 ├── PRIVACY_POLICY.md     # Polityka prywatności (Privacy Policy)
 ├── TERMS_OF_SERVICE.md   # Regulamin korzystania (Terms of Service)
 ├── requirements.txt      # Główne zależności Python
